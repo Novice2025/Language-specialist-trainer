@@ -1,5 +1,5 @@
 <?php
-// builder.php - Lesson Planner
+// builder.php - Your LexiPro Lesson Planner
 require_once 'db.php'; // Include the database connection
 
 $message = '';
@@ -13,7 +13,7 @@ if (¨D_SERVER['REQUEST_METHOD'] === 'POST' && isset(¨D_POST['action']) && ¨D_
     $vocabulary = ¨D_POST['vocabulary'] ?? '';
     $logic = ¨D_POST['logic'] ?? '';
     $example_sentences = ¨D_POST['example_sentences'] ?? '';
-    $focus = ¨D_POST['focus'] ?? ''; // This is the new 'focus' area
+    $focus = ¨D_POST['focus'] ?? ''; // This is the 'focus' area
 
     // Basic validation
     if (empty($title)) {
@@ -67,6 +67,22 @@ try {
             text-align: center;
             margin-bottom: 30px;
         }
+        .home-button {
+            display: block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background-color: #bd93f9; /* Vibrant accent color */
+            color: #1a1a2e;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .home-button:hover {
+            background-color: #ff79c6; /* Another vibrant accent on hover */
+            transform: translateY(-2px);
+        }
         form {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -107,7 +123,7 @@ try {
             resize: vertical;
         }
 
-        /* Custom Dropdown Colors for Dark Mode */
+        /* Custom Dropdown Colors for Dark Mode - Ensured Readable Contrast */
         select {
             /* Basic appearance reset */
             -webkit-appearance: none;
@@ -120,7 +136,6 @@ try {
             background-size: 20px;
             padding-right: 35px; /* Make space for the arrow */
         }
-
         /* Option Group and Option styling for dark mode readability */
         select option {
             background-color: #3e3e5c; /* Option background */
@@ -202,6 +217,7 @@ try {
 </head>
 <body>
     <div class="container">
+        <a href="index.php" class="home-button">← Voltar para a Página Principal</a>
         <h1>LexiPro: Lesson Builder 🚀</h1>
         <p style="text-align: center; color: #c0c0c0; margin-bottom: 30px;">Design your "Lego Chain Block" lessons and advanced vocabulary modules here. Focus on the core logic and impact.</p>
 
@@ -290,7 +306,7 @@ try {
                         <p><strong>Focus:</strong> <?php echo htmlspecialchars($lesson['focus'] ?? 'N/A'); ?></p>
                         <p><strong>Chunks:</strong> <?php echo htmlspecialchars($lesson['chunks']); ?></p>
                         <p><strong>Vocabulary:</strong> <?php echo htmlspecialchars($lesson['vocabulary']); ?></p>
-                        <p><strong>Logic:</strong> <?php echo htmlspecialchars($lesson['logic']); ?></p>
+                        <p><strong>Logic:</strong> <?php htmlspecialchars($lesson['logic']); ?></p>
                         <p><strong>Examples:</strong> <?php echo nl2br(htmlspecialchars($lesson['example_sentences'])); ?></p>
                     </div>
                 <?php endforeach; ?>
