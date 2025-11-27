@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RealTalk Daby (Corporate Edition)</title> <!-- Title updated here -->
+    <title>RealTalk Daby (Corporate Edition)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom Font: Inter (Used by default in Tailwind) -->
@@ -190,7 +190,7 @@
     <!-- HEADER (Sticky Navigation) -->
     <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md shadow-2xl p-4 md:p-6 flex justify-between items-center border-b border-indigo-900/50">
         <h1 id="header-title" class="text-2xl md:text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-on-load">
-            RealTalk Daby (Corporate Edition) <!-- Title updated here -->
+            RealTalk Daby (Corporate Edition)
         </h1>
         <nav class="flex gap-3 md:gap-6 text-base md:text-lg">
             <a href="#home" class="nav-link hover:text-pink-400 transition-colors py-1 px-2 rounded-lg" data-target="home">Início</a>
@@ -215,7 +215,7 @@
 
             <!-- Título 2: RAINBOW GRADIENT TEXT (Original state) -->
             <h2 class="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight animate-on-load rainbow-text" style="transition-delay: 0.1s;">
-                ACELERE A PERFORMANCE GLOBAL COM RealTalk Daby <!-- Updated here -->
+                ACELERE A PERFORMANCE GLOBAL COM REAL TALK DABY
             </h2>
 
             <!-- Título 3: EFEITO FLASH (Original state - Focus Pulse) -->
@@ -237,7 +237,7 @@
         <!-- 2. METHODOLOGY (Corporate Training Efficacy) -->
         <section id="methodology" class="py-32 px-6 md:px-24 bg-black/40 backdrop-blur-md border-t border-gray-800">
             <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-green-400 animate-on-scroll fade-in-up">
-                🧠 O SHIFT RealTalk Daby: Da Teoria à Competência Instantânea. Viva o idioma e veja-o fazer sentido. <!-- Updated here -->
+                🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea. Viva o idioma e veja-o fazer sentido.
             </h3>
 
             <p class="max-w-4xl mx-auto text-gray-300 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
@@ -262,7 +262,7 @@
 
                     <!-- Back Side: RealTalk Daby System (The Corporate Reflex) -->
                     <div id="card-back" class="card-face bg-indigo-800/90 p-8 rounded-2xl shadow-2xl border-4 border-indigo-500/80 flex flex-col justify-center">
-                        <h3 class="text-3xl font-bold text-white mb-4 tracking-wider">NOSSO SISTEMA RealTalk Daby (O Benefício Corporativo)</h3> <!-- Updated here -->
+                        <h3 class="text-3xl font-bold text-white mb-4 tracking-wider">NOSSO SISTEMA RealTalk Daby (O Benefício Corporativo)</h3>
                         <ul class="text-left space-y-3 text-indigo-200 text-lg list-none pl-0">
                             <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Foco: Fluência Inconsciente e Agilidade de Resposta.</li>
                             <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Ganho: Aumento Imediato na confiança e assertividade da equipe.</li>
@@ -278,7 +278,7 @@
         <!-- 3. PLATFORM FEATURES (Reframed from generic "Features") -->
         <section id="features" class="py-32 px-6 md:px-24 relative overflow-hidden">
             <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 animate-on-scroll fade-in-up">
-                Minha Expertise em Ação: As Capacidades da Plataforma RealTalk Daby <!-- Updated here -->
+                Minha Expertise em Ação: As Capacidades da Plataforma RealTalk Daby
             </h3>
 
             <div class="grid md:grid-cols-3 gap-10">
@@ -315,7 +315,7 @@
         <!-- 4. CURRICULUM SECTION (Corporate Modules) -->
         <section id="curriculum" class="py-32 px-6 md:px-24 bg-black/40 backdrop-blur-md border-t border-gray-800">
             <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 animate-on-scroll fade-in-up">
-                🎓 Estrutura Modular: Habilidades de Liderança Global
+                🎓 Estrutura Modular: Habilidades de Liderança Global com RealTalk Daby
             </h3>
 
             <p class="max-w-4xl mx-auto text-gray-400 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
@@ -336,7 +336,7 @@
                                 <span class="text-indigo-400 mr-3 font-bold">•</span> Reuniões de Stakeholders e Apresentações Executivas.
                             </li>
                             <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Debates e Discursão de Problemas Complexos (Brainstorming).
+                                <span class="text-indigo-400 mr-3 font-bold">•</span> Debates e Discussão de Problemas Complexos (Brainstorming).
                             </li>
                             <li class="flex items-center">
                                 <span class="text-indigo-400 mr-3 font-bold">•</span> Negociação de Acordos e Resolução de Conflito.
@@ -405,7 +405,7 @@
                     <div id="cat4" class="accordion-content">
                         <ul class="text-gray-300 space-y-3 px-6 pb-6 text-lg border-t border-gray-700 pt-4">
                             <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Caminhos Adaptiveis de Aprendizado (IA-Powered "Cognitive Load Pacing").
+                                <span class="text-indigo-400 mr-3 font-bold">•</span> Caminhos Adaptativos de Aprendizado (IA-Powered "Cognitive Load Pacing").
                             </li>
                             <li class="flex items-center">
                                 <span class="text-indigo-400 mr-3 font-bold">•</span> Curadoria Dinâmica de Conteúdo (Alinhado à sua indústria).
@@ -426,11 +426,11 @@
         <!-- 5. NEW SECTION: AI POWER (Detailed from RealTalk Daby) -->
         <section id="ai-power" class="-mt-20 py-32 px-6 md:px-24 bg-indigo-900/30 border-t border-gray-700">
             <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-clip bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-500 animate-on-scroll fade-in-up">
-                🤖 O Verdadeiro Poder da IA no seu Desenvolvimento!
+                🤖 O Verdadeiro Poder da IA no seu Desenvolvimento com RealTalk Daby!
             </h3>
 
             <p class="max-w-4xl mx-auto text-indigo-200 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                A Inteligência Artificial é o motor da sua maestria, oferecendo uma experiência de aprendizado sem precedentes, pensando 10 anos à frente.
+                A Inteligência Artificial é o motor da sua maestria, oferecendo uma experiência de aprendizado sem precedentes, pensando 10 anos à frente, com a marca de qualidade RealTalk Daby.
             </p>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -485,7 +485,7 @@
             </h3>
 
             <p class="max-w-4xl mx-auto text-gray-400 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                Transforme a comunicação de seus profissionais e impulsione os resultados globais com a metodologia RealTalk Daby. <!-- Updated here -->
+                Transforme a comunicação de seus profissionais e impulsione os resultados globais com a metodologia RealTalk Daby.
             </p>
 
             <div class="text-center animate-on-scroll fade-in-up" data-delay="0.3">
@@ -500,8 +500,8 @@
 
     <!-- FOOTER (Glitch Effect) -->
     <footer class="py-12 px-6 md:px-24 text-center border-t border-gray-800 bg-black/50">
-        <div class="glitch-text text-xl md:text-2xl font-mono" data-text="© 2024 RealTalk Daby - Acelerando a Performance Global."> <!-- Updated here -->
-            © 2024 RealTalk Daby - Acelerando a Performance Global. <!-- Updated here -->
+        <div class="glitch-text text-xl md:text-2xl font-mono" data-text="© 2024 RealTalk Daby - Acelerando a Performance Global.">
+            © 2024 RealTalk Daby - Acelerando a Performance Global.
         </div>
         <p class="mt-4 text-gray-600">Construído com Inovação e Foco em Resultados Corporativos.</p>
     </footer>
@@ -523,7 +523,6 @@
 
         // Typewriter Effect
         function typewriterEffect(text, element, cursor) {
-            // This typewriter logic is adapted from your provided code to handle bold text (**text**)
             let index = 0;
             let output = '';
             const speed = 40; // typing speed in milliseconds
@@ -536,8 +535,6 @@
                         if (endOfBold !== -1) {
                             const boldText = text.substring(index + 2, endOfBold);
                             output += `<strong>${boldText}</strong>`;
-                            // Ensure the character for the bold tag itself (the two asterisks) are counted as typed
-                            // We replace the raw asterisks in 'text' with their HTML equivalent in 'output'
                             index = endOfBold + 2; 
                         } else {
                             output += text[index];
@@ -554,7 +551,6 @@
                     cursor.style.display = 'none';
                 }
             }
-            // Reset and start
             element.innerHTML = '';
             step();
         }
@@ -594,7 +590,6 @@
                      document.querySelectorAll('.accordion-content.active').forEach(activeContent => {
                          if (activeContent.id !== targetId) {
                              activeContent.classList.remove('active');
-                             // Find the corresponding arrow to rotate it back
                              const otherArrow = document.getElementById(`arrow-${activeContent.id}`);
                              if (otherArrow) {
                                 otherArrow.classList.remove('rotate-180');
@@ -616,18 +611,18 @@
                 el.classList.add('loaded');
             });
 
-            // 2. Typewriter Effect (NEW COPY)
+            // 2. Typewriter Effect (COPY FROM REAL TALK DABY)
             const typewriterElement = document.getElementById('typewriter-text-content');
             const cursorElement = document.getElementById('typewriter-cursor');
             const typewriterContainer = document.getElementById('typewriter-container');
 
-            // New Core Positioning Text:
-            const typewriterText = "Seu profissional é de alta performance, mas o inglês cria uma barreira invisível. Investimentos em aulas não resolveram. O RealTalk Daby atua na raiz do problema: transformamos conhecimento em **reflexo comunicativo**."; // Updated here
+            // Texto principal do Typewriter:
+            const typewriterText = "Seu profissional é de alta performance, mas o inglês cria uma barreira invisível. Investimentos em aulas não resolveram. O RealTalk Daby atua na raiz do problema: transformamos conhecimento em **reflexo comunicativo**.";
 
             setTimeout(() => {
                 typewriterContainer.style.opacity = '1';
                 typewriterEffect(typewriterText, typewriterElement, cursorElement);
-            }, 2300); // Starts after initial title animations finish
+            }, 2300); // Inicia após o término das animações iniciais do título
 
             // 3. Scroll Animations
             handleScrollAnimation();
@@ -640,9 +635,9 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = e.target.getAttribute('data-target');
-                    // Special handling for builder link
+                    // Manipulação especial para o link do builder.php
                     if (targetId === 'builder') {
-                       window.location.href = e.target.href; // Navigate directly
+                       window.location.href = e.target.href; // Navega diretamente
                        return;
                     }
                     smoothScroll(targetId);
