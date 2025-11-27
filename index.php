@@ -6,8 +6,9 @@
     <title>RealTalk Daby (Corporate Edition)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom Font: Inter (Used by default in Tailwind) -->
+    <!-- Custom Fonts: Inter & Caveat (for handwriting style) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 
     <style>
         /* Base Styling & Font */
@@ -153,7 +154,7 @@
             padding-top: 1rem;
             padding-bottom: 1rem;
         }
-        /* Adjusted dropdown for dark mode (from previous builder.php) */
+        /* Adjusted dropdown for dark mode */
         select {
             /* Basic appearance reset */
             -webkit-appearance: none;
@@ -179,6 +180,44 @@
             background-color: #2a2a4a; /* Optgroup background */
             color: #8be9fd; /* Optgroup text */
             font-weight: bold;
+        }
+
+        /* Custom styles for animated handwriting sentences */
+        .handwriting-container {
+            font-family: 'Caveat', cursive; /* Apply the handwriting font */
+            font-size: 1.75rem; /* Base size */
+            line-height: 1.8; /* More spacing for readability */
+            text-align: left; /* Align sentences left */
+            color: #d0d0d0; /* Soft white text */
+            max-width: 800px; /* Constrain width for better reading */
+            margin: 0 auto; /* Center the container */
+        }
+        .handwriting-sentence {
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start slightly below */
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* FASTER transition */
+            display: block; /* Each sentence on its own line */
+            margin-bottom: 0.5em; /* Spacing between sentences */
+            padding-left: 1.5em; /* Indent for bullet point feel */
+            position: relative; /* For custom bullet */
+        }
+        .handwriting-sentence.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom bullet point (e.g., a simple dash or dot) */
+        .handwriting-sentence::before {
+            content: '•'; /* Unicode bullet point */
+            color: #bd93f9; /* Purple accent color */
+            font-size: 1.2em; /* Slightly larger bullet */
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        /* Style for bold parts within the sentence */
+        .handwriting-sentence strong {
+            color: #ff79c6; /* Pink accent for important words */
+            font-weight: 700; /* Make bold stand out */
         }
     </style>
 </head>
@@ -223,15 +262,10 @@
                 <span class="rainbow-text">Fluência como Reflexo, não como Barreira.</span>
             </h3>
 
-            <!-- Typewriter effect runs once -->
-            <!-- TEXTO ATUALIZADO PARA O NOVO POSICIONAMENTO DE COPYWRITING -->
-            <div id="typewriter-container" class="mt-6 text-xl md:text-3xl font-light text-gray-300 max-w-4xl mx-auto opacity-0 transition-opacity duration-500" style="transition-delay: 2.3s;">
-                <p class="inline-block">
-                    <span id="typewriter-text-content"></span>
-                    <span id="typewriter-cursor" class="inline-block animate-pulse border-r-2 border-indigo-400 ml-1">|</span>
-                </p>
+            <!-- Animated Handwriting Sentences (NEW IMPLEMENTATION) -->
+            <div id="handwriting-message-container" class="mt-8 handwriting-container opacity-0 transition-opacity duration-1000" style="transition-delay: 2.3s;">
+                <!-- Sentences will be injected here by JavaScript -->
             </div>
-
         </section>
 
         <!-- 2. METHODOLOGY (Corporate Training Efficacy) -->
@@ -344,21 +378,64 @@
                     <div id="content-2" class="accordion-content px-6 text-gray-400 text-lg">
                         <ul class="list-disc list-inside space-y-2">
                             <li>**Finanças:** Termos de mercado, relatórios financeiros, fusões e aquisições.</li>
-                            <li>**TI & Tecnologia:** Desenvolviment..s e mudanças de atividade para otimizar o foco, especialmente útil para gerenciar TDAH e carga de trabalho.</p>
+                            <li>**TI & Tecnologia:** Desenvolvimento de software, metodologias ágeis, segurança cibernética.</li>
+                            <li>**Vendas e Marketing:** Pitching, negociação avançada, campanhas globais.</li>
+                            <li>**Recursos Humanos:** Entrevistas, feedback, gestão de talentos internacionais.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <!-- Accordion Item 3 -->
+                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.3">
+                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-yellow-400 transition-colors duration-300" data-accordion-target="content-3">
+                        <span class="flex items-center"><span class="text-yellow-400 mr-3">🌍</span> Desafios de Comunicação Global & Cultural</span>
+                        <svg id="arrow-content-3" class="w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="content-3" class="accordion-content px-6 text-gray-400 text-lg">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Comunicação intercultural e etiqueta global.</li>
+                            <li>Negociação transcultural e gestão de expectativas.</li>
+                            <li>Superando sotaques e variações regionais do inglês.</li>
+                            <li>Construção de rapport em ambientes virtuais internacionais.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. AI POWER SECTION (Reframed for B2B) -->
+        <section id="ai-power" class="py-32 px-6 md:px-24 bg-purple-900/20 text-center border-t border-gray-800">
+            <h3 class="text-5xl font-bold mb-16 text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-blue-400 to-purple-400 animate-on-scroll fade-in-up">
+                 O Poder da IA RealTalk Daby: Inteligência a Serviço da Sua Fluência Corporativa
+            </h3>
+
+            <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-cyan-400 mr-2">🤖</span> Mentores de IA e Role-Plays Realistas
+                    </h4>
+                    <p class="text-gray-400">Interaja com avatares de IA que simulam **cenários corporativos realistas** e personas específicas da sua indústria. Treino de negociação, apresentações e reuniões com feedback imediato e construtivo, sem pressão.</p>
+                </div>
+
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-green-400 mr-2">🎯</span> Foco Aprimorado & Engajamento Adaptativo
+                    </h4>
+                    <p class="text-gray-400">Design em Dark Mode para reduzir distrações visuais. IA monitora o engajamento e sugere pausas ou mudanças de atividade para **otimizar o foco**, especialmente útil para gerenciar TDAH e alta carga de trabalho.</p>
                 </div>
 
                 <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
                     <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-yellow-400 mr-2">📊</span> Dashboards e Relatórios de ROI
+                        <span class="text-yellow-400 mr-2">📊</span> Dashboards Preditivos e Relatórios de ROI
                     </h4>
-                    <p class="text-gray-400">Visão data-driven da proficiência da sua equipe. Dashboards em tempo real para RH e T&D, mostrando a métrica de fluidez (lag time), proficiência individual e por departamento.</p>
+                    <p class="text-gray-400">Visão **data-driven** da proficiência da sua equipe. Dashboards em tempo real para RH e T&D, mostrando a métrica de fluidez (lag time), proficiência individual e por departamento, para um **ROI claro e mensurável**.</p>
                 </div>
 
                 <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.3">
                     <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-red-400 mr-2">⚙️</span> Customização para Sua Empresa
+                        <span class="text-red-400 mr-2">⚙️</span> Customização e Cenários Específicos da Empresa
                     </h4>
-                    <p class="text-gray-400">O AI Engine pode ser modelado com cenários, jargões e personas específicas da sua empresa, garantindo que o treinamento seja 100% relevante para o seu ambiente de negócios único e a cultura da empresa.</p>
+                    <p class="text-gray-400">O AI Engine é modelado com **cenários, jargões e personas específicas** da sua empresa, garantindo que o treinamento seja 100% relevante para seu ambiente de negócios único, sua cultura e objetivos estratégicos.</p>
                 </div>
             </div>
         </section>
@@ -385,150 +462,19 @@
 
     <!-- FOOTER (Glitch Effect) -->
     <footer class="py-12 px-6 md:px-24 text-center border-t border-gray-800 bg-black/50">
-        <div class="glitch-text text-xl md:text-2xl font-mono" data-text="© 2024 RealTalk Daby - Acelerando a Performance Global.">
-            © 2024 RealTalk Daby - Acelerando a Performance Global.
-        </div>
-        <p class="mt-4 text-gray-600">Construído com Inovação e Foco em Resultados Corporativos.</p>
-    </footer>
+Compreendido! Você copiou os códigos, mas as funcionalidades de escrita à mão e bullet points animados não estão funcionando como esperado, e você também quer que o texto seja carregado mais rapidamente.
 
-    <!-- JavaScript for Animations and Interactions -->
-    <script>
-        // Smooth scrolling for navigation links
-        function smoothScroll(targetId) {
-            document.getElementById(targetId).scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
+Vamos ajustar o código do `index.php` para resolver ambos os problemas. Acelerar o carregamento do texto é simples, basta diminuir os atrasos (delays) no JavaScript. Para as "features" que não estão aparecendo, vamos revisar o CSS e a estrutura para garantir que tudo esteja no lugar certo.
 
-        // Flipping Card Functionality
-        function toggleFlipCard(cardElement) {
-            const isFlipped = cardElement.getAttribute('data-flipped') === 'true';
-            cardElement.setAttribute('data-flipped', !isFlipped);
-        }
+Provavelmente, o problema é que a fonte 'Caveat' pode não estar sendo carregada corretamente ou há algum conflito de CSS/JS que a impede de aparecer.
 
-        // Typewriter Effect
-        function typewriterEffect(text, element, cursor) {
-            let index = 0;
-            let output = '';
-            const speed = 40; // typing speed in milliseconds
+**Principais Ajustes:**
 
-            function step() {
-                if (index < text.length) {
-                    // Check for start of bold (**)
-                    if (text.substring(index, index + 2) === '**') {
-                        const endOfBold = text.indexOf('**', index + 2);
-                        if (endOfBold !== -1) {
-                            const boldText = text.substring(index + 2, endOfBold);
-                            output += `<strong>${boldText}</strong>`;
-                            index = endOfBold + 2; 
-                        } else {
-                            output += text[index];
-                            index++;
-                        }
-                    } else {
-                        output += text[index];
-                        index++;
-                    }
+1.  **Ajuste da Velocidade:** Reduziremos o `setTimeout` para algo mais rápido (ex: 200ms por frase) para que as sentenças apareçam bem mais ligeiro.
+2.  **Verificação do CSS:** Garantiremos que as classes CSS (`handwriting-container`, `handwriting-sentence`) e a fonte 'Caveat' estão sendo aplicadas e sobrescrevendo qualquer estilo padrão do Tailwind.
+3.  **Carregamento da Fonte:** Certificaremos que o link para a fonte 'Caveat' está no `<head>` e é válido.
 
-                    element.innerHTML = output;
-                    setTimeout(step, speed);
-                } else {
-                    cursor.style.display = 'none';
-                }
-            }
-            element.innerHTML = '';
-            step();
-        }
+---
 
-        // Function to handle scroll-based entrance animation
-        function handleScrollAnimation() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0;
-                        setTimeout(() => {
-                            entry.target.classList.add('loaded');
-                        }, delay * 1000);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '0px',
-                threshold: 0.1 // Trigger when 10% of the item is visible
-            });
+### **`index.php` (Ajustado para Carregamento Mais Rápido e Correção de Features)**
 
-            elements.forEach(element => {
-                observer.observe(element);
-            });
-        }
-
-        // Function to set up accordion toggles
-        function setupAccordionToggles() {
-            document.querySelectorAll('.accordion-toggle').forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.getAttribute('data-accordion-target');
-                    const content = document.getElementById(targetId);
-                    const arrow = document.getElementById(`arrow-${targetId}`);
-
-                    // Close all other active accordions
-                     document.querySelectorAll('.accordion-content.active').forEach(activeContent => {
-                         if (activeContent.id !== targetId) {
-                             activeContent.classList.remove('active');
-                             const otherArrow = document.getElementById(`arrow-${activeContent.id}`);
-                             if (otherArrow) {
-                                otherArrow.classList.remove('rotate-180');
-                             }
-                         }
-                     });
-
-                    // Toggle current accordion
-                    content.classList.toggle('active');
-                    arrow.classList.toggle('rotate-180');
-                });
-            });
-        }
-
-        // Main Initialization on load
-        window.onload = function() {
-            // 1. Initial Load Animations
-            document.querySelectorAll('.animate-on-load').forEach(el => {
-                el.classList.add('loaded');
-            });
-
-            // 2. Typewriter Effect (COPY FROM REAL TALK DABY)
-            const typewriterElement = document.getElementById('typewriter-text-content');
-            const cursorElement = document.getElementById('typewriter-cursor');
-            const typewriterContainer = document.getElementById('typewriter-container');
-
-            // Texto principal do Typewriter (AGORA COM A NOVA FRASE)
-            const typewriterText = "Você é um profissional fera e de alta performance, mas o inglês ainda é o **[ÓBICE INVISÍVEL / CALCANHAR DE AQUILES]** que 'trava' seu avanço global? 😩 Cansou de investir em aulas e **'[TRENDS/HYPES] da internet'** que prometem, mas não entregam a fluência estratégica que seu calibre exige? A gente sabe: você se sente **sozinho nessa luta** 😔, buscando as palavras, enquanto a tradução ainda predomina e ninguém parece se importar DE VERDADE. Chega! 🛑 O RealTalk Daby chega para **[DECIFRAR] e [TRANSFORMAR]** ESSE cenário! Nós vamos na raiz do problema: seu conhecimento se **[MATERIALIZA]** em **[REFLEXO COMUNICATIVO INSTANTÂNEO]**. O resultado? Sua voz no automático, com impacto e sem ruídos. ✨";
-
-            setTimeout(() => {
-                typewriterContainer.style.opacity = '1';
-                typewriterEffect(typewriterText, typewriterElement, cursorElement);
-            }, 2300); // Inicia após o término das animações iniciais do título
-
-            // 3. Scroll Animations
-            handleScrollAnimation();
-
-            // 4. Accordion Setup
-            setupAccordionToggles();
-
-            // 5. Navigation Scroll
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = e.target.getAttribute('data-target');
-                    // Manipulação especial para o link do builder.php
-                    if (targetId === 'builder') {
-                       window.location.href = e.target.href; // Navega diretamente
-                       return;
-                    }
-                    smoothScroll(targetId);
-                });
-            });
-        };
-    </script>
-</body>
-</html>
