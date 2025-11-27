@@ -1,10 +1,10 @@
 <?php
-// builder.php - Your LexiPro Lesson Planner
-require_once 'db.php'; // Include the database connection
+// builder.php - Seu Planejador de Lições RealTalk Daby
+require_once 'db.php'; // Inclui a conexão com o banco de dados
 
 $message = '';
 
-// Handle form submission to add new lessons
+// Lida com o envio do formulário para adicionar novas lições
 if (¨D_SERVER['REQUEST_METHOD'] === 'POST' && isset(¨D_POST['action']) && ¨D_POST['action'] === 'add_lesson') {
     $title = ¨D_POST['title'] ?? '';
     $language_level = ¨D_POST['language_level'] ?? '';
@@ -13,43 +13,43 @@ if (¨D_SERVER['REQUEST_METHOD'] === 'POST' && isset(¨D_POST['action']) && ¨D_
     $vocabulary = ¨D_POST['vocabulary'] ?? '';
     $logic = ¨D_POST['logic'] ?? '';
     $example_sentences = ¨D_POST['example_sentences'] ?? '';
-    $focus = ¨D_POST['focus'] ?? ''; // This is the 'focus' area
+    $focus = ¨D_POST['focus'] ?? ''; // Esta é a área de 'foco'
 
-    // Basic validation
+    // Validação básica
     if (empty($title)) {
-        $message = '<p class="error">Lesson title cannot be empty.</p>';
+        $message = '<p class="error">O título da lição não pode estar vazio.</p>';
     } else {
         try {
             $stmt = $pdo->prepare("INSERT INTO licoes (title, language_level, industry, chunks, vocabulary, logic, example_sentences, focus) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$title, $language_level, $industry, $chunks, $vocabulary, $logic, $example_sentences, $focus]);
-            $message = '<p class="success">Lesson added successfully!</p>';
+            $message = '<p class="success">Lição adicionada com sucesso!</p>';
         } catch (PDOException $e) {
-            $message = '<p class="error">Error adding lesson: ' . $e->getMessage() . '</p>';
+            $message = '<p class="error">Erro ao adicionar lição: ' . $e->getMessage() . '</p>';
         }
     }
 }
 
-// Fetch all lessons from the database
+// Busca todas as lições do banco de dados
 $lessons = [];
 try {
     $stmt = $pdo->query("SELECT * FROM licoes ORDER BY id DESC");
     $lessons = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    $message = '<p class="error">Error fetching lessons: ' . $e->getMessage() . '</p>';
+    $message = '<p class="error">Erro ao buscar lições: ' . $e->getMessage() . '</p>';
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LexiPro: Lesson Builder</title>
+    <title>RealTalk Daby: Lesson Builder</title>
     <style>
-        /* Global Dark Mode Styles */
+        /* Estilos Globais Dark Mode */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a2e; /* Dark background */
-            color: #e0e0e0; /* Light text */
+            background-color: #1a1a2e; /* Fundo escuro */
+            color: #e0e0e0; /* Texto claro */
             margin: 0;
             padding: 20px;
             line-height: 1.6;
@@ -57,13 +57,13 @@ try {
         .container {
             max-width: 1000px;
             margin: 20px auto;
-            background: #2a2a4a; /* Slightly lighter dark for container */
+            background: #2a2a4a; /* Dark um pouco mais claro para o container */
             border-radius: 12px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
             padding: 30px;
         }
         h1, h2 {
-            color: #8be9fd; /* Accent color for headings */
+            color: #8be9fd; /* Cor de destaque para títulos */
             text-align: center;
             margin-bottom: 30px;
         }
@@ -71,7 +71,7 @@ try {
             display: block;
             margin-bottom: 30px;
             padding: 10px 20px;
-            background-color: #bd93f9; /* Vibrant accent color */
+            background-color: #bd93f9; /* Cor de destaque vibrante */
             color: #1a1a2e;
             text-decoration: none;
             text-align: center;
@@ -80,7 +80,7 @@ try {
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .home-button:hover {
-            background-color: #ff79c6; /* Another vibrant accent on hover */
+            background-color: #ff79c6; /* Cor de destaque ao passar o mouse */
             transform: translateY(-2px);
         }
         form {
@@ -106,52 +106,52 @@ try {
             padding: 10px 12px;
             border: 1px solid #444;
             border-radius: 6px;
-            background-color: #3e3e5c; /* Input background */
-            color: #e0e0e0; /* Input text color */
+            background-color: #3e3e5c; /* Fundo do input */
+            color: #e0e0e0; /* Cor do texto do input */
             font-size: 1rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         input[type="text"]:focus,
         textarea:focus,
         select:focus {
-            border-color: #bd93f9; /* Focus border color */
+            border-color: #bd93f9; /* Cor da borda ao focar */
             outline: none;
-            box-shadow: 0 0 0 3px rgba(189, 147, 249, 0.3); /* Focus shadow */
+            box-shadow: 0 0 0 3px rgba(189, 147, 249, 0.3); /* Sombra ao focar */
         }
         textarea {
             min-height: 80px;
             resize: vertical;
         }
 
-        /* Custom Dropdown Colors for Dark Mode - Ensured Readable Contrast */
+        /* Cores de Dropdown Personalizadas para Dark Mode - Contraste Legível Garantido */
         select {
-            /* Basic appearance reset */
+            /* Reset de aparência básica */
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            /* Add arrow icon */
+            /* Adiciona ícone de seta */
             background-image: url('data:image/svg+xml;utf8,<svg fill="%23e0e0e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 20px;
-            padding-right: 35px; /* Make space for the arrow */
+            padding-right: 35px; /* Abre espaço para a seta */
         }
-        /* Option Group and Option styling for dark mode readability */
+        /* Estilo para Option Group e Option para legibilidade em dark mode */
         select option {
-            background-color: #3e3e5c; /* Option background */
-            color: #e0e0e0; /* Option text */
+            background-color: #3e3e5c; /* Fundo da opção */
+            color: #e0e0e0; /* Texto da opção */
         }
         select optgroup {
-            background-color: #2a2a4a; /* Optgroup background */
-            color: #8be9fd; /* Optgroup text */
+            background-color: #2a2a4a; /* Fundo do grupo de opções */
+            color: #8be9fd; /* Texto do grupo de opções */
             font-weight: bold;
         }
 
 
         button[type="submit"] {
-            grid-column: span 2; /* Span across both columns */
+            grid-column: span 2; /* Ocupa as duas colunas */
             padding: 12px 25px;
-            background-color: #bd93f9; /* Vibrant accent color */
+            background-color: #bd93f9; /* Cor de destaque vibrante */
             color: #1a1a2e;
             border: none;
             border-radius: 8px;
@@ -162,7 +162,7 @@ try {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         button[type="submit"]:hover {
-            background-color: #ff79c6; /* Another vibrant accent on hover */
+            background-color: #ff79c6; /* Outro destaque vibrante ao passar o mouse */
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
@@ -175,11 +175,11 @@ try {
             font-weight: bold;
         }
         .success {
-            background-color: #388e3c; /* Green for success */
+            background-color: #388e3c; /* Verde para sucesso */
             color: #e0e0e0;
         }
         .error {
-            background-color: #d32f2f; /* Red for error */
+            background-color: #d32f2f; /* Vermelho para erro */
             color: #e0e0e0;
         }
 
@@ -187,15 +187,15 @@ try {
             margin-top: 40px;
         }
         .lesson-card {
-            background: #3e3e5c; /* Card background */
+            background: #3e3e5c; /* Fundo do cartão */
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            border-left: 5px solid #bd93f9; /* Accent border */
+            border-left: 5px solid #bd93f9; /* Borda de destaque */
         }
         .lesson-card h3 {
-            color: #ff79c6; /* Card title accent */
+            color: #ff79c6; /* Destaque do título do cartão */
             margin-top: 0;
             margin-bottom: 10px;
         }
@@ -205,7 +205,7 @@ try {
             color: #d0d0d0;
         }
         .lesson-card p strong {
-            color: #8be9fd; /* Key label accent */
+            color: #8be9fd; /* Destaque da label chave */
             margin-right: 5px;
         }
         .no-lessons {
@@ -218,8 +218,8 @@ try {
 <body>
     <div class="container">
         <a href="index.php" class="home-button">← Voltar para a Página Principal</a>
-        <h1>LexiPro: Lesson Builder 🚀</h1>
-        <p style="text-align: center; color: #c0c0c0; margin-bottom: 30px;">Design your "Lego Chain Block" lessons and advanced vocabulary modules here. Focus on the core logic and impact.</p>
+        <h1>RealTalk Daby: Lesson Builder 🚀</h1>
+        <p style="text-align: center; color: #c0c0c0; margin-bottom: 30px;">Crie suas lições "Lego Chain Block" e módulos avançados de vocabulário aqui. Foque na lógica central e no impacto.</p>
 
         <?php if (!empty($message)): ?>
             <div class="message <?php echo strpos($message, 'success') !== false ? 'success' : 'error'; ?>">
@@ -227,91 +227,91 @@ try {
             </div>
         <?php endif; ?>
 
-        <h2>Add New Lesson</h2>
+        <h2>Adicionar Nova Lição</h2>
         <form method="POST">
             <input type="hidden" name="action" value="add_lesson">
 
             <div class="form-group">
-                <label for="title">Lesson Title:</label>
-                <input type="text" id="title" name="title" placeholder="e.g., Enhancing Business Communication" required>
+                <label for="title">Título da Lição:</label>
+                <input type="text" id="title" name="title" placeholder="Ex: Aprimorando a Comunicação nos Negócios" required>
             </div>
 
             <div class="form-group">
-                <label for="language_level">Language Level:</label>
+                <label for="language_level">Nível de Idioma:</label>
                 <select id="language_level" name="language_level">
-                    <option value="">Select Level</option>
-                    <option value="A1">A1 - Beginner</option>
-                    <option value="A2">A2 - Elementary</option>
-                    <option value="B1">B1 - Intermediate</option>
-                    <option value="B2">B2 - Upper Intermediate</option>
-                    <option value="C1">C1 - Advanced</option>
-                    <option value="C2">C2 - Proficiency</option>
+                    <option value="">Selecione o Nível</option>
+                    <option value="A1">A1 - Iniciante</option>
+                    <option value="A2">A2 - Elementar</option>
+                    <option value="B1">B1 - Intermediário</option>
+                    <option value="B2">B2 - Intermediário Avançado</option>
+                    <option value="C1">C1 - Avançado</option>
+                    <option value="C2">C2 - Proficiência</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="industry">Industry Focus:</label>
+                <label for="industry">Foco da Indústria:</label>
                 <select id="industry" name="industry">
-                    <option value="">General Professional</option>
-                    <optgroup label="Specific Industries">
-                        <option value="Finance">Finance</option>
-                        <option value="Quality">Quality Assurance</option>
-                        <option value="Production">Production & Manufacturing</option>
-                        <option value="Sales">Sales & Marketing</option>
-                        <option value="Management">Management & HR</option>
-                        <option value="IT">IT & Tech</option>
-                        <option value="Logistics">Logistics & Supply Chain</option>
-                        <option value="Legal">Legal</option>
-                        <option value="Healthcare">Healthcare</option>
+                    <option value="">Profissional Geral</option>
+                    <optgroup label="Indústrias Específicas">
+                        <option value="Finance">Finanças</option>
+                        <option value="Quality">Controle de Qualidade</option>
+                        <option value="Production">Produção e Manufatura</option>
+                        <option value="Sales">Vendas e Marketing</option>
+                        <option value="Management">Gestão e RH</option>
+                        <option value="IT">TI e Tecnologia</option>
+                        <option value="Logistics">Logística e Cadeia de Suprimentos</option>
+                        <option value="Legal">Jurídico</option>
+                        <option value="Healthcare">Saúde</option>
                     </optgroup>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="focus">Focus Area (e.g., Public Speaking, Negotiation, Report Writing):</label>
-                <input type="text" id="focus" name="focus" placeholder="e.g., Negotiation Strategies">
+                <label for="focus">Área de Foco (Ex: Oratória, Negociação, Redação de Relatórios):</label>
+                <input type="text" id="focus" name="focus" placeholder="Ex: Estratégias de Negociação">
             </div>
 
             <div class="form-group">
-                <label for="chunks">Key Lexical Chunks (comma separated):</label>
-                <textarea id="chunks" name="chunks" placeholder="e.g., drive results, foster collaboration, manage expectations"></textarea>
+                <label for="chunks">Chunks Lexicais Chave (separados por vírgula):</label>
+                <textarea id="chunks" name="chunks" placeholder="Ex: 'drive results', 'foster collaboration', 'manage expectations'"></textarea>
             </div>
 
             <div class="form-group">
-                <label for="vocabulary">Target Vocabulary (comma separated, e.g., enhance, optimize, mitigate):</label>
-                <textarea id="vocabulary" name="vocabulary" placeholder="e.g., enhance, optimize, mitigate, leverage"></textarea>
+                <label for="vocabulary">Vocabulário Alvo (separado por vírgula, Ex: enhance, optimize, mitigate):</label>
+                <textarea id="vocabulary" name="vocabulary" placeholder="Ex: enhance, optimize, mitigate, leverage"></textarea>
             </div>
 
             <div class="form-group">
-                <label for="logic">Logic Behind Learning (Why they should learn this & how it connects):</label>
-                <textarea id="logic" name="logic" placeholder="e.g., 'Enhance' implies positive refinement, more formal than 'improve'."></textarea>
+                <label for="logic">Lógica por Trás do Aprendizado (Por que e como se conecta):</label>
+                <textarea id="logic" name="logic" placeholder="Ex: 'Enhance' implica refinamento positivo, mais formal que 'improve'."></textarea>
             </div>
 
             <div class="form-group">
-                <label for="example_sentences">Example Sentences (one per line):</label>
-                <textarea id="example_sentences" name="example_sentences" placeholder="e.g., We need to enhance our process efficiency.\nThe new software will optimize our data analysis."></textarea>
+                <label for="example_sentences">Frases de Exemplo (uma por linha):</label>
+                <textarea id="example_sentences" name="example_sentences" placeholder="Ex: We need to enhance our process efficiency.\nThe new software will optimize our data analysis."></textarea>
             </div>
 
-            <button type="submit">Add Lesson</button>
+            <button type="submit">Adicionar Lição</button>
         </form>
 
-        <h2>Existing Lessons</h2>
+        <h2>Lições Existentes</h2>
         <div class="lesson-list">
             <?php if (!empty($lessons)): ?>
                 <?php foreach ($lessons as $lesson): ?>
                     <div class="lesson-card">
                         <h3><?php echo htmlspecialchars($lesson['title']); ?></h3>
-                        <p><strong>Level:</strong> <?php echo htmlspecialchars($lesson['language_level'] ?? 'N/A'); ?></p>
-                        <p><strong>Industry:</strong> <?php echo htmlspecialchars($lesson['industry'] ?? 'General'); ?></p>
-                        <p><strong>Focus:</strong> <?php echo htmlspecialchars($lesson['focus'] ?? 'N/A'); ?></p>
+                        <p><strong>Nível:</strong> <?php echo htmlspecialchars($lesson['language_level'] ?? 'N/A'); ?></p>
+                        <p><strong>Indústria:</strong> <?php echo htmlspecialchars($lesson['industry'] ?? 'Geral'); ?></p>
+                        <p><strong>Foco:</strong> <?php echo htmlspecialchars($lesson['focus'] ?? 'N/A'); ?></p>
                         <p><strong>Chunks:</strong> <?php echo htmlspecialchars($lesson['chunks']); ?></p>
-                        <p><strong>Vocabulary:</strong> <?php echo htmlspecialchars($lesson['vocabulary']); ?></p>
-                        <p><strong>Logic:</strong> <?php htmlspecialchars($lesson['logic']); ?></p>
-                        <p><strong>Examples:</strong> <?php echo nl2br(htmlspecialchars($lesson['example_sentences'])); ?></p>
+                        <p><strong>Vocabulário:</strong> <?php echo htmlspecialchars($lesson['vocabulary']); ?></p>
+                        <p><strong>Lógica:</strong> <?php echo htmlspecialchars($lesson['logic']); ?></p>
+                        <p><strong>Exemplos:</strong> <?php echo nl2br(htmlspecialchars($lesson['example_sentences'])); ?></p>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="no-lessons">No lessons added yet. Get started!</p>
+                <p class="no-lessons">Nenhuma lição adicionada ainda. Comece agora!</p>
             <?php endif; ?>
         </div>
     </div>
