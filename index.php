@@ -297,169 +297,54 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mb-4 text-pink-400"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                     <h4 class="text-3xl font-bold mb-3 text-white">Análise Preditiva de Gaps & Feedback Contextual</h4>
                     <p class="text-gray-400 leading-relaxed text-lg">
-                        Mede a **velocidade de processamento**, não a memorização. Identifica *exatamente* onde o profissional trava (vocabulário, estrutura, confiança) e oferece feedback construtivo "on-the-fly."
+                        Identificamos as **lacunas lexicais e de pronúncia** antes que elas virem um problema. Nosso IA oferece feedback *personalizado e estratégico*, focando no que realmente impacta a clareza e o profissionalismo.
                     </p>
                 </div>
 
-                <!-- Feature 3: Flight Simulator Mode (High-Pressure Training) -->
+                <!-- Feature 3: Micro-Learning Sprints -->
                 <div class="feature-card p-8 rounded-2xl bg-gray-900/80 shadow-2xl border border-gray-700 hover:border-pink-500 transition-all duration-500 hover:scale-[1.03] flex flex-col items-start animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mb-4 text-blue-400"><rect width="20" height="15" x="2" y="3" rx="2"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>
-                    <h4 class="text-3xl font-bold mb-3 text-white">Modo Simulador de Voo (High-Pressure Training)</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mb-4 text-pink-400"><path d="M4 22h14a2 2 0 0 0 2-2V7L14 2H6a2 2 0 0 0-2 2v18Z"/><path d="M14 2v6h6"/></svg>
+                    <h4 class="text-3xl font-bold mb-3 text-white">"Lego Chain Block" & Sprints de 5 Minutos (IA Adaptive)</h4>
                     <p class="text-gray-400 leading-relaxed text-lg">
-                        Treinamento em **stress elevado** (negociações críticas, gestão de crise) para que o inglês seja automático em situações de alta pressão.
+                        Módulos de **micro-aprendizado** focados em "chunks" (blocos de linguagem) para construir sua fluência como um LEGO. Adaptação IA garante que cada sessão seja eficiente, relevante e se encaixe na sua agenda.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- 4. CURRICULUM SECTION (Corporate Modules) -->
-        <section id="curriculum" class="py-32 px-6 md:px-24 bg-black/40 backdrop-blur-md border-t border-gray-800">
-            <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 animate-on-scroll fade-in-up">
-                🎓 Estrutura Modular: Habilidades de Liderança Global com RealTalk Daby
+        <!-- 4. CURRICULUM (Corporate Relevance) -->
+        <section id="curriculum" class="py-32 px-6 md:px-24 bg-black/40 border-t border-gray-800">
+            <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-400 to-yellow-400 animate-on-scroll fade-in-up">
+                Currículo Estratégico: Inglês para o seu Mundo Corporativo
             </h3>
 
-            <p class="max-w-4xl mx-auto text-gray-400 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                Nosso currículo é estruturado em blocos de competência aplicáveis ao dia a dia de um profissional em um ambiente multinacional.
-            </p>
-
-            <div class="max-w-4xl mx-auto space-y-4">
-
-                <!-- Category 1: Global Leadership Communication -->
-                <div class="bg-gray-900/70 rounded-xl shadow-xl border border-gray-700 animate-on-scroll fade-in-up" data-delay="0.1">
-                    <button class="w-full text-left p-6 flex justify-between items-center text-2xl font-bold text-white hover:bg-gray-800/70 transition duration-300 rounded-xl focus:outline-none accordion-toggle" data-accordion-target="cat1">
-                        1. Comunicação de Liderança e Gestão (Mesa Diretora)
-                        <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="arrow-cat1"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="max-w-4xl mx-auto space-y-6">
+                <!-- Accordion Item 1 -->
+                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
+                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-cyan-400 transition-colors duration-300" data-accordion-target="content-1">
+                        <span class="flex items-center"><span class="text-blue-400 mr-3">💼</span> Comunicação Profissional Fundacional</span>
+                        <svg id="arrow-content-1" class="w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="cat1" class="accordion-content">
-                        <ul class="text-gray-300 space-y-3 px-6 pb-6 text-lg border-t border-gray-700 pt-4">
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Reuniões de Stakeholders e Apresentações Executivas.
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Debates e Discussão de Problemas Complexos (Brainstorming).
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Negociação de Acordos e Resolução de Conflito.
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Vocabulário Essencial: 'Initiate', 'Implement', 'Monitor', 'Assess', 'Mitigate', 'Optimize', 'Facilitate'.
-                            </li>
+                    <div id="content-1" class="accordion-content px-6 text-gray-400 text-lg">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Apresentações de alto impacto e storytelling corporativo.</li>
+                            <li>Reuniões eficazes: participação ativa, negociação e resolução.</li>
+                            <li>E-mails e relatórios profissionais: clareza, concisão e persuasão.</li>
+                            <li>Networking e small talk estratégico.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Category 2: Sales & Negotiation Proficiency -->
-                <div class="bg-gray-900/70 rounded-xl shadow-xl border border-gray-700 animate-on-scroll fade-in-up" data-delay="0.2">
-                    <button class="w-full text-left p-6 flex justify-between items-center text-2xl font-bold text-white hover:bg-gray-800/70 transition duration-300 rounded-xl focus:outline-none accordion-toggle" data-accordion-target="cat2">
-                        2. Proficiência em Vendas e Negociação (Fechamento de Negócios)
-                        <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="arrow-cat2"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <!-- Accordion Item 2 -->
+                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
+                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-green-400 transition-colors duration-300" data-accordion-target="content-2">
+                        <span class="flex items-center"><span class="text-green-400 mr-3">🏭</span> Módulos de Indústria e Segmentos Específicos</span>
+                        <svg id="arrow-content-2" class="w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div id="cat2" class="accordion-content">
-                        <ul class="text-gray-300 space-y-3 px-6 pb-6 text-lg border-t border-gray-700 pt-4">
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Pitching de Vendas (Adaptação a Diferentes Culturas).
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Resposta Rápida a Objeções Complexas.
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Linguagem de Acordo e Fechamento (Deal Closing).
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Vocabulário Específico: 'Lead generation', 'Conversion rate', 'Customer journey', 'Market segmentation'.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Category 3: Technical & Data Presentation -->
-                <div class="bg-gray-900/70 rounded-xl shadow-xl border border-gray-700 animate-on-scroll fade-in-up" data-delay="0.3">
-                    <button class="w-full text-left p-6 flex justify-between items-center text-2xl font-bold text-white hover:bg-gray-800/70 transition duration-300 rounded-xl focus:outline-none accordion-toggle" data-accordion-target="cat3">
-                        3. Apresentação Técnica e de Dados (Clareza e Precisão)
-                        <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="arrow-cat3"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="cat3" class="accordion-content">
-                        <ul class="text-gray-300 space-y-3 px-6 pb-6 text-lg border-t border-gray-700 pt-4">
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Explicação de Processos Complexos e Fluxos de Trabalho.
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Vocabulário para Gráficos, KPI's e Projeções Financeiras.
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Redação Técnica (E-mails e Relatórios Executivos).
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Vocabulário Específico: 'Supply chain', 'Lean manufacturing', 'Quality assurance (QA)', 'Compliance'.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Category 4: Specialized Training & Onboarding (AI-Powered) -->
-                <div class="bg-gray-900/70 rounded-xl shadow-xl border border-gray-700 animate-on-scroll fade-in-up" data-delay="0.4">
-                    <button class="w-full text-left p-6 flex justify-between items-center text-2xl font-bold text-white hover:bg-gray-800/70 transition duration-300 rounded-xl focus:outline-none accordion-toggle" data-accordion-target="cat4">
-                        4. IA & Otimização de Foco (Onboarding Global)
-                        <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="arrow-cat4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="cat4" class="accordion-content">
-                        <ul class="text-gray-300 space-y-3 px-6 pb-6 text-lg border-t border-gray-700 pt-4">
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Caminhos Adaptativos de Aprendizado (IA-Powered "Cognitive Load Pacing").
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Curadoria Dinâmica de Conteúdo (Alinhado à sua indústria).
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Otimização para Foco (Dark Mode, "Focus Mode" AI para TDAH).
-                            </li>
-                            <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Gerenciamento de Diferenças de Sotaque e Jargão (Dialect Training).
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 5. NEW SECTION: AI POWER (Detailed from RealTalk Daby) -->
-        <section id="ai-power" class="-mt-20 py-32 px-6 md:px-24 bg-indigo-900/30 border-t border-gray-700">
-            <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-clip bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-500 animate-on-scroll fade-in-up">
-                🤖 O Verdadeiro Poder da IA no seu Desenvolvimento com RealTalk Daby!
-            </h3>
-
-            <p class="max-w-4xl mx-auto text-indigo-200 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                A Inteligência Artificial é o motor da sua maestria, oferecendo uma experiência de aprendizado sem precedentes, pensando 10 anos à frente, com a marca de qualidade RealTalk Daby.
-            </p>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
-                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-indigo-400 mr-2">✨</span> Mentor IA & Feedback Personalizado
-                    </h4>
-                    <p class="text-gray-400">Um coach IA interativo que guia sua jornada, fornece feedback construtivo e motiva, se adaptando ao seu progresso e desafios. Os erros são dados para melhoria, não falhas.</p>
-                </div>
-
-                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
-                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-purple-400 mr-2">🗣️</span> PRONUNCIATION CLINIC & SEMANTIC NETWORK
-                    </h4>
-                    <p class="text-gray-400">Análise de som avançada com feedback em tempo real para clareza e confiança. Ferramenta visual para explorar nuances e interconexões de palavras, formando uma "Rede Semântica" rica.</p>
-                </div>
-
-                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.3">
-                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-cyan-400 mr-2">🔄</span> Micro-Learning Sprints & Revisão Inteligente
-                    </h4>
-                    <p class="text-gray-400">Módulos diários de aprendizado de 2-5 minutos, de alto impacto, que se encaixam na sua rotina. Nosso Sistema de Repetição Espaçada (SRS) agenda a revisão para máxima retenção a longo prazo.</p>
-                </div>
-
-                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
-                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-green-400 mr-2">🎯</span> Foco Aprimorado & Engajamento
-                    </h4>
-                    <p class="text-gray-400">Design em Dark Mode para reduzir distrações visuais. IA monitora o engajamento e sugere pausas ou mudanças de atividade para otimizar o foco, especialmente útil para gerenciar TDAH e carga de trabalho.</p>
+                    <div id="content-2" class="accordion-content px-6 text-gray-400 text-lg">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>**Finanças:** Termos de mercado, relatórios financeiros, fusões e aquisições.</li>
+                            <li>**TI & Tecnologia:** Desenvolviment..s e mudanças de atividade para otimizar o foco, especialmente útil para gerenciar TDAH e carga de trabalho.</p>
                 </div>
 
                 <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
@@ -529,8 +414,8 @@
 
             function step() {
                 if (index < text.length) {
+                    // Check for start of bold (**)
                     if (text.substring(index, index + 2) === '**') {
-                        // Start of bold
                         const endOfBold = text.indexOf('**', index + 2);
                         if (endOfBold !== -1) {
                             const boldText = text.substring(index + 2, endOfBold);
@@ -616,8 +501,8 @@
             const cursorElement = document.getElementById('typewriter-cursor');
             const typewriterContainer = document.getElementById('typewriter-container');
 
-            // Texto principal do Typewriter:
-            const typewriterText = "Seu profissional é de alta performance, mas o inglês cria uma barreira invisível. Investimentos em aulas não resolveram. O RealTalk Daby atua na raiz do problema: transformamos conhecimento em **reflexo comunicativo**.";
+            // Texto principal do Typewriter (AGORA COM A NOVA FRASE)
+            const typewriterText = "Você é um profissional fera e de alta performance, mas o inglês ainda é o **[ÓBICE INVISÍVEL / CALCANHAR DE AQUILES]** que 'trava' seu avanço global? 😩 Cansou de investir em aulas e **'[TRENDS/HYPES] da internet'** que prometem, mas não entregam a fluência estratégica que seu calibre exige? A gente sabe: você se sente **sozinho nessa luta** 😔, buscando as palavras, enquanto a tradução ainda predomina e ninguém parece se importar DE VERDADE. Chega! 🛑 O RealTalk Daby chega para **[DECIFRAR] e [TRANSFORMAR]** ESSE cenário! Nós vamos na raiz do problema: seu conhecimento se **[MATERIALIZA]** em **[REFLEXO COMUNICATIVO INSTANTÂNEO]**. O resultado? Sua voz no automático, com impacto e sem ruídos. ✨";
 
             setTimeout(() => {
                 typewriterContainer.style.opacity = '1';
