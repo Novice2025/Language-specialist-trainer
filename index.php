@@ -262,7 +262,7 @@
                 <span class="rainbow-text">Fluência como Reflexo, não como Barreira.</span>
             </h3>
 
-            <!-- Animated Handwriting Sentences (NEW IMPLEMENTATION) -->
+            <!-- Animated Handwriting Sentences (NEW IMPLEMENTATION - Corrected) -->
             <div id="handwriting-message-container" class="mt-8 handwriting-container opacity-0 transition-opacity duration-1000" style="transition-delay: 2.3s;">
                 <!-- Sentences will be injected here by JavaScript -->
             </div>
@@ -316,75 +316,93 @@
                 Plataforma RealTalk Daby: Seu Ambiente de Imersão e Habilidade
             </h3>
             <p class="max-w-4xl mx-auto text-gray-300 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                Um ecossistema digital inteligente, otimizado para o profissional de alta demanda que busca resultados rápidos e comunicação impecável.
+                Um ecossistema digital inteligente, desenhado para transformar a forma como sua equipe aprende e aplica o inglês no ambiente de trabalho.
             </p>
 
-            <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-red-500/50 animate-on-scroll fade-in-up" data-delay="0">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-purple-500/50 animate-on-scroll fade-in-up">
                     <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-pink-400 mr-2">🌐</span> Ambiente Imersivo Dark Mode
+                        <span class="text-orange-400 mr-2">🚀</span> "Lego Chain Block" Personalizável
                     </h4>
-                    <p class="text-gray-400">Design minimalista e Dark Mode para reduzir distrações, otimizar o foco e a concentração. Treine em um ambiente que espelha a sofisticação e seriedade do seu trabalho. Ferramentas que minimizam o lag da tradução.</p>
+                    <p class="text-gray-400">Módulos adaptados à sua indústria, cargo e desafios específicos da comunicação corporativa. Construa a proficiência peça por peça, no ritmo da sua equipe.</p>
                 </div>
-                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-red-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-purple-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
                     <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-yellow-400 mr-2">🎯</span> Micro-Aprendizado Adaptativo
+                        <span class="text-green-400 mr-2">🔗</span> Conexão e Contexto Imediatos
                     </h4>
-                    <p class="text-gray-400">Pílulas de conhecimento (Lego Chain Blocks) personalizadas para o contexto corporativo do profissional. O algoritmo de IA adapta a intensidade e o foco com base no desempenho e engajamento. </p>
+                    <p class="text-gray-400">Desenvolva "chunks" lexicais (blocos de frases) e vocabulário contextual. O foco é a fala fluida e o entendimento cultural, não a tradução literal.</p>
                 </div>
-                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-red-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-purple-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
                     <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
-                        <span class="text-blue-400 mr-2">⚡</span> Feedback Instantâneo e Personalizado
+                        <span class="text-blue-400 mr-2">🎮</span> Gamificação e Engajamento
                     </h4>
-                    <p class="text-gray-400">A IA oferece correção imediata de pronúncia, entonação e uso lexical. Modelos de conversação simulados em tempo real para aprimorar a capacidade de reação e o reflexo comunicativo em diversos cenários.</p>
+                    <p class="text-gray-400">Transformamos o aprendizado em uma jornada envolvente. Desafios, recompensas e progressão visível mantêm a motivação em alta para todos os colaboradores.</p>
+                </div>
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-purple-500/50 animate-on-scroll fade-in-up" data-delay="0.3">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-yellow-400 mr-2">🔊</span> Pronúncia Impecável e Entonação Natural
+                    </h4>
+                    <p class="text-gray-400">Ferramentas avançadas de reconhecimento de fala e feedback em tempo real para aperfeiçoar a pronúncia, ritmo e entonação, essenciais para a clareza.</p>
+                </div>
+                 <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-purple-500/50 animate-on-scroll fade-in-up" data-delay="0.4">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-pink-400 mr-2">🌐</span> Imersão Cultural e Global
+                    </h4>
+                    <p class="text-gray-400">Preparação para nuances culturais, sotaques diversos e etiquetas de comunicação em diferentes mercados, garantindo interações eficazes mundialmente.</p>
+                </div>
+                 <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-purple-500/50 animate-on-scroll fade-in-up" data-delay="0.5">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-indigo-400 mr-2">📈</span> Acompanhamento Personalizado
+                    </h4>
+                    <p class="text-gray-400">Relatórios de progresso detalhados e insights para RH, permitindo um acompanhamento do desenvolvimento individual e coletivo da fluência dos talentos.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 4. CURRICULUM SECTION (Accordion Style for specialized modules) -->
+        <!-- 4. CURRICULUM SECTION (Advanced Modules) -->
         <section id="curriculum" class="py-32 px-6 md:px-24 bg-black/40 border-t border-gray-800">
-            <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-purple-400 animate-on-scroll fade-in-up">
-                Currículo Estratégico: Desenvolvendo a Fluência de Negócios
+            <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-400 animate-on-scroll fade-in-up">
+                Currículo RealTalk Daby: Módulos Avançados para Desafios Reais
             </h3>
 
-            <div class="max-w-4xl mx-auto space-y-6">
+            <div class="max-w-4xl mx-auto space-y-8">
                 <!-- Accordion Item 1 -->
-                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0">
-                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-pink-400 transition-colors duration-300" data-accordion-target="content-1">
-                        <span class="flex items-center"><span class="text-pink-400 mr-3">🗣️</span> Comunicação Executiva Essencial</span>
-                        <svg id="arrow-content-1" class="w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-600/50 animate-on-scroll fade-in-up" data-delay="0">
+                    <button class="accordion-toggle flex justify-between items-center w-full p-6 text-2xl font-semibold text-white hover:text-cyan-400 transition-colors" data-accordion-target="content-1">
+                        Comunicação Estratégica em Reuniões e Apresentações
+                        <svg id="arrow-content-1" class="w-8 h-8 text-indigo-400 transform transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="content-1" class="accordion-content px-6 text-gray-400 text-lg">
                         <ul class="list-disc list-inside space-y-2">
-                            <li>Apresentações de alto impacto e storytelling corporativo.</li>
-                            <li>Reuniões eficazes: participação ativa, negociação e resolução.</li>
-                            <li>E-mails e relatórios profissionais: clareza, concisão e persuasão.</li>
-                            <li>Networking e small talk estratégico.</li>
+                            <li>Linguagem assertiva e persuasiva.</li>
+                            <li>Técnicas de storytelling corporativo.</li>
+                            <li>Gerenciamento de Q&A em inglês.</li>
+                            <li>Frases de impacto para abertura e fechamento.</li>
                         </ul>
                     </div>
                 </div>
 
-                 <!-- Accordion Item 2 -->
-                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
-                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-green-400 transition-colors duration-300" data-accordion-target="content-2">
-                        <span class="flex items-center"><span class="text-green-400 mr-3">🏭</span> Módulos de Indústria e Segmentos Específicos</span>
-                        <svg id="arrow-content-2" class="w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <!-- Accordion Item 2 -->
+                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-600/50 animate-on-scroll fade-in-up" data-delay="0.1">
+                    <button class="accordion-toggle flex justify-between items-center w-full p-6 text-2xl font-semibold text-white hover:text-cyan-400 transition-colors" data-accordion-target="content-2">
+                        Escrita Corporativa e Linguagem Formal
+                        <svg id="arrow-content-2" class="w-8 h-8 text-indigo-400 transform transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="content-2" class="accordion-content px-6 text-gray-400 text-lg">
                         <ul class="list-disc list-inside space-y-2">
-                            <li><strong>Finanças:</strong> Termos de mercado, relatórios financeiros, fusões e aquisições.</li>
-                            <li><strong>TI & Tecnologia:</strong> Desenvolvimento de software, metodologias ágeis, segurança cibernética.</li>
-                            <li><strong>Vendas e Marketing:</strong> Pitching, negociação avançada, campanhas globais.</li>
-                            <li><strong>Recursos Humanos:</strong> Entrevistas, feedback, gestão de talentos internacionais.</li>
+                            <li>Elaboração de e-mails, relatórios e propostas.</li>
+                            <li>Vocabulário técnico específico da indústria.</li>
+                            <li>Clareza e concisão na comunicação escrita.</li>
+                            <li>Estruturas formais para documentos de negócios.</li>
                         </ul>
                     </div>
                 </div>
 
-                 <!-- Accordion Item 3 -->
-                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.3">
-                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-yellow-400 transition-colors duration-300" data-accordion-target="content-3">
-                        <span class="flex items-center"><span class="text-yellow-400 mr-3">🌍</span> Desafios de Comunicação Global & Cultural</span>
-                        <svg id="arrow-content-3" class="w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <!-- Accordion Item 3 -->
+                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-600/50 animate-on-scroll fade-in-up" data-delay="0.2">
+                    <button class="accordion-toggle flex justify-between items-center w-full p-6 text-2xl font-semibold text-white hover:text-cyan-400 transition-colors" data-accordion-target="content-3">
+                        Habilidades Interculturais e Global Mindset
+                        <svg id="arrow-content-3" class="w-8 h-8 text-indigo-400 transform transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="content-3" class="accordion-content px-6 text-gray-400 text-lg">
                         <ul class="list-disc list-inside space-y-2">
@@ -481,8 +499,11 @@
         // Function to animate sentences with a delay (replacing typewriterEffect for this section)
         function animateHandwritingSentences(sentences, containerId) {
             const container = document.getElementById(containerId);
+            if (!container) {
+                console.error('Handwriting container not found:', containerId);
+                return;
+            }
             container.innerHTML = ''; // Clear existing content
-            container.classList.add('handwriting-container'); // Add the handwriting styles container class
             container.style.opacity = '1'; // Make container visible
 
             sentences.forEach((rawSentence, index) => {
@@ -496,7 +517,7 @@
 
                 setTimeout(() => {
                     span.classList.add('loaded');
-                }, index * 400); // **Reduced delay (400ms) for quicker loading**
+                }, index * 400); // FASTER delay (400ms) between each sentence
             });
         }
 
@@ -557,7 +578,7 @@
                 el.classList.add('loaded');
             });
 
-            // 2. Animated Handwriting Message (NEW IMPLEMENTATION with faster delay)
+            // 2. Animated Handwriting Message (NEW IMPLEMENTATION - Corrected)
             const messageSentences = [
                 "Você é um profissional **fera** e de **alta performance**, mas o inglês ainda é o **[ÓBICE INVISÍVEL / CALCANHAR DE AQUILES]** que 'trava' seu avanço global? 😩",
                 "Cansou de investir em aulas e **'[TRENDS/HYPES] da internet'** que prometem, mas não entregam a **fluência estratégica** que seu calibre exige?",
@@ -568,6 +589,7 @@
                 "O resultado? Sua voz **no automático**, com **impacto** e **sem ruídos**. ✨"
             ];
 
+            // Wait a bit after general page load animation, then start handwriting effect
             setTimeout(() => {
                 animateHandwritingSentences(messageSentences, 'handwriting-message-container');
             }, 2300); // Starts after initial title animations finish
