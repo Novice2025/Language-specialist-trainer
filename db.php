@@ -1,48 +1,45 @@
 <?php
-// db.php - Database connection and initialization
+// db.php - Conexão e inicialização do banco de dados
 
 class Database {
     private $pdo;
-    // Using __DIR__ for the absolute path of the SQLite file 
-    // This helps Railway.app find and manage it for persistent storage.
+    // Usando __DIR__ para um caminho absoluto do arquivo SQLite.
+    // Isso ajuda o Railway.app a localizar e gerenciar o arquivo para armazenamento persistente.
     private $db_file = __DIR__ . '/emilyparis.sqlite'; 
 
     public function __construct() {
-        // !!! IMPORTANT FOR DEBUGGING ON RAILWAY !!!
-        // These lines will display any PHP errors directly in the browser.
-        // REMOVE OR COMMENT THEM OUT FOR PRODUCTION once everything works.
+        // !!! IMPORTANTE PARA DEBUG NO RAILWAY.APP !!!
+        // Essas linhas exibirão quaisquer erros PHP diretamente no navegador.
+        // REMOVA OU COMENTE-AS PARA PRODUÇÃO assim que tudo estiver funcionando.
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
         $this->connect();
-        $this->ensureTable(); // Ensure the table exists
-        $this->ensureColumns(); // Ensure all necessary columns exist (excluding 'focus' if already present)
+        $this->ensureTable(); // Garante que a tabela exista
+        $this->ensureColumns(); // Garante que todas as colunas necessárias existam
     }
 
     private function connect() {
         try {
-            // Attempt to connect to the SQLite database
+            // Tenta conectar ao banco de dados SQLite
             $this->pdo = new PDO("sqlite:" . $this->db_file);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->pdo->exec("PRAGMA journal_mode = WAL;"); // Recommended for better concurrency
-
-            // If the database file was just created by PDO and is empty, we'll proceed
-            // If it existed but was problematic, errors will show due to setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION)
+            $this->pdo->exec("PRAGMA journal_mode = WAL;"); // Modo Journal recomendado para melhor concorrência
 
         } catch (PDOException $e) {
-            // Catch PDO specific errors (e.g., file permissions, corrupt DB)
-            die("Database connection failed: " . $e->getMessage() . 
-                "<br>Please ensure '" . dirname($this->db_file) . "' is writable by the web server process. Current path: " . $this->db_file);
+            // Captura erros específicos do PDO (ex: permissões de arquivo, DB corrompido)
+            die("Falha na conexão com o banco de dados: " . $e->getMessage() . 
+                "<br>Por favor, certifique-se de que '" . dirname($this->db_file) . "' é gravável pelo processo do servidor web. Caminho atual: " . $this->db_file);
         } catch (Exception $e) {
-            // Catch any other general exceptions during connection
-            die("General initialization error: " . $e->getMessage());
+            // Captura quaisquer outras exceções gerais durante a conexão
+            die("Erro geral de inicialização: " . $e->getMessage());
         }
     }
 
     private function ensureTable() {
-        // Create 'licoes' table if it doesn't already exist.
-        // The 'focus' column is part of the initial table creation here.
+        // Cria a tabela 'licoes' se ela ainda não existir.
+        // A coluna 'focus' faz parte da criação inicial da tabela aqui.
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS licoes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
@@ -57,9 +54,9 @@ class Database {
     }
 
     private function ensureColumns() {
-        // Define columns to check and their types.
-        // 'focus' is NOT included here as it's part of the initial CREATE TABLE statement in ensureTable().
-        // This prevents attempting to add it again if the table was created by this script.
+        // Define as colunas a serem verificadas e seus tipos.
+        // 'focus' NÃO está incluída aqui, pois faz parte da declaração CREATE TABLE inicial.
+        // Isso evita a tentativa de adicioná-la novamente se a tabela foi criada por este script.
         $columns_to_check = [
             'language_level' => 'TEXT',
             'industry' => 'TEXT',
@@ -69,18 +66,17 @@ class Database {
             'example_sentences' => 'TEXT',
         ];
 
-        // Fetch existing columns to prevent "duplicate column" errors.
+        // Busca as colunas existentes para evitar erros de "duplicate column".
         $stmt = $this->pdo->query("PRAGMA table_info(licoes)");
-        $existing_columns = $stmt->fetchAll(PDO::FETCH_COLUMN, 1); // Get column names as an array
+        $existing_columns = $stmt->fetchAll(PDO::FETCH_COLUMN, 1); // Obtém os nomes das colunas como um array
 
         foreach ($columns_to_check as $col_name => $col_type) {
             if (!in_array($col_name, $existing_columns)) {
                 try {
                     $this->pdo->exec("ALTER TABLE licoes ADD COLUMN $col_name $col_type");
                 } catch (PDOException $e) {
-                    // Log or handle error if ALTER TABLE fails (e.g., if a column with that name already exists
-                    // from a previous, possibly manual, different-schema creation, though unlikely with our checks).
-                    error_log("Failed to add column '$col_name': " . $e->getMessage());
+                    // Registra ou lida com o erro se ALTER TABLE falhar (ex: se uma coluna com esse nome já existir)
+                    error_log("Falha ao adicionar a coluna '$col_name': " . $e->getMessage());
                 }
             }
         }
@@ -91,6 +87,6 @@ class Database {
     }
 }
 
-// Instantiate the database to ensure it's connected and initialized
+// Instancia o banco de dados para garantir que esteja conectado e inicializado
 $database = new Database();
 $pdo = $database->getPdo();
