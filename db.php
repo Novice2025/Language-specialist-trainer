@@ -1,5 +1,5 @@
 <?php
-// db.php - Conexão e inicialização do banco de dados
+// db.php - Conexão e inicialização do banco de dados para RealTalk Daby
 
 class Database {
     private $pdo;
