@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LexiPro: Aceleração de Talentos e Performance Global</title>
+    <title>RealTalk Daby (Corporate Edition)</title> <!-- Title updated here -->
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom Font: Inter (Used by default in Tailwind) -->
@@ -190,7 +190,7 @@
     <!-- HEADER (Sticky Navigation) -->
     <header class="sticky top-0 z-50 bg-black/70 backdrop-blur-md shadow-2xl p-4 md:p-6 flex justify-between items-center border-b border-indigo-900/50">
         <h1 id="header-title" class="text-2xl md:text-3xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-on-load">
-            LexiPro: Aceleração de Talentos
+            RealTalk Daby (Corporate Edition) <!-- Title updated here -->
         </h1>
         <nav class="flex gap-3 md:gap-6 text-base md:text-lg">
             <a href="#home" class="nav-link hover:text-pink-400 transition-colors py-1 px-2 rounded-lg" data-target="home">Início</a>
@@ -215,7 +215,7 @@
 
             <!-- Título 2: RAINBOW GRADIENT TEXT (Original state) -->
             <h2 class="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight animate-on-load rainbow-text" style="transition-delay: 0.1s;">
-                ACELERE A PERFORMANCE GLOBAL COM LEXIPRO
+                ACELERE A PERFORMANCE GLOBAL COM RealTalk Daby <!-- Updated here -->
             </h2>
 
             <!-- Título 3: EFEITO FLASH (Original state - Focus Pulse) -->
@@ -237,11 +237,11 @@
         <!-- 2. METHODOLOGY (Corporate Training Efficacy) -->
         <section id="methodology" class="py-32 px-6 md:px-24 bg-black/40 backdrop-blur-md border-t border-gray-800">
             <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-green-400 animate-on-scroll fade-in-up">
-                🧠 O SHIFT LEXIPRO: Da Teoria à Competência Instantânea. Viva o idioma e veja-o fazer sentido.
+                🧠 O SHIFT RealTalk Daby: Da Teoria à Competência Instantânea. Viva o idioma e veja-o fazer sentido. <!-- Updated here -->
             </h3>
 
             <p class="max-w-4xl mx-auto text-gray-300 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                Seu investimento em desenvolvimento vai além das aulas: ele é um investimento direto em <strong>tempo de reação e eficácia comunicativa</strong>. Nossa metodologia exclusiva, o <strong>"Lego Chain Block" (adaptado por LexiPro)</strong>, tem como objetivo principal <strong>eliminar o "lag" da tradução</strong>, garantindo resultados de negócios imediatos e um domínio muito mais próximo do <strong>inglês real</strong>.
+                Seu investimento em desenvolvimento vai além das aulas: ele é um investimento direto em <strong>tempo de reação e eficácia comunicativa</strong>. Nossa metodologia exclusiva, o <strong>"Lego Chain Block" (adaptado por RealTalk Daby)</strong>, tem como objetivo principal <strong>eliminar o "lag" da tradução</strong>, garantindo resultados de negócios imediatos e um domínio muito mais próximo do <strong>inglês real</strong>.
             </p>
 
             <div class="flex justify-center">
@@ -257,12 +257,12 @@
                             <li class="flex items-start"><span class="text-red-500 mr-2 font-black">❌</span> Custo: Alto tempo de treinamento com baixo Retorno.</li>
                             <li class="flex items-start"><span class="text-red-500 mr-2 font-black">❌</span> Conteúdo: Inglês "de livro" e conversas genéricas, sem aplicação prática.</li>
                         </ul>
-                        <div class="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-400"><br><br>Clique para ver a Solução LexiPro (O Reflexo)</div>
+                        <div class="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-400"><br><br>Clique para ver a Solução RealTalk Daby (O Reflexo)</div>
                     </div>
 
-                    <!-- Back Side: LexiPro System (The Corporate Reflex) -->
+                    <!-- Back Side: RealTalk Daby System (The Corporate Reflex) -->
                     <div id="card-back" class="card-face bg-indigo-800/90 p-8 rounded-2xl shadow-2xl border-4 border-indigo-500/80 flex flex-col justify-center">
-                        <h3 class="text-3xl font-bold text-white mb-4 tracking-wider">NOSSO SISTEMA LEXIPRO (O Benefício Corporativo)</h3>
+                        <h3 class="text-3xl font-bold text-white mb-4 tracking-wider">NOSSO SISTEMA RealTalk Daby (O Benefício Corporativo)</h3> <!-- Updated here -->
                         <ul class="text-left space-y-3 text-indigo-200 text-lg list-none pl-0">
                             <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Foco: Fluência Inconsciente e Agilidade de Resposta.</li>
                             <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Ganho: Aumento Imediato na confiança e assertividade da equipe.</li>
@@ -278,7 +278,7 @@
         <!-- 3. PLATFORM FEATURES (Reframed from generic "Features") -->
         <section id="features" class="py-32 px-6 md:px-24 relative overflow-hidden">
             <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 animate-on-scroll fade-in-up">
-                Minha Expertise em Ação: As Capacidades da Plataforma LexiPro
+                Minha Expertise em Ação: As Capacidades da Plataforma RealTalk Daby <!-- Updated here -->
             </h3>
 
             <div class="grid md:grid-cols-3 gap-10">
@@ -304,9 +304,9 @@
                 <!-- Feature 3: Flight Simulator Mode (High-Pressure Training) -->
                 <div class="feature-card p-8 rounded-2xl bg-gray-900/80 shadow-2xl border border-gray-700 hover:border-pink-500 transition-all duration-500 hover:scale-[1.03] flex flex-col items-start animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mb-4 text-blue-400"><rect width="20" height="15" x="2" y="3" rx="2"/><path d="M12 18v4"/><path d="M8 22h8"/></svg>
-                    <h4 class="text-3xl font-bold mb-3 text-white">Modo Simulador de Voo (Alta Pressão)</h4>
+                    <h4 class="text-3xl font-bold mb-3 text-white">Modo Simulador de Voo (High-Pressure Training)</h4>
                     <p class="text-gray-400 leading-relaxed text-lg">
-                        Treinamento em **stress elevado** (negociações críticas, gestão de crise) para que o inglês seja automático em situações de alta pressão, otimizando o "Cognitive Load Pacing".
+                        Treinamento em **stress elevado** (negociações críticas, gestão de crise) para que o inglês seja automático em situações de alta pressão.
                     </p>
                 </div>
             </div>
@@ -315,11 +315,11 @@
         <!-- 4. CURRICULUM SECTION (Corporate Modules) -->
         <section id="curriculum" class="py-32 px-6 md:px-24 bg-black/40 backdrop-blur-md border-t border-gray-800">
             <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 animate-on-scroll fade-in-up">
-                🎓 Nosso Currículo: Habilidades Essenciais e Liderança Global
+                🎓 Estrutura Modular: Habilidades de Liderança Global
             </h3>
 
             <p class="max-w-4xl mx-auto text-gray-400 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                Nosso currículo é estruturado em blocos de competência aplicáveis ao dia a dia de um profissional em um ambiente multinacional, com módulos de imersão por indústria.
+                Nosso currículo é estruturado em blocos de competência aplicáveis ao dia a dia de um profissional em um ambiente multinacional.
             </p>
 
             <div class="max-w-4xl mx-auto space-y-4">
@@ -333,13 +333,13 @@
                     <div id="cat1" class="accordion-content">
                         <ul class="text-gray-300 space-y-3 px-6 pb-6 text-lg border-t border-gray-700 pt-4">
                             <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Condução de Reuniões de Alto Impacto (Agenda Setting).
+                                <span class="text-indigo-400 mr-3 font-bold">•</span> Reuniões de Stakeholders e Apresentações Executivas.
                             </li>
                             <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Feedback Construtivo e Gestão de Conflitos Cross-Cultural.
+                                <span class="text-indigo-400 mr-3 font-bold">•</span> Debates e Discursão de Problemas Complexos (Brainstorming).
                             </li>
                             <li class="flex items-center">
-                                <span class="text-indigo-400 mr-3 font-bold">•</span> Comunicação Estratégica para C-Level.
+                                <span class="text-indigo-400 mr-3 font-bold">•</span> Negociação de Acordos e Resolução de Conflito.
                             </li>
                             <li class="flex items-center">
                                 <span class="text-indigo-400 mr-3 font-bold">•</span> Vocabulário Essencial: 'Initiate', 'Implement', 'Monitor', 'Assess', 'Mitigate', 'Optimize', 'Facilitate'.
@@ -423,7 +423,7 @@
             </div>
         </section>
 
-        <!-- 5. NEW SECTION: AI POWER (Detailed from LexiPro) -->
+        <!-- 5. NEW SECTION: AI POWER (Detailed from RealTalk Daby) -->
         <section id="ai-power" class="-mt-20 py-32 px-6 md:px-24 bg-indigo-900/30 border-t border-gray-700">
             <h3 class="text-5xl font-bold mb-4 text-center text-transparent bg-clip-clip bg-gradient-to-r from-blue-300 via-indigo-400 to-purple-500 animate-on-scroll fade-in-up">
                 🤖 O Verdadeiro Poder da IA no seu Desenvolvimento!
@@ -485,7 +485,7 @@
             </h3>
 
             <p class="max-w-4xl mx-auto text-gray-400 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
-                Transforme a comunicação de seus profissionais e impulsione os resultados globais com a metodologia LexiPro.
+                Transforme a comunicação de seus profissionais e impulsione os resultados globais com a metodologia RealTalk Daby. <!-- Updated here -->
             </p>
 
             <div class="text-center animate-on-scroll fade-in-up" data-delay="0.3">
@@ -500,8 +500,8 @@
 
     <!-- FOOTER (Glitch Effect) -->
     <footer class="py-12 px-6 md:px-24 text-center border-t border-gray-800 bg-black/50">
-        <div class="glitch-text text-xl md:text-2xl font-mono" data-text="© 2024 LexiPro - Acelerando a Performance Global.">
-            © 2024 LexiPro - Acelerando a Performance Global.
+        <div class="glitch-text text-xl md:text-2xl font-mono" data-text="© 2024 RealTalk Daby - Acelerando a Performance Global."> <!-- Updated here -->
+            © 2024 RealTalk Daby - Acelerando a Performance Global. <!-- Updated here -->
         </div>
         <p class="mt-4 text-gray-600">Construído com Inovação e Foco em Resultados Corporativos.</p>
     </footer>
@@ -536,7 +536,9 @@
                         if (endOfBold !== -1) {
                             const boldText = text.substring(index + 2, endOfBold);
                             output += `<strong>${boldText}</strong>`;
-                            index = endOfBold + 2;
+                            // Ensure the character for the bold tag itself (the two asterisks) are counted as typed
+                            // We replace the raw asterisks in 'text' with their HTML equivalent in 'output'
+                            index = endOfBold + 2; 
                         } else {
                             output += text[index];
                             index++;
@@ -620,7 +622,7 @@
             const typewriterContainer = document.getElementById('typewriter-container');
 
             // New Core Positioning Text:
-            const typewriterText = "Seu profissional é de alta performance, mas o inglês cria uma barreira invisível. Investimentos em aulas não resolveram. O LexiPro atua na raiz do problema: transformamos conhecimento em **reflexo comunicativo**.";
+            const typewriterText = "Seu profissional é de alta performance, mas o inglês cria uma barreira invisível. Investimentos em aulas não resolveram. O RealTalk Daby atua na raiz do problema: transformamos conhecimento em **reflexo comunicativo**."; // Updated here
 
             setTimeout(() => {
                 typewriterContainer.style.opacity = '1';
