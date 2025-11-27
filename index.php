@@ -154,7 +154,7 @@
             padding-top: 1rem;
             padding-bottom: 1rem;
         }
-        /* Adjusted dropdown for dark mode */
+        /* Adjusted dropdown for dark mode (from previous builder.php - RELEVANT MEMORY: user wants custom colours for dropdown selections in dark mode to ensure readable contrast) */
         select {
             /* Basic appearance reset */
             -webkit-appearance: none;
@@ -195,7 +195,7 @@
         .handwriting-sentence {
             opacity: 0; /* Start hidden */
             transform: translateY(20px); /* Start slightly below */
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* FASTER transition */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Smooth transition, faster */
             display: block; /* Each sentence on its own line */
             margin-bottom: 0.5em; /* Spacing between sentences */
             padding-left: 1.5em; /* Indent for bullet point feel */
@@ -238,7 +238,7 @@
             <a href="#curriculum" class="nav-link hover:text-pink-400 transition-colors py-1 px-2 rounded-lg" data-target="curriculum">Currículo</a>
             <a href="#ai-power" class="nav-link hover:text-pink-400 transition-colors py-1 px-2 rounded-lg" data-target="ai-power">Poder da IA</a>
             <a href="#contact" class="nav-link hover:text-pink-400 transition-colors py-1 px-2 rounded-lg" data-target="contact">Contato</a>
-          <!-- Added link to builder.php for admin access -->
+          <!-- Added link to builder.php for admin access (RELEVANT MEMORY: user prefers the lesson planner page to be named builder.php) -->
             <a href="builder.php" class="nav-link hover:text-blue-400 transition-colors py-1 px-2 rounded-lg italic text-sm" data-target="builder">Builder (Admin)</a>
         </nav>
     </header>
@@ -247,17 +247,17 @@
 
         <!-- 1. HERO SECTION (Corporate Pitch) -->
         <section id="home" class="flex flex-col items-center justify-center min-h-screen text-center px-6 pt-24">
-            <!-- Título 1: PLAIN GRADIENT TEXT (Original state) -->
+            <!-- Título 1: PLAIN GRADIENT TEXT -->
             <h4 class="text-3xl md:text-6xl font-extrabold mb-4 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-yellow-400 to-red-400 animate-on-load" style="transition-delay: 0s;">
                 INGLÊS PROFISSIONAL: DA BARREIRA AO REFLEXO
             </h4>
 
-            <!-- Título 2: RAINBOW GRADIENT TEXT (Original state) -->
+            <!-- Título 2: RAINBOW GRADIENT TEXT -->
             <h2 class="text-5xl md:text-8xl font-extrabold mb-6 tracking-tight animate-on-load rainbow-text" style="transition-delay: 0.1s;">
                 ACELERE A PERFORMANCE GLOBAL COM REAL TALK DABY
             </h2>
 
-            <!-- Título 3: EFEITO FLASH (Original state - Focus Pulse) -->
+            <!-- Título 3: EFEITO FLASH -->
             <h3 class="text-4xl md:text-7xl font-extrabold mb-8 text-white focus-pulse animate-on-load" style="transition-delay: 0.6s;">
                 <span class="rainbow-text">Fluência como Reflexo, não como Barreira.</span>
             </h3>
@@ -281,7 +281,7 @@
             <div class="flex justify-center">
                 <div id="flipping-card" class="flipping-card-container w-full max-w-xl h-[28rem] relative cursor-pointer animate-on-scroll fade-in" onclick="toggleFlipCard(this)" data-flipped="false">
 
-                    <!-- Front Side: Traditional Method (The Cost to Business) -->
+                    <!-- Front Side: Traditional Method (O Risco Corporativo) -->
                     <div id="card-front" class="card-face bg-gray-900/90 p-8 rounded-2xl shadow-2xl border-4 border-red-500/50 flex flex-col justify-center">
                         <h3 class="text-3xl font-bold text-red-400 mb-4 tracking-wider">MÉTODO TRADICIONAL (O Risco Corporativo)</h3>
                         <ul class="text-left space-y-3 text-gray-300 text-lg list-none pl-0">
@@ -294,69 +294,64 @@
                         <div class="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-400"><br><br>Clique para ver a Solução RealTalk Daby (O Reflexo)</div>
                     </div>
 
-                    <!-- Back Side: RealTalk Daby System (The Corporate Reflex) -->
-                    <div id="card-back" class="card-face bg-indigo-800/90 p-8 rounded-2xl shadow-2xl border-4 border-indigo-500/80 flex flex-col justify-center">
-                        <h3 class="text-3xl font-bold text-white mb-4 tracking-wider">NOSSO SISTEMA RealTalk Daby (O Benefício Corporativo)</h3>
-                        <ul class="text-left space-y-3 text-indigo-200 text-lg list-none pl-0">
-                            <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Foco: Fluência Inconsciente e Agilidade de Resposta.</li>
-                            <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Ganho: Aumento Imediato na confiança e assertividade da equipe.</li>
-                            <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Aprimoramento: Conteúdo focado no essencial para o trabalho e aprimoramento.</li>
-                            <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Aplicação: Aprendizado em situações corporativas reais - no seu dia a dia.</li>
-                            <li class="flex items-start"><span class="text-green-300 mr-2 font-black">✅</span> Valor: Rápida escalabilidade e menor CUSTO.</li>
+                    <!-- Back Side: RealTalk Daby (O Reflexo Comunicativo) -->
+                    <div id="card-back" class="card-face bg-gray-900/90 p-8 rounded-2xl shadow-2xl border-4 border-green-500/50 flex flex-col justify-center">
+                        <h3 class="text-3xl font-bold text-green-400 mb-4 tracking-wider">REALTALK DABY (O Reflexo Comunicativo)</h3>
+                        <ul class="text-left space-y-3 text-gray-300 text-lg list-none pl-0">
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-black">✅</span> Foco: Reflexo e Performance (Comunicação Real).</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-black">✅</span> Ganho: Assertividade e Poder de Negociação em contextos reais.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-black">✅</span> Avaliação: Métricas de Fluidez (Lag Time) e Performance.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-black">✅</span> Valor: Alta otimização de tempo. ROI comprovado.</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-black">✅</span> Conteúdo: Módulos específicos e personalizáveis para o dia a dia corporativo com o uso da IA.</li>
                         </ul>
+                         <div class="absolute bottom-4 left-0 right-0 text-center text-sm text-gray-400"><br><br>Clique para ver o Método Tradicional (O Risco Corporativo)</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. PLATFORM FEATURES (Reframed from generic "Features") -->
-        <section id="features" class="py-32 px-6 md:px-24 relative overflow-hidden">
-            <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 animate-on-scroll fade-in-up">
-                Minha Expertise em Ação: As Capacidades da Plataforma RealTalk Daby
+        <!-- 3. FEATURES SECTION (Platform Overview) -->
+        <section id="features" class="py-32 px-6 md:px-24 bg-purple-900/20 text-center border-t border-gray-800">
+            <h3 class="text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-yellow-400 animate-on-scroll fade-in-up">
+                Plataforma RealTalk Daby: Seu Ambiente de Imersão e Habilidade
             </h3>
+            <p class="max-w-4xl mx-auto text-gray-300 text-xl leading-relaxed text-center mb-16 animate-on-scroll fade-in-up">
+                Um ecossistema digital inteligente, otimizado para o profissional de alta demanda que busca resultados rápidos e comunicação impecável.
+            </p>
 
-            <div class="grid md:grid-cols-3 gap-10">
-                <!-- Feature 1: Real Talk Engine (Dynamic Scenarios) -->
-                <div class="feature-card p-8 rounded-2xl bg-gray-900/80 shadow-2xl border border-gray-700 hover:border-pink-500 transition-all duration-500 hover:scale-[1.03] flex flex-col items-start animate-on-scroll fade-in-up" style="transition-delay: 0.1s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mb-4 text-pink-400"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-
-                    <h4 class="text-3xl font-bold mb-3 text-white">Simulador de Cenários Dinâmicos (IA-Powered)</h4>
-                    <p class="text-gray-400 leading-relaxed text-lg">
-                        Seu profissional é qualificado, mas o inglês é a barreira. Nosso simulador com avatares IA transforma o **conhecimento teórico** na agilidade de resposta exigida pelo mercado através de role-plays *em tempo real*.
-                    </p>
+            <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-red-500/50 animate-on-scroll fade-in-up" data-delay="0">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-pink-400 mr-2">🌐</span> Ambiente Imersivo Dark Mode
+                    </h4>
+                    <p class="text-gray-400">Design minimalista e Dark Mode para reduzir distrações, otimizar o foco e a concentração. Treine em um ambiente que espelha a sofisticação e seriedade do seu trabalho. Ferramentas que minimizam o lag da tradução.</p>
                 </div>
-
-                <!-- Feature 2: Neuro-Feedback (Assessment) -->
-                <div class="feature-card p-8 rounded-2xl bg-gray-900/80 shadow-2xl border border-gray-700 hover:border-pink-500 transition-all duration-500 hover:scale-[1.03] flex flex-col items-start animate-on-scroll fade-in-up" style="transition-delay: 0.2s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mb-4 text-pink-400"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                    <h4 class="text-3xl font-bold mb-3 text-white">Análise Preditiva de Gaps & Feedback Contextual</h4>
-                    <p class="text-gray-400 leading-relaxed text-lg">
-                        Identificamos as **lacunas lexicais e de pronúncia** antes que elas virem um problema. Nosso IA oferece feedback *personalizado e estratégico*, focando no que realmente impacta a clareza e o profissionalismo.
-                    </p>
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-red-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-yellow-400 mr-2">🎯</span> Micro-Aprendizado Adaptativo
+                    </h4>
+                    <p class="text-gray-400">Pílulas de conhecimento (Lego Chain Blocks) personalizadas para o contexto corporativo do profissional. O algoritmo de IA adapta a intensidade e o foco com base no desempenho e engajamento. </p>
                 </div>
-
-                <!-- Feature 3: Micro-Learning Sprints -->
-                <div class="feature-card p-8 rounded-2xl bg-gray-900/80 shadow-2xl border border-gray-700 hover:border-pink-500 transition-all duration-500 hover:scale-[1.03] flex flex-col items-start animate-on-scroll fade-in-up" style="transition-delay: 0.3s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mb-4 text-pink-400"><path d="M4 22h14a2 2 0 0 0 2-2V7L14 2H6a2 2 0 0 0-2 2v18Z"/><path d="M14 2v6h6"/></svg>
-                    <h4 class="text-3xl font-bold mb-3 text-white">"Lego Chain Block" & Sprints de 5 Minutos (IA Adaptive)</h4>
-                    <p class="text-gray-400 leading-relaxed text-lg">
-                        Módulos de **micro-aprendizado** focados em "chunks" (blocos de linguagem) para construir sua fluência como um LEGO. Adaptação IA garante que cada sessão seja eficiente, relevante e se encaixe na sua agenda.
-                    </p>
+                <div class="p-6 bg-gray-900/70 rounded-xl shadow-lg border border-red-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
+                    <h4 class="text-2xl font-semibold mb-2 text-white flex items-center">
+                        <span class="text-blue-400 mr-2">⚡</span> Feedback Instantâneo e Personalizado
+                    </h4>
+                    <p class="text-gray-400">A IA oferece correção imediata de pronúncia, entonação e uso lexical. Modelos de conversação simulados em tempo real para aprimorar a capacidade de reação e o reflexo comunicativo em diversos cenários.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 4. CURRICULUM (Corporate Relevance) -->
+        <!-- 4. CURRICULUM SECTION (Accordion Style for specialized modules) -->
         <section id="curriculum" class="py-32 px-6 md:px-24 bg-black/40 border-t border-gray-800">
-            <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-400 to-yellow-400 animate-on-scroll fade-in-up">
-                Currículo Estratégico: Inglês para o seu Mundo Corporativo
+            <h3 class="text-5xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-pink-500 to-purple-400 animate-on-scroll fade-in-up">
+                Currículo Estratégico: Desenvolvendo a Fluência de Negócios
             </h3>
 
             <div class="max-w-4xl mx-auto space-y-6">
                 <!-- Accordion Item 1 -->
-                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.1">
-                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-cyan-400 transition-colors duration-300" data-accordion-target="content-1">
-                        <span class="flex items-center"><span class="text-blue-400 mr-3">💼</span> Comunicação Profissional Fundacional</span>
+                <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0">
+                    <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-pink-400 transition-colors duration-300" data-accordion-target="content-1">
+                        <span class="flex items-center"><span class="text-pink-400 mr-3">🗣️</span> Comunicação Executiva Essencial</span>
                         <svg id="arrow-content-1" class="w-6 h-6 text-white transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                     <div id="content-1" class="accordion-content px-6 text-gray-400 text-lg">
@@ -369,7 +364,7 @@
                     </div>
                 </div>
 
-                <!-- Accordion Item 2 -->
+                 <!-- Accordion Item 2 -->
                 <div class="bg-gray-900/70 rounded-xl shadow-lg border border-indigo-500/50 animate-on-scroll fade-in-up" data-delay="0.2">
                     <button class="accordion-toggle w-full flex justify-between items-center p-6 text-2xl font-semibold text-white hover:text-green-400 transition-colors duration-300" data-accordion-target="content-2">
                         <span class="flex items-center"><span class="text-green-400 mr-3">🏭</span> Módulos de Indústria e Segmentos Específicos</span>
@@ -377,10 +372,10 @@
                     </button>
                     <div id="content-2" class="accordion-content px-6 text-gray-400 text-lg">
                         <ul class="list-disc list-inside space-y-2">
-                            <li>**Finanças:** Termos de mercado, relatórios financeiros, fusões e aquisições.</li>
-                            <li>**TI & Tecnologia:** Desenvolvimento de software, metodologias ágeis, segurança cibernética.</li>
-                            <li>**Vendas e Marketing:** Pitching, negociação avançada, campanhas globais.</li>
-                            <li>**Recursos Humanos:** Entrevistas, feedback, gestão de talentos internacionais.</li>
+                            <li><strong>Finanças:</strong> Termos de mercado, relatórios financeiros, fusões e aquisições.</li>
+                            <li><strong>TI & Tecnologia:</strong> Desenvolvimento de software, metodologias ágeis, segurança cibernética.</li>
+                            <li><strong>Vendas e Marketing:</strong> Pitching, negociação avançada, campanhas globais.</li>
+                            <li><strong>Recursos Humanos:</strong> Entrevistas, feedback, gestão de talentos internacionais.</li>
                         </ul>
                     </div>
                 </div>
@@ -462,19 +457,141 @@
 
     <!-- FOOTER (Glitch Effect) -->
     <footer class="py-12 px-6 md:px-24 text-center border-t border-gray-800 bg-black/50">
-Compreendido! Você copiou os códigos, mas as funcionalidades de escrita à mão e bullet points animados não estão funcionando como esperado, e você também quer que o texto seja carregado mais rapidamente.
+        <div class="glitch-text text-xl md:text-2xl font-mono" data-text="© 2024 RealTalk Daby - Acelerando a Performance Global.">
+            © 2024 RealTalk Daby - Acelerando a Performance Global.
+        </div>
+        <p class="mt-4 text-gray-600">Construído com Inovação e Foco em Resultados Corporativos.</p>
+    </footer>
 
-Vamos ajustar o código do `index.php` para resolver ambos os problemas. Acelerar o carregamento do texto é simples, basta diminuir os atrasos (delays) no JavaScript. Para as "features" que não estão aparecendo, vamos revisar o CSS e a estrutura para garantir que tudo esteja no lugar certo.
+    <!-- JavaScript for Animations and Interactions -->
+    <script>
+        // Smooth scrolling for navigation links
+        function smoothScroll(targetId) {
+            document.getElementById(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
 
-Provavelmente, o problema é que a fonte 'Caveat' pode não estar sendo carregada corretamente ou há algum conflito de CSS/JS que a impede de aparecer.
+        // Flipping Card Functionality
+        function toggleFlipCard(cardElement) {
+            const isFlipped = cardElement.getAttribute('data-flipped') === 'true';
+            cardElement.setAttribute('data-flipped', !isFlipped);
+        }
 
-**Principais Ajustes:**
+        // Function to animate sentences with a delay (replacing typewriterEffect for this section)
+        function animateHandwritingSentences(sentences, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = ''; // Clear existing content
+            container.classList.add('handwriting-container'); // Add the handwriting styles container class
+            container.style.opacity = '1'; // Make container visible
 
-1.  **Ajuste da Velocidade:** Reduziremos o `setTimeout` para algo mais rápido (ex: 200ms por frase) para que as sentenças apareçam bem mais ligeiro.
-2.  **Verificação do CSS:** Garantiremos que as classes CSS (`handwriting-container`, `handwriting-sentence`) e a fonte 'Caveat' estão sendo aplicadas e sobrescrevendo qualquer estilo padrão do Tailwind.
-3.  **Carregamento da Fonte:** Certificaremos que o link para a fonte 'Caveat' está no `<head>` e é válido.
+            sentences.forEach((rawSentence, index) => {
+                // Parse rawSentence to handle **bold** syntax
+                const processedSentence = rawSentence.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                const span = document.createElement('span');
+                span.classList.add('handwriting-sentence');
+                span.innerHTML = processedSentence; // Use innerHTML to render strong tags
 
----
+                container.appendChild(span);
 
-### **`index.php` (Ajustado para Carregamento Mais Rápido e Correção de Features)**
+                setTimeout(() => {
+                    span.classList.add('loaded');
+                }, index * 400); // **Reduced delay (400ms) for quicker loading**
+            });
+        }
 
+
+        // Function to handle scroll-based entrance animation
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('loaded');
+                        }, delay * 1000);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the item is visible
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Function to set up accordion toggles
+        function setupAccordionToggles() {
+            document.querySelectorAll('.accordion-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-accordion-target');
+                    const content = document.getElementById(targetId);
+                    const arrow = document.getElementById(`arrow-${targetId}`);
+
+                    // Close all other active accordions
+                     document.querySelectorAll('.accordion-content.active').forEach(activeContent => {
+                         if (activeContent.id !== targetId) {
+                             activeContent.classList.remove('active');
+                             const otherArrow = document.getElementById(`arrow-${activeContent.id}`);
+                             if (otherArrow) {
+                                otherArrow.classList.remove('rotate-180');
+                             }
+                         }
+                     });
+
+                    // Toggle current accordion
+                    content.classList.toggle('active');
+                    arrow.classList.toggle('rotate-180');
+                });
+            });
+        }
+
+        // Main Initialization on load
+        window.onload = function() {
+            // 1. Initial Load Animations for Headers
+            document.querySelectorAll('.animate-on-load').forEach(el => {
+                el.classList.add('loaded');
+            });
+
+            // 2. Animated Handwriting Message (NEW IMPLEMENTATION with faster delay)
+            const messageSentences = [
+                "Você é um profissional **fera** e de **alta performance**, mas o inglês ainda é o **[ÓBICE INVISÍVEL / CALCANHAR DE AQUILES]** que 'trava' seu avanço global? 😩",
+                "Cansou de investir em aulas e **'[TRENDS/HYPES] da internet'** que prometem, mas não entregam a **fluência estratégica** que seu calibre exige?",
+                "A gente sabe: você se sente **sozinho nessa luta** 😔, buscando as palavras, enquanto a tradução ainda predomina e ninguém parece se importar **DE VERDADE**.",
+                "Chega! 🛑",
+                "O RealTalk Daby chega para **[DECIFRAR] e [TRANSFORMAR]** ESSE cenário!",
+                "Nós vamos na raiz do problema: seu conhecimento se **[MATERIALIZA]** em **[REFLEXO COMUNICATIVO INSTANTÂNEO]**.",
+                "O resultado? Sua voz **no automático**, com **impacto** e **sem ruídos**. ✨"
+            ];
+
+            setTimeout(() => {
+                animateHandwritingSentences(messageSentences, 'handwriting-message-container');
+            }, 2300); // Starts after initial title animations finish
+
+            // 3. Scroll Animations
+            handleScrollAnimation();
+
+            // 4. Accordion Setup
+            setupAccordionToggles();
+
+            // 5. Navigation Scroll
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('data-target');
+                    // Special handling for builder link
+                    if (targetId === 'builder') {
+                       window.location.href = e.target.href; // Navigate directly
+                       return;
+                    }
+                    smoothScroll(targetId);
+                });
+            });
+        };
+    </script>
+</body>
+</html>
