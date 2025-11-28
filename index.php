@@ -16,7 +16,7 @@
         /* Base Styling & Font */
         body { font-family: 'Inter', sans-serif; background-color: #1A1A2E; color: #E0E0E0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* General Classes for animations (kept for other sections) */
+        /* General Classes for animations (kept only for simple fades/slides) */
         .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .loaded { opacity: 1; transform: translateY(0); }
         .animate-on-load { opacity: 0; transform: translateY(50px); transition: opacity 1.2s ease-out, transform 1.2s ease-out; }
@@ -126,19 +126,19 @@
             #hero .hero-button { padding: 1rem 3rem; font-size: 1.5rem; }
         }
 
-        /* NEW: Section for VOCÊ - STATIC phrases now */
+        /* VOCÊ Section - STATIC phrases */
         #voce {
             padding: 5rem 1.5rem;
             background-color: #1a1a2e; /* Primary dark color */
             text-align: center;
             font-family: 'Patrick Hand', cursive; /* Mantém a fonte manuscrita */
-            font-size: 1.8rem; /* Ajustado para melhor leitura */
+            font-size: 1.8rem;
             line-height: 1.6;
             color: #d0d0d0;
         }
         #voce h2 {
             font-family: 'Inter', sans-serif;
-            font-size: 2.8rem; /* Título da seção */
+            font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 2rem;
             color: #FFF;
@@ -153,20 +153,17 @@
             line-height: 1.4;
             margin-bottom: 1.2em; /* Mais espaço para a primeira frase */
         }
-        #voce .voce-phrase strong {
+        #voce .voce-phrase strong.highlight {
             color: #ff79c6; /* Cor de destaque para strong */
-        }
-        #voce .voce-phrase .highlight {
-            animation: pulse-shadow 1.5s infinite alternate ease-in-out;
-            display: inline-block;
-            color: #ff79c6; /* Cor do highlight para consistência */
+            animation: pulse-shadow 1.5s infinite alternate ease-in-out; /* Mantém o efeito visual de pulso para o destaque */
+            display: inline-block; /* Necessário para 'animation' e 'text-shadow' */
             text-shadow: 0 0 5px rgba(255, 121, 198, 0.4);
         }
         #voce .voce-phrase .emoji {
-            animation: emoji-pop 1s ease-out forwards;
             display: inline-block;
             vertical-align: middle;
             margin: 0 5px;
+            animation: emoji-pop 1s ease-out; /* Mantém o efeito de pop para emojis */
         }
         #voce .voce-phrase .underline-effect {
             position: relative;
@@ -182,9 +179,19 @@
             height: 3px;
             background-color: #bd93f9;
         }
-        /* No bullet points for static phrases in VOCE */
         #voce .voce-phrase::before {
-            content: none;
+            content: none; /* remove bullet points */
+        }
+        /* Keyframe for pulse-shadow, emoji-pop, if needed for static elements */
+        @keyframes pulse-shadow {
+            0% { text-shadow: 0 0 5px rgba(255, 121, 198, 0.4), 0 0 10px rgba(189, 147, 249, 0.3); }
+            50% { text-shadow: 0 0 10px rgba(255, 121, 198, 0.8), 0 0 20px rgba(189, 147, 249, 0.6); }
+            100% { text-shadow: 0 0 5px rgba(255, 121, 198, 0.4), 0 0 10px rgba(189, 147, 249, 0.3); }
+        }
+        @keyframes emoji-pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
         }
 
 
@@ -201,7 +208,7 @@
         #methodology { background-color: #1a1a2e; }
         #features { background-color: #2a2a4a; }
         #curriculum { background-color: #1a1a2e; }
-        #ai-power { background-color: #2a2a4a; }
+        #ai-power { background-color: #2a2a4a; } /* Updated by user to be a curriculum section */
         #contact { background-color: #1a1a2e; }
 
         /* Navbar Specific */
@@ -215,19 +222,22 @@
         #methodology .block { margin-bottom: 2rem; }
 
         /* General Card Styles */
-        .feature-card, .ai-card, .block {
+        .feature-card, .ai-card, .block, .curriculum-card { /* Added .curriculum-card */
             background-color: #2A2A4A; 
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .feature-card:hover, .ai-card:hover, .block:hover {
+        .feature-card:hover, .ai-card:hover, .block:hover, .curriculum-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
-        .feature-card h3, .ai-card h3, .block h3 { color: #FF79C6; font-size: 1.8rem; margin-bottom: 1rem; }
-        .feature-card p, .ai-card p, .block p { color: #C0C0C0; font-size: 1rem; }
+        .feature-card h3, .ai-card h3, .block h3, .curriculum-card h3 { color: #FF79C6; font-size: 1.8rem; margin-bottom: 1rem; }
+        .feature-card p, .ai-card p, .block p, .curriculum-card p { color: #C0C0C0; font-size: 1rem; }
+        .curriculum-card ul { list-style-type: disc; margin-left: 1.5rem; text-align: left; }
+        .curriculum-card ul li strong { color: #8BE9FD; } /* Highlight for list item titles */
+
 
         /* Accordion Styling */
         .accordion-item {margin-bottom: 1rem;}
@@ -284,7 +294,7 @@
                 <a href="#methodology" class="text-gray-300 hover:text-pink-400 transition-colors">Metodologia</a>
                 <a href="#features" class="text-gray-300 hover:text-pink-400 transition-colors">Plataforma</a>
                 <a href="#curriculum" class="text-gray-300 hover:text-pink-400 transition-colors">Currículo</a>
-                <a href="#ai-power" class="text-gray-300 hover:text-pink-400 transition-colors">AI Power</a>
+                <a href="#habilidades" class="text-gray-300 hover:text-pink-400 transition-colors">Habilidades</a> <!-- Updated from AI Power -->
                 <a href="#contact" class="text-gray-300 hover:text-pink-400 transition-colors">Contato</a>
             </div>
             <div class="md:hidden">
@@ -301,7 +311,7 @@
             <a href="#methodology" class="block text-gray-300 hover:text-pink-400 py-2">Metodologia</a>
             <a href="#features" class="block text-gray-300 hover:text-pink-400 py-2">Plataforma</a>
             <a href="#curriculum" class="block text-gray-300 hover:text-pink-400 py-2">Currículo</a>
-            <a href="#ai-power" class="block text-gray-300 hover:text-pink-400 py-2">AI Power</a>
+            <a href="#habilidades" class="block text-gray-300 hover:text-pink-400 py-2">Habilidades</a> <!-- Updated from AI Power -->
             <a href="#contact" class="block text-gray-300 hover:text-pink-400 py-2">Contato</a>
         </div>
     </nav>
@@ -314,7 +324,7 @@
 
     <!-- Hero Section -->
     <section id="hero" class="animate-on-load loaded">
-        <div class="container mx-auto px-6 pt-16 pb-12 max-w-4xl">
+        <div class="container mx-auto px-6 max-w-4xl">
             <h1 class="hero-title animate-on-load loaded" data-delay="0.1">RealTalk Daby</h1>
             <p class="hero-subtitle animate-on-load loaded" data-delay="0.3">Comunicação que Decola.</p>
             <p class="text-lg md:text-xl text-gray-300 mb-10 mx-auto max-w-xl animate-on-load loaded" data-delay="0.5">Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.</p>
@@ -326,13 +336,12 @@
 
     <!-- NEW: VOCÊ Section - STATIC phrases now -->
     <section id="voce" class="animate-on-scroll">
-        <div class="container mx-auto px-6 max-w-5xl text-center">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-5">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-5 animate-on-scroll fade-in-up">
                 Conheça a Sua Jornada com o RealTalk Daby
             </h2>
-            <div id="handwriting-message-container" class="handwriting-container text-white">
-                <!-- Frases STATICAS, sem as animações de "escrita à mão" que estavam quebrando -->
-                <p class="voce-phrase animate-on-scroll fade-in-up" data-delay="0.1" style="font-size: 2.2rem; line-height: 1.4; font-weight: bold;">
+            <div id="voce-content" class="handwriting-container text-white ">
+                 <p class="voce-phrase animate-on-scroll fade-in-up" data-delay="0.1">
                     Você é um profissional <strong class="highlight">fera e de alta performance</strong>, mas o inglês ainda é o <strong class="highlight">[ÓBICE INVISÍVEL]/[CALCANHAR DE AQUILES]</strong> <span class="emoji">😩</span> que 'trava' seu avanço global? <span class="emoji">😔</span>
                 </p>
                 <p class="voce-phrase animate-on-scroll fade-in-up" data-delay="0.3">
@@ -376,17 +385,17 @@
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="block animate-on-scroll fade-in-up" data-delay="0.1">
-                    <img src="https://images.unsplash.com/photo-1549490349-f00e57f1f9e2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mindset icon" class="h-16 mx-auto mb-6">
+                    <img src="https://images.unsplash.com/photo-1549490349-f00e57f1f9e2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mindset icon" class="h-16 mx-auto mb-6 rounded-full w-16 object-cover">
                     <h3 class="text-2xl font-bold text-purple-400 mb-3">#01 | O Mindset "Off-Translation"</h3>
                     <p class="text-gray-300">Liberte-se do vício da tradução. Pense e reaja diretamente em inglês, acelerando sua fluidez e confiança.</p>
                 </div>
                 <div class="block animate-on-scroll fade-in-up" data-delay="0.3">
-                    <img src="https://images.unsplash.com/photo-1579783902671-cc72da5e0242?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lego icon" class="h-16 mx-auto mb-6">
+                    <img src="https://images.unsplash.com/photo-1579783902671-cc72da5e0242?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lego icon" class="h-16 mx-auto mb-6 rounded-full w-16 object-cover">
                     <h3 class="text-2xl font-bold text-pink-400 mb-3">#02 | Lego Chain Block</h3>
                     <p class="text-gray-300">Construa seu inglês com blocos de comunicação. Combine chunks, vocabulário e lógica para frases complexas.</p>
                 </div>
                 <div class="block animate-on-scroll fade-in-up" data-delay="0.5">
-                    <img src="https://images.unsplash.com/photo-1517245388-b4b74e1d3e8e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Performance icon" class="h-16 mx-auto mb-6">
+                    <img src="https://images.unsplash.com/photo-1517245388-b4b74e1d3e8e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Performance icon" class="h-16 mx-auto mb-6 rounded-full w-16 object-cover">
                     <h3 class="text-2xl font-bold text-blue-400 mb-3">#03 | Performance em Tempo Real</h3>
                     <p class="text-gray-300">Treine com cenários reais, simulando reuniões, apresentações e negociações para resultados imediatos.</p>
                 </div>
@@ -478,36 +487,55 @@
         </div>
     </section>
 
-    <!-- AI Power Section (Adapted to Methodology) -->
-    <section id="ai-power" class="animate-on-scroll">
-        <div class="container mx-auto px-6 max-w-5xl">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-8">
-                A <span class="rainbow-text">INTELIGÊNCIA ARTIFICIAL</span> Integrada à Sua Metodologia
+    <!-- NEW: Habilidades Section (Replaces AI Power as a curriculum section) -->
+    <section id="habilidades" class="animate-on-scroll">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-12 text-center">
+                🎓 Estrutura Modular: Habilidades de Liderança Global
             </h2>
-            <p class="text-lg md:text-xl text-gray-300 mb-12">
-                 No RealTalk Daby, a IA não é um substituto para o aprendizado humano, mas um acelerador e aprimorador da sua metodologia. Ela é a ponte entre a teoria do Lego Chain Block e sua proficiência.
+            <p class="text-lg md:text-xl text-gray-300 mb-12 text-center">
+                Nosso currículo é estruturado em blocos de competência aplicáveis ao dia a dia de um profissional em um ambiente multinacional.
             </p>
 
-            <div class="ai-icon-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="ai-card p-6 bg-gray-800 rounded-lg shadow-xl flex flex-col items-center animate-on-scroll fade-in-up" data-delay="0.1">
-                    <i class="fas fa-robot text-5xl text-purple-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">Reforço do Lego Chain Block</h3>
-                    <p class="text-gray-300 text-center">A IA identifica e sugere novos "blocos" de comunicação para expandir seu repertório rapidamente.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <!-- Card 1: Comunicação de Liderança e Gestão -->
+                <div class="curriculum-card animate-on-scroll fade-in-up" data-delay="0.1">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">1. Comunicação de Liderança e Gestão (Mesa Diretora)</h3>
+                    <ul>
+                        <li>Condução de Reuniões de Alto Impacto (Agenda Setting).</li>
+                        <li>Feedback Construtivo e Gestão de Conflitos Cross-Cultural.</li>
+                        <li>Comunicação Estratégica para C-Level.</li>
+                    </ul>
                 </div>
-                <div class="ai-card p-6 bg-gray-800 rounded-lg shadow-xl flex flex-col items-center animate-on-scroll fade-in-up" data-delay="0.3">
-                    <i class="fas fa-headset text-5xl text-pink-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">Simulações de Cenários Reais</h3>
-                    <p class="text-gray-300 text-center">Crie diálogos e simule reuniões com feedback contextualizado pela IA, treinando seu "reflexo".</p>
+
+                <!-- Card 2: Proficiência em Vendas e Negociação -->
+                <div class="curriculum-card animate-on-scroll fade-in-up" data-delay="0.3">
+                    <h3 class="text-2xl font-bold text-pink-400 mb-4">2. Proficiência em Vendas e Negociação (Fechamento de Negócios)</h3>
+                    <ul>
+                        <li>Pitching de Vendas (Adaptação a Diferentes Culturas).</li>
+                        <li>Resposta Rápida a Objeções Complexas.</li>
+                        <li>Linguagem de Acordo e Fechamento (Deal Closing).</li>
+                    </ul>
                 </div>
-                <div class="ai-card p-6 bg-gray-800 rounded-lg shadow-xl flex flex-col items-center animate-on-scroll fade-in-up" data-delay="0.5">
-                    <i class="fas fa-lightbulb text-5xl text-teal-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">Diagnóstico de "Lag" e Erros</h3>
-                    <p class="text-gray-300 text-center">A IA aponta precisamente onde ocorre o "lag" da tradução e onde você precisa de mais prática no "Off-Translation".</p>
+
+                <!-- Card 3: Apresentação Técnica e de Dados -->
+                <div class="curriculum-card animate-on-scroll fade-in-up" data-delay="0.5">
+                    <h3 class="text-2xl font-bold text-teal-400 mb-4">3. Apresentação Técnica e de Dados (Clareza e Precisão)</h3>
+                    <ul>
+                        <li>Explicação de Processos Complexos e Fluxos de Trabalho.</li>
+                        <li>Vocabulário para Gráficos, KPI's e Projeções Financeiras.</li>
+                        <li>Redação Técnica (E-mails e Relatórios Executivos).</li>
+                    </ul>
                 </div>
-                <div class="ai-card p-6 bg-gray-800 rounded-lg shadow-xl flex flex-col items-center animate-on-scroll fade-in-up" data-delay="0.7">
-                    <i class="fas fa-chart-line text-5xl text-blue-400 mb-4"></i>
-                    <h3 class="text-2xl font-bold text-white mb-2">Análise de Progresso Detalhada</h3>
-                    <p class="text-gray-300 text-center">Receba relatórios sobre sua fluidez, tempo de reação e domínio de novos "blocos" de linguagem.</p>
+
+                <!-- Card 4: Integração e Alinhamento Cultural -->
+                <div class="curriculum-card animate-on-scroll fade-in-up" data-delay="0.7">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">4. Integração e Alinhamento Cultural (Onboarding Global)</h3>
+                    <ul>
+                        <li>Integração de Novos Colaboradores em Times Internacionais.</li>
+                        <li>Gerenciamento de Diferenças de Sotaque e Jargão (Dialect Training).</li>
+                        <li>Comunicação Não-Verbal e Etiqueta em Calls.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -544,10 +572,10 @@
         <p class="mt-4 text-md text-gray-400">&copy; 2025 RealTalk Daby. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- JavaScript for Dynamic Animations and Smooth Scrolling -->
+    <!-- JavaScript for Mobile Menu and Scroll Animations -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Smooth scrolling for navigation links
+             // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -571,7 +599,7 @@
                 });
             }
 
-            // Animate on load (hero section elements and introduction header)
+            // Animate on load (introduction header and hero section elements)
             document.querySelectorAll('.animate-on-load').forEach(el => {
                 const delay = el.dataset.delay ? parseFloat(el.dataset.delay) * 1000 : 0;
                 setTimeout(() => {
@@ -626,4 +654,3 @@
     </script>
 </body>
 </html>
-
