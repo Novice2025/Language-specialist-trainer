@@ -28,7 +28,7 @@
             animation: gradientShift 20s ease infinite;
         }
 
-        /* Navbar Styles (CSS-only for mobile menu toggle) */
+        /* Navbar Styles (now with JS toggle for mobile menu) */
         .navbar {
             background-color: rgba(26, 26, 46, 0.9);
             backdrop-filter: blur(10px);
@@ -50,29 +50,28 @@
             text-decoration: none;
         }
         .navbar-links {
-            display: flex;
+            display: flex; /* Always flex for desktop version */
             gap: 1.5rem;
         }
         .navbar-link {
-            color: #E0E0E0;
-            text-decoration: none;
             transition: color 0.3s ease;
+            color: #E0E0E0; /* Default link color */
+            text-decoration: none;
         }
         .navbar-link:hover {
             color: #FF79C6; /* Pink hover */
         }
+        /* Mobile menu specific styles controlled by JavaScript */
         .mobile-menu-toggle {
-            display: none; /* Hidden on desktop, shown by media query */
+            display: none; /* Hide on desktop */
             cursor: pointer;
-        }
-        .mobile-menu-icon {
             color: #E0E0E0;
             font-size: 1.5rem;
         }
         .mobile-menu-content {
-            display: none; /* Hidden by default */
+            display: none; /* Hidden by default, JS controls this */
             flex-direction: column;
-            background-color: rgba(26, 26, 46, 0.95);
+            background-color: rgba(26, 26, 46, 0.98); /* Slightly less transparent */
             position: absolute;
             top: 4rem; /* Below navbar */
             left: 0;
@@ -84,25 +83,18 @@
         .mobile-menu-content .navbar-link {
             padding: 0.75rem 1.5rem;
             text-align: center;
+            width: 100%; /* Full width for mobile links */
         }
-        /* Media query to show/hide mobile menu toggle and content */
+        /* Media query to expose mobile menu toggle and hide desktop menu */
         @media (max-width: 768px) {
             .navbar .navbar-links {
                 display: none; /* Hide desktop links on small screens */
             }
-            .navbar .mobile-menu-toggle {
+            .mobile-menu-toggle {
                 display: block; /* Show toggle button */
             }
-            #mobile-menu-checkbox:checked ~ .mobile-menu-content {
-                display: flex; /* Show mobile menu when checkbox is checked */
-            }
-             .mobile-menu-content.active {
-                display: flex; /* Fallback for JS activation */
-            }
         }
-        #mobile-menu-checkbox {
-            display: none; /* Hide the checkbox itself */
-        }
+
 
         /* Introduction Header Styles */
         .introduction-header {
@@ -501,7 +493,7 @@
             <div class="feature-card">
                 <i class="fas fa-brain feature-icon"></i>
                 <h3>Preparação psicológica</h3>
-                <p>técnicas para aprender e alavancar seu inglês</p>
+                <p>tá aqui</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-comments feature-icon"></i>
@@ -582,10 +574,10 @@
     <section id="contact" class="contact-section">
         <h2 class="contact-title">Fale com a Daby!</h2>
         <div class="contact-form-container">
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST"> <!-- ATENÇÃO: Substitua YOUR_FORMSPREE_ENDPOINT pelo seu URL do Formspree -->
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST"> <!-- IMPORTANTE: Substitua YOUR_FORMSPREE_ENDPOINT pelo seu URL do Formspree -->
                 <div class="form-group-contact">
                     <label for="name">Nome Completo:</label>
-                    <input type="text" id="name" name="Nome Completo" placeholder="Seu nome" required>
+                    <input type="text" id="name" name="Nome Completo" placeholder="Seu nome completo" required>
                 </div>
 
                 <div class="form-group-contact">
@@ -595,7 +587,7 @@
 
                 <div class="form-group-contact">
                     <label for="email">Seu Melhor Email Profissional:</label>
-                    <input type="email" id="email" name="Email Profissional" value="vishuld@yahoo.it" placeholder="Seu email" required>
+                    <input type="email" id="email" name="Email Profissional" value="vishuld@yahoo.it" placeholder="seunome@empresa.com" required>
                 </div>
 
                 <div class="form-group-contact">
@@ -627,35 +619,53 @@
     <!-- Script para o menu mobile (apenas toggle de classe) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuCheckbox = document.getElementById('mobile-menu-checkbox');
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
             const mobileMenuContent = document.querySelector('.mobile-menu-content');
-            // Using a simple CSS-driven toggle for mobile menu
+            const desktopNavbarLinks = document.querySelector('.navbar-links'); // Desktop links container
 
-            // Add smooth-scroll behavior to all internal links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
+            if (mobileMenuToggle && mobileMenuContent) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    // Toggle visibility of the mobile menu
+                    const isHidden = mobileMenuContent.style.display === 'none' || mobileMenuContent.style.display === '';
+                    mobileMenuContent.style.display = isHidden ? 'flex' : 'none';
 
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        const offsetTop = targetElement.offsetTop - document.querySelector('.navbar').offsetHeight; // Adjust for fixed navbar
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-
-                        // Optionally close mobile menu after clicking a link
-                        if (mobileMenuCheckbox && mobileMenuCheckbox.checked) {
-                            mobileMenuCheckbox.checked = false;
-                            // Trigger change to update display of mobile menu content
-                            mobileMenuCheckbox.dispatchEvent(new Event('change'));
+                    // Adjust desktop links visibility based on mobile menu state
+                    if (window.innerWidth <= 768) { // Only hide desktop links on mobile
+                        if (isHidden) {
+                            if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'none';
+                        } else {
+                            // If menu is closing, and it's mobile, desktop links should remain hidden
                         }
                     }
                 });
+
+                // Close mobile menu when a link is clicked
+                mobileMenuContent.querySelectorAll('.navbar-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenuContent.style.display = 'none';
+                        // Re-evaluate desktop links visibility on mobile after click
+                        if (window.innerWidth > 768 && desktopNavbarLinks) {
+                            desktopNavbarLinks.style.display = 'flex';
+                        }
+                    });
+                });
+            }
+
+            // Handle window resize for showing/hiding menus appropriately
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    // On desktop, ensure mobile menu is hidden and desktop links are shown
+                    if (mobileMenuContent) mobileMenuContent.style.display = 'none';
+                    if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'flex';
+                } else {
+                    // On mobile, ensure desktop links are hidden unless mobile menu is specifically requested to be open
+                    if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'none';
+                    // Mobile menu remains in its current state (open/closed by click)
+                }
             });
 
+            // Initial check on page load to set correct menu state
+            window.dispatchEvent(new Event('resize'));
         });
     </script>
 </body>
