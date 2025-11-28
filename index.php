@@ -14,643 +14,414 @@
 
     <style>
         /* Base Styling & Font */
-        body { font-family: 'Inter', sans-serif; background-color: #1A1A2E; color: #E0E0E0; overflow-x: hidden; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        .font-patrick-hand { font-family: 'Patrick Hand', cursive; }
 
-        /* Background Animation for body (pure CSS) */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Custom Dark Mode Gradient Backgrounds */
+        .bg-gradient-dark-1 { background-image: linear-gradient(to bottom, #1A1A2E, #2A2A40); }
+        .bg-gradient-dark-2 { background-image: linear-gradient(to bottom, #2A2A40, #1A1A2E); }
+        .bg-gradient-dark-3 { background-image: linear-gradient(to bottom, #1A1A2E, #2A2A40); }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1a2e; }
+        ::-webkit-scrollbar-thumb { background: #6a0dad; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8a2be2; }
+
+        /* Navbar active link (if JS fails, will not show, but good to have) */
+        .nav-link.active { border-bottom: 2px solid #8BE9FD; }
+
+        /* Hide mobile menu content by default for JS fallback */
+        #mobile-menu-content { display: none; }
+
+        /* Specific styles for card in 'Você' section */
+        .voce-card {
+            display: flex;
+            align-items: flex-start; /* Align icon and text to the top */
+            gap: 1rem;
+            background-color: rgba(42, 42, 64, 0.7); /* Even darker card bg */
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(139, 233, 253, 0.2); /* Subtle border for accent */
         }
-        .main-gradient-bg {
-            background: linear-gradient(-45deg, #1A1A2E, #2A2A4A, #3A3A5A, #2A2A4A, #1A1A2E); /* More mixed dark colors */
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
+        .voce-card svg {
+            color: #8BE9FD; /* Cyan icon */
+            min-width: 24px;
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
         }
 
-        /* Navbar Styles */
-        .navbar {
-            background-color: rgba(26, 26, 46, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar-brand {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        .navbar-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        .navbar-link {
-            transition: color 0.3s ease;
-            color: #E0E0E0;
-            text-decoration: none;
-        }
-        .navbar-link:hover {
-            color: #FF79C6; /* Pink hover */
-        }
-        .mobile-menu-toggle {
-            display: none; /* Hidden on desktop, shown by media query */
-            cursor: pointer;
-            color: #E0E0E0;
-            font-size: 1.5rem;
-        }
-        .mobile-menu-content {
-            display: none; /* Hidden by default, JS controls this */
-            flex-direction: column;
-            background-color: rgba(26, 26, 46, 0.98);
-            position: absolute;
-            top: 4rem;
-            left: 0;
-            width: 100%;
-            padding: 1rem 0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            z-index: 999;
-        }
-        .mobile-menu-content .navbar-link {
-            padding: 0.75rem 1.5rem;
-            text-align: center;
-            width: 100%;
-        }
+        /* Responsive adjustments for headline sizes in hero */
         @media (max-width: 768px) {
-            .navbar .navbar-links {
-                display: none;
-            }
-            .mobile-menu-toggle {
-                display: block;
-            }
-        }
-
-        /* Introduction Header Styles */
-        .introduction-header {
-            padding: 5rem 1.5rem 3rem;
-            text-align: center;
-            background: linear-gradient(-45deg, #3e3e5c, #2a2a4a);
-            color: #E0E0E0;
-            margin-top: 4rem;
-            position: relative;
-        }
-        .introduction-header h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 3.5rem; /* Slightly larger */
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-            color: #FFC0CB; /* Pink */
-            text-shadow: 0 0 10px rgba(255,192,203,0.5);
-        }
-        .introduction-header h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 2rem; /* Slightly larger */
-            font-weight: 700;
-            color: #BD93F9; /* Purple */
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        @media (min-width: 768px) {
-            .introduction-header h1 { font-size: 5.5rem; }
-            .introduction-header h2 { font-size: 3rem; }
-            .introduction-header { padding-top: 7rem; padding-bottom: 4rem; }
-        }
-
-        /* Hero Section Specific Styles */
-        #hero {
-            background-image: linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.8)), url('https://images.unsplash.com/photo-1510519138122-ec90209e742c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            min-height: calc(100vh - 4rem);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding-top: 4rem;
-        }
-        #hero .hero-title {
-            font-size: 5rem; /* Larger */
-            font-weight: 900;
-            background: linear-gradient(90deg, #FF79C6, #BD93F9);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-        }
-        #hero .hero-subtitle {
-            font-size: 3rem; /* Larger */
-            color: #8BE9FD; /* Cyan */
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-        #hero p {
-            font-size: 1.8rem; /* Larger */
-            color: #C0C0C0;
-            max-width: 700px;
-            margin: 0 auto 3rem auto;
-        }
-        #hero .hero-button {
-            background-color: #BD93F9;
-            color: #1A1A2E;
-            padding: 1rem 3rem; /* Larger padding */
-            border-radius: 9999px;
-            font-size: 1.4rem; /* Larger font */
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        #hero .hero-button:hover {
-            background-color: #FF79C6;
-            transform: translateY(-3px);
-        }
-        @media (min-width: 768px) {
-            #hero .hero-title { font-size: 7rem; }
-            #hero .hero-subtitle { font-size: 4rem; }
-            #hero p { font-size: 2rem; }
-            #hero .hero-button { padding: 1.2rem 4rem; font-size: 1.7rem; }
-        }
-
-        /* VOCÊ Section - STATIC phrases */
-        #voce {
-            padding: 5rem 1.5rem;
-            background-color: #1a1a2e;
-            text-align: center;
-            font-family: 'Patrick Hand', cursive;
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: #d0d0d0;
-        }
-        #voce h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 3.2rem; /* Larger */
-            font-weight: 800;
-            margin-bottom: 2.5rem;
-            color: #FFF;
-        }
-        #voce .voce-phrase {
-            display: block;
-            margin-bottom: 1.0em; /* Slightly more space */
-        }
-        #voce .voce-phrase:first-child {
-            font-size: 2.5rem; /* Larger */
-            font-weight: bold;
-            line-height: 1.4;
-            margin-bottom: 1.5em;
-        }
-        #voce .voce-phrase strong.highlight {
-            color: #ff79c6;
-            display: inline-block;
-        }
-        #voce .voce-phrase .emoji {
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0 5px;
-        }
-        #voce .voce-phrase .underline-effect {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-        #voce .voce-phrase .underline-effect::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 3px;
-            background-color: #bd93f9;
-        }
-        /* Glitch Effect (Footer) */
-        .glitch-text {
-            font-size: 1.5rem;
-            position: relative;
-            color: #e5e5e5;
-        }
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .glitch-text::before {
-            left: 2px;
-            text-shadow: -2px 0 #ff00c1; /* Magenta shift */
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-before 1.5s infinite alternate-reverse;
-        }
-        .glitch-text::after {
-            left: -2px;
-            text-shadow: -2px 0 #00ffff; /* Cyan shift */
-            clip: rect(65px, 450px, 75px, 0);
-            animation: glitch-after 1.8s infinite alternate;
-        }
-        @keyframes glitch-before {
-            0% { clip: rect(27px, 9999px, 53px, 0); transform: translate(-3px, -3px); }
-            50% { clip: rect(10px, 9999px, 40px, 0); transform: translate(3px, 3px); }
-            100% { clip: rect(50px, 9999px, 10px, 0); transform: translate(0); }
-        }
-        @keyframes glitch-after {
-            0% { clip: rect(80px, 9999px, 20px, 0); transform: translate(3px, 3px); }
-            50% { clip: rect(30px, 9999px, 70px, 0); transform: translate(-3px, -3px); }
-            100% { clip: rect(50px, 9999px, 10px, 0); transform: translate(0); }
-        }
-        /* Section General Styling */
-        section { padding: 5rem 0; }
-        section:nth-of-type(odd) { background-color: #1A1A2E; } /* Dark blue-purple */
-        section:nth-of-type(even) { background-color: #2A2A40; } /* Slightly lighter dark blue-grey */
-
-        section h2 { font-family: 'Inter', sans-serif; font-weight: 800; margin-bottom: 3rem; text-align: center; color: white;}
-        section p { font-family: 'Inter', sans-serif; line-height: 1.6; text-align: center;}
-
-        /* Methodology section adjustments */
-        #methodology .methodology-title { margin-bottom: 2rem; line-height: 1.2; }
-        #methodology .methodology-card { margin-bottom: 1.5rem; }
-
-
-        /* General Card Styles for various sections */
-        .feature-card, .methodology-card, .habilidade-card, .curriculum-card { 
-            background-color: #2A2A4A; /* More consistent bg for cards */
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            text-align: left;
-        }
-        .feature-card:hover, .methodology-card:hover, .habilidade-card:hover, .curriculum-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-        }
-        .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { color: #FF79C6; font-size: 1.8rem; margin-bottom: 1rem; text-align: left;}
-        .feature-card p, .methodology-card p, .habilidade-card p, .curriculum-card p { color: #C0C0C0; font-size: 1rem; text-align: left;}
-        .habilidade-card ul { list-style: none; padding-left: 0; margin-top: 1rem; }
-        .habilidade-card ul li { font-size: 1.1rem; line-height: 1.8; color: #C0C0C0; margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; text-align: left;}
-        .habilidade-card ul li:before { content: '•'; color: #FFD700; font-size: 1.25rem; position: absolute; left: 0; top: -2px; }
-
-        /* Curriculum Section specific */
-        .accordion-item {margin-bottom: 1rem;}
-        .accordion-header {
-            background-color: #3e3e5c; color: #ff79c6; border-radius: 8px; padding: 1rem 1.5rem; cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .accordion-header:hover { background-color: #4a4a6e; }
-        .accordion-header i { transition: transform 0.3s ease; }
-        .accordion-header.active i { transform: rotate(180deg); }
-        #curriculum .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; }
-        #curriculum .accordion-content.active {
-            max-height: 500px;
-            padding: 1.5rem; background-color: #2a2a4a; border-radius: 0 0 8px 8px;
-        } 
-        #curriculum .accordion-content ul { list-style-type: disc; margin-left: 1.5rem; }
-        #curriculum .accordion-content h4 { color: #8be9fd; font-size: 1.25rem; margin-bottom: 0.5rem; }
-
-        /* Contact Section Specifics */
-        #contact { background-color: #1A1A2E; } /* Ensure specific background */
-        .contact-content-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #2A2A4A; /* Background for entire contact box */
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            text-align: center;
-         }
-        .contact-option {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        .contact-option i {
-            font-size: 2rem; /* Larger icon size */
-            color: #BD93F9; /* Purple for icons */
-            margin-right: 0.75rem;
-        }
-        .contact-option a {
-            font-size: 1.4rem; /* Larger text size */
-            color: #E0E0E0; /* Light text for readability */
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .contact-option a:hover {
-            color: #FF79C6; /* Pink hover */
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        .footer { background-color: #12121e; padding: 2rem 1rem; border-top: 1px solid #2a2a4a; text-align: center; color: #c0c0c0; }
-        .footer p { font-size: 0.85rem; }
-        .footer a { color: #8be9fd; text-decoration: none; transition: color 0.3s ease; }
-        .footer a:hover { color: #ff79c6; }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .introduction-header h1 { font-size: 2rem; }
-            .introduction-header h2 { font-size: 1.2rem; }
-            .hero-title { font-size: 3rem; }
-            .hero-subtitle { font-size: 1.5rem; }
-            .hero-description { font-size: 1.1rem; }
-            #voce h2, .challenge-title, .methodology-title, .features-title, .habilidades-title, .curriculum-title, .contact-title { font-size: 2.2rem; }
-            .handwriting-text { font-size: 1.5rem; }
-            .voce-phrase:first-child { font-size: 1.8rem; }
-            .challenge-subtitle { font-size: 1.8rem; }
-            .challenge-ia-text { font-size: 1.1rem; }
-            .methodology-description, .methodology-card p, .feature-card p, .habilidade-card ul li, .curriculum-card ul li { font-size: 1rem; }
-            .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { font-size: 1.4rem; }
+            .hero-title { font-size: 2.5rem !important; } /* Adjust for smaller screens */
+            .hero-subtitle { font-size: 1.25rem !important; margin-top: 0.5rem !important; }
+            .hero-description { font-size: 1rem !important; margin-top: 1rem !important; }
+            .hero-headline { font-size: 1.75rem !important; margin-top: 1.5rem !important; }
         }
     </style>
 </head>
-<body class="main-gradient-bg">
+<body class="bg-[#1A1A2E] text-gray-100">
 
     <!-- Navbar -->
-    <nav class="navbar">
-        <a href="#hero" class="navbar-brand">RealTalk Daby</a>
-        <button class="mobile-menu-toggle" id="mobile-menu-button" aria-label="Abrir menu">
-            <i class="fas fa-bars mobile-menu-icon"></i>
-        </button>
-        <!-- Desktop Links -->
-        <div class="navbar-links hidden md:flex">
-            <a href="#hero" class="navbar-link">Início</a>
-            <a href="#voce" class="navbar-link">Você</a>
-            <a href="#challenge" class="navbar-link">Desafio</a>
-            <a href="#methodology" class="navbar-link">Metodologia</a>
-            <a href="#features" class="navbar-link">Plataforma</a>
-            <a href="#habilidades" class="navbar-link">Habilidades</a>
-            <a href="#curriculum" class="navbar-link">Currículo</a>
-            <a href="#contact" class="navbar-link">Contato</a>
+    <nav class="navbar fixed top-0 left-0 w-full bg-[#1e1e2d] bg-opacity-95 shadow-lg z-50 py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-white tracking-wider">RealTalk Daby</a>
+
+            <!-- Desktop Nav Links -->
+            <div id="desktop-navbar-links" class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Sobre</a>
+                <a href="#voce" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Você</a>
+                <a href="#challenge" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Seu Desafio</a>
+                <a href="#methodology" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Metodologia</a>
+                <a href="#features" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Plataforma</a>
+                <a href="#habilidades" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Habilidades</a>
+                <a href="#curriculum" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Currículo</a>
+                <a href="#contact" class="nav-link text-white hover:text-[#8BE9FD] transition duration-300">Contato</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
         </div>
-        <!-- Mobile Menu Content (controlled by JS) -->
-        <div class="mobile-menu-content" id="mobile-menu-content">
-            <a href="#hero" class="navbar-link">Início</a>
-            <a href="#voce" class="navbar-link">Você</a>
-            <a href="#challenge" class="navbar-link">Desafio</a>
-            <a href="#methodology" class="navbar-link">Metodologia</a>
-            <a href="#features" class="navbar-link">Plataforma</a>
-            <a href="#habilidades" class="navbar-link">Habilidades</a>
-            <a href="#curriculum" class="navbar-link">Currículo</a>
-            <a href="#contact" class="navbar-link">Contato</a>
+
+        <!-- Mobile Menu Content -->
+        <div id="mobile-menu-content" class="md:hidden bg-[#1e1e2d] py-4 mt-4 shadow-lg">
+            <a href="#about" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Sobre</a>
+            <a href="#voce" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Você</a>
+            <a href="#challenge" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Seu Desafio</a>
+            <a href="#methodology" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Metodologia</a>
+            <a href="#features" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Plataforma</a>
+            <a href="#habilidades" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Habilidades</a>
+            <a href="#curriculum" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Currículo</a>
+            <a href="#contact" class="block px-6 py-2 text-white hover:bg-[#2A2A40] transition duration-300">Contato</a>
         </div>
     </nav>
 
-    <!-- Introduction Header Section -->
-    <div class="introduction-header">
-        <h1>ACELERE A PERFORMANCE GLOBAL BY DABY</h1>
-        <h2>Fluência como Reflexo, não como Barreira.</h2>
-    </div>
+    <!-- Header Introduction Section -->
+    <section id="about" class="bg-gradient-dark-1 pt-32 pb-16 text-center">
+        <div class="container mx-auto px-6">
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight text-[#FFD700]">ACELERE A PERFORMANCE GLOBAL BY DABY</h1>
+            <p class="mt-4 text-xl md:text-2xl font-light text-[#BD93F9]">Fluência como Reflexo, não como Barreira.</p>
+        </div>
+    </section>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <h1 class="hero-title">RealTalk Daby</h1>
-            <h2 class="hero-subtitle">Comunicação que Decola.</h2>
-            <p class="hero-description">Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.</p>
-            <a href="#contact" class="hero-button">Comece Sua Transformação Agora!</a>
+    <section id="hero" class="bg-gradient-dark-2 py-20 md:py-32 text-center relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <p class="text-base md:text-lg font-bold text-[#FF79C6] mb-4 uppercase tracking-widest">RealTalk Daby</p>
+            <h2 class="hero-title text-4xl md:text-6xl font-extrabold leading-tight mb-4 text-white">Comunicação que Decola.</h2>
+            <h3 class="hero-subtitle text-2xl md:text-3xl font-semibold mb-6 text-[#8BE9FD]">Inglês específico para profissionais Brasileiros</h3>
+            <p class="hero-description md:text-xl font-light max-w-3xl mx-auto text-gray-300 mb-10">Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.</p>
+            <a href="#contact" class="inline-block bg-[#FF79C6] text-[#1A1A2E] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-[#BD93F9] transform hover:scale-105 transition duration-300 ease-in-out uppercase text-lg tracking-wide">Comece Sua Transformação Agora!</a>
+        </div>
+        <!-- Abstract shapes can be added here with absolute positioning and low opacity if desired -->
+    </section>
+
+    <!-- Nova Seção 'Você' - Reestruturada com Cards -->
+    <section id="voce" class="bg-gradient-dark-1 py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#FFD700] mb-12">Você Sabe o Desafio. Nós Temos a Solução.</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="voce-card">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                    <p class="text-gray-200 text-lg">Você é um profissional fera e tem ambição global. Seu inglês, porém, está "travado" ou não reflete seu potencial.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="voce-card">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zm3 8a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z"></path><path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm1.5 8.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd"></path></svg>
+                    <p class="text-gray-200 text-lg">Reuniões, apresentações, e-mails... Você se sente inseguro(a) e precisa de mais agilidade e sem ruídos. ✨</p>
+                </div>
+                 <!-- Card 3 -->
+                 <div class="voce-card">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17.555 1.75C16.92 1.074 15.938.868 15 1.25S13.439 2.508 14.156 3.25L14.47 3.565 10 8l-4-4L1.75 8.25C1.07 8.924.868 9.92 1.25 10s2.008 1.439 2.75 2.156L3.565 14.47 8 19l4-4 4.25-4.25c.674-.67 1.66-.868 2.05-1.25s.743-1.438.25-2.156L17.555 1.75z"></path></svg>
+                    <p class="text-gray-200 text-lg">O RealTalk Daby te dá a chance de alavancar para um inglês que seja um reflexo da sua alta performance.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="voce-card">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd"></path></svg>
+                    <p class="text-gray-200 text-lg">Prepare-se para uma fluência com agilidade, liberdade e sem ruídos.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 'Você' Section (Static content, as requested) -->
-    <section id="voce" class="voce-section">
-        <h2 class="voce-title">Você sabe que...</h2>
-        <div id="voce-content" class="handwriting-text">
-            <p class="voce-phrase">
-                Você é um profissional <strong class="highlight">fera e de alta performance</strong>, mas o inglês ainda é o <strong class="highlight">[ÓBICE INVISÍVEL]/[CALCANHAR DE AQUILES]</strong> <span class="emoji">😩</span> que 'trava' seu avanço global? <span class="emoji">😔</span></p>
-            <p class="voce-phrase">
-                O RealTalk Daby te dá a chance de <strong class="highlight">DECIFRAR</strong> e <strong class="highlight">TRANSFORMAR</strong> esse cenário imediatamente.
+    <!-- Seção 'Seu Desafio' -->
+    <section id="challenge" class="bg-gradient-dark-2 py-20 px-6 text-center">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-[#BD93F9] mb-6">INGLÊS NUNCA FOI FÁCIL. 😩</h2>
+            <p class="text-xl md:text-2xl font-light text-gray-300 max-w-4xl mx-auto">
+                Prepare-se para alavancar seu inglês com a IA e metodologias que realmente funcionam para o mercado corporativo.
             </p>
-            <p class="voce-phrase">
-                Sua mente se adapta. Seu conhecimento se <strong class="highlight">MATERIALIZA</strong> em <strong class="highlight">REFLEXO COMUNICATIVO INSTANTÂNEO</strong>. <span class="emoji">🛑</span>
+        </div>
+    </section>
+
+    <!-- Seção 'Metodologia' -->
+    <section id="methodology" class="bg-gradient-dark-3 py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#FFD700] mb-12">🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea.</h2>
+            <p class="text-lg text-gray-300 max-w-4xl mx-auto mb-12">
+                O RealTalk Daby te tira da teoria: aqui, o foco é na ação, na comunicação imediata, natural e estratégica, para resultados que você vê e sente no dia a dia. Chega de "achismo" ou foco na memorização. Identifica *exatamente* onde o profissional trava (vocabulário, estrutura, confiança).
             </p>
-            <p class="voce-phrase">
-                O resultado? Sua voz no <span class="underline-effect">automático, com impacto e sem ruídos</span>. <span class="emoji">✨</span>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Card 1 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#FFD700] transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold text-[#FFD700] mb-4">Meu compromisso: Capacidades dos Produtos</h3>
+                    <ul class="text-gray-300 text-left space-y-2 pl-5 list-disc">
+                        <li>Construção de repertório de fala e escuta ativa.</li>
+                        <li>Assertividade e persuasão (apresentações e reuniões).</li>
+                        <li>Comunicação em situações de alta complexidade.</li>
+                        <li>Gerenciamento de conflitos e negociações (Diplomacy Skills).</li>
+                        <li>Liderança (apresentação de ideias com confiança e carisma).</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#8BE9FD] transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold text-[#8BE9FD] mb-4">Simulador de Cenários Dinâmicos e Reais</h3>
+                    <ul class="text-gray-300 text-left space-y-2 pl-5 list-disc">
+                        <li>Aprenda a performar em situações profissionais críticas.</li>
+                        <li>Sinta a pressão e o ritmo de reuniões globais antes que elas aconteçam.</li>
+                        <li>Respostas rápidas e claras sob demanda.</li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#FF79C6] transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold text-[#FF79C6] mb-4">Análise Preditiva de Gaps</h3>
+                    <ul class="text-gray-300 text-left space-y-2 pl-5 list-disc">
+                        <li>Identificação precisa de pontos fracos na comunicação.</li>
+                        <li>Criação de um plano de desenvolvimento hiper-personalizado.</li>
+                        <li>Foco em otimização do tempo e maximização de resultados.</li>
+                    </ul>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#BD93F9] transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold text-[#BD93F9] mb-4">Modo Simulador de Voo</h3>
+                    <ul class="text-gray-300 text-left space-y-2 pl-5 list-disc">
+                        <li>Treinamento em **stress elevado** (negociações críticas, gestão de crise) para que o inglês seja automático em situações de alta pressão.</li>
+                        <li>Gerenciamento de Diferenças de Sotaque e Jargão (Dialect Training).</li>
+                        <li>Comunicação Não-Verbal e Etiqueta em Calls.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 'Plataforma' -->
+    <section id="features" class="bg-gradient-dark-1 py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#FFD700] mb-12">Plataforma RealTalk Daby: Seu Ambiente de Alta Performance.</h2>
+            <p class="text-lg text-gray-300 max-w-4xl mx-auto mb-12">Construída para profissionais exigentes, nossa plataforma integra tecnologia de ponta e uma metodologia exclusiva para seu avanço.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col items-center border border-gray-700 hover:border-[#8BE9FD] transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/100/8BE9FD/1A1A2E?text=AI" alt="Ícone AI Preditiva" class="w-24 h-24 mb-6 rounded-full border-4 border-[#8BE9FD]">
+                    <h3 class="text-2xl font-semibold text-[#8BE9FD] mb-4">AI Preditiva & Feedback Imediato</h3>
+                    <p class="text-gray-300 text-center">Nossa inteligência artificial analisa sua fala, sotaque e fluidez, entregando feedback em tempo real para um ajuste instantâneo.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col items-center border border-gray-700 hover:border-[#FF79C6] transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/100/FF79C6/1A1A2E?text=Contexto" alt="Ícone Cenários Reais" class="w-24 h-24 mb-6 rounded-full border-4 border-[#FF79C6]">
+                    <h3 class="text-2xl font-semibold text-[#FF79C6] mb-4">Cenários Reais & Simulados</h3>
+                    <p class="text-gray-300 text-center">Treine em situações do dia a dia corporativo, desde reuniões informais a negociações complexas, preparando-o para qualquer desafio.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col items-center border border-gray-700 hover:border-[#BD93F9] transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    <img src="https://via.placeholder.com/100/BD93F9/1A1A2E?text=Psico" alt="Ícone Preparação Psicológica" class="w-24 h-24 mb-6 rounded-full border-4 border-[#BD93F9]">
+                    <h3 class="text-2xl font-semibold text-[#BD93F9] mb-4">Preparação Psicológica</h3>
+                    <p class="text-gray-300 text-center">Desenvolvemos sua confiança para falar em público e gerenciar o stress em comunicações de alto impacto, em qualquer idioma.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 'Habilidades' (Antiga AI Power) -->
+    <section id="habilidades" class="bg-gradient-dark-2 py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#FFD700] mb-12">🎓 Estrutura Modular: Habilidades de Liderança Global</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1: Reuniões e Apresentações -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 hover:border-[#FF79C6] transition duration-300">
+                    <h3 class="text-xl font-semibold text-[#FF79C6] mb-4">Reuniões & Apresentações</h3>
+                    <ul class="text-gray-300 text-left space-y-1 pl-4 list-disc text-sm">
+                        <li>Foco e clareza.</li>
+                        <li>Projeção de voz e postura.</li>
+                        <li>Gestão inteligente de Q&A.</li>
+                    </ul>
+                </div>
+                <!-- Card 2: Negociação e Persuasão -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 hover:border-[#8BE9FD] transition duration-300">
+                    <h3 class="text-xl font-semibold text-[#8BE9FD] mb-4">Negociação & Persuasão</h3>
+                    <ul class="text-gray-300 text-left space-y-1 pl-4 list-disc text-sm">
+                        <li>Técnicas de argumentação.</li>
+                        <li>Leitura corporal e de ambiente.</li>
+                        <li>Fechamento estratégico.</li>
+                    </ul>
+                </div>
+                <!-- Card 3: Gestão de Crise e Conflitos -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 hover:border-[#BD93F9] transition duration-300">
+                    <h3 class="text-xl font-semibold text-[#BD93F9] mb-4">Gestão de Crise & Conflitos</h3>
+                    <ul class="text-gray-300 text-left space-y-1 pl-4 list-disc text-sm">
+                        <li>Calma e clareza sob pressão.</li>
+                        <li>Comunicação empática.</li>
+                        <li>Resolução focada em soluções.</li>
+                    </ul>
+                </div>
+                <!-- Card 4: Global Leadership Communication -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 hover:border-[#FFD700] transition duration-300">
+                    <h3 class="text-xl font-semibold text-[#FFD700] mb-4">Global Leadership Communication</h3>
+                    <ul class="text-gray-300 text-left space-y-1 pl-4 list-disc text-sm">
+                        <li>Adaptação cultural.</li>
+                        <li>Conexão autêntica.</li>
+                        <li>Influência e inspiração.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 'Currículo' -->
+    <section id="curriculum" class="bg-gradient-dark-3 py-20 px-6">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#FFD700] mb-12">🌟 Currículo RealTalk Daby: Caminho para a Maestria.</h2>
+            <p class="text-lg text-gray-300 max-w-4xl mx-auto mb-16">Nosso currículo é desenhado para otimizar seu tempo e maximizar sua performance, com módulos práticos e imersivos que transformam conhecimento em ação imediata.</p>
+
+            <div class="relative max-w-5xl mx-auto">
+                <!-- Timeline/Path Visual - Placeholder example -->
+                <div class="absolute inset-0 flex justify-center">
+                    <div class="w-1 bg-gray-700 rounded-full h-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-16 md:gap-x-12 relative">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start text-left bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#FF79C6] transition duration-300 relative z-10 md:mr-auto">
+                        <div class="w-12 h-12 bg-[#FF79C6] rounded-full flex items-center justify-center text-xl font-bold text-gray-900 absolute -left-6 md:-left-6 top-1/2 -translate-y-1/2 transform">1</div>
+                        <div class="md:ml-8 mt-4 md:mt-0">
+                            <h3 class="text-2xl font-semibold text-[#FF79C6] mb-2">Módulo 1: Desbloqueio e Diagnóstico</h3>
+                            <p class="text-gray-300">Avaliação do seu perfil de comunicação e identificação de gaps, com foco em desbloquear barreiras de confiança e fluência.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start text-left bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#8BE9FD] transition duration-300 relative z-10 md:ml-auto md:order-last">
+                        <div class="w-12 h-12 bg-[#8BE9FD] rounded-full flex items-center justify-center text-xl font-bold text-gray-900 absolute -left-6 md:-left-6 top-1/2 -translate-y-1/2 transform">2</div>
+                        <div class="md:ml-8 mt-4 md:mt-0">
+                            <h3 class="text-2xl font-semibold text-[#8BE9FD] mb-2">Módulo 2: Imersão em Cenários Corporativos</h3>
+                            <p class="text-gray-300">Treinamento prático e intensivo em simulações de reuniões, pitches, negociações e e-mails, com feedback instantâneo de IA.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start text-left bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#BD93F9] transition duration-300 relative z-10 md:mr-auto">
+                        <div class="w-12 h-12 bg-[#BD93F9] rounded-full flex items-center justify-center text-xl font-bold text-gray-900 absolute -left-6 md:-left-6 top-1/2 -translate-y-1/2 transform">3</div>
+                        <div class="md:ml-8 mt-4 md:mt-0">
+                            <h3 class="text-2xl font-semibold text-[#BD93F9] mb-2">Módulo 3: Liderança e Diplomacia Global</h3>
+                            <p class="text-gray-300">Foco em comunicação estratégica, persuasão, gestão de equipes globais e resolução de conflitos em inglês, construindo sua voz de liderança.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start text-left bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 hover:border-[#FFD700] transition duration-300 relative z-10 md:ml-auto md:order-last">
+                        <div class="w-12 h-12 bg-[#FFD700] rounded-full flex items-center justify-center text-xl font-bold text-gray-900 absolute -left-6 md:-left-6 top-1/2 -translate-y-1/2 transform">4</div>
+                        <div class="md:ml-8 mt-4 md:mt-0">
+                            <h3 class="text-2xl font-semibold text-[#FFD700] mb-2">Módulo Final: Maestria e Mentoria Contínua</h3>
+                            <p class="text-gray-300">Refinamento de habilidades, mentoria individualizada e estratégias para manter sua fluência afiada e em constante evolução no ambiente profissional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 'Contato Simplificada' -->
+    <section id="contact" class="bg-gradient-dark-1 py-20 px-6 text-center">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold text-[#FFD700] mb-12">Fale com a Daby!</h2>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto mb-10">
+                Pronto para transformar seu inglês corporativo? Entre em contato e vamos conversar sobre seus objetivos!
             </p>
-        </div>
-    </section>
 
-    <!-- Challenge Section (Static content, as requested) -->
-    <section id="challenge" class="challenge-section">
-        <h2 class="challenge-title">Seu Desafio com o Inglês Profissional é Real.</h2>
-        <p class="challenge-subtitle">INGLÊS NUNCA FOI FÁCIL. 😩</p>
-        <p class="challenge-ia-text">
-            O tão sonhado fluir em inglês? **É de vez, agora!** ✨ RealTalk Daby no seu ritmo, no seu tempo. 🚀
-            <br><br>
-            Prepare-se para **alavancar seu inglês e garantir sua posição** num futuro cada vez mais competitivo com a **era da Inteligência Artificial** que se consolida em 3 anos! 🤖💡 Seu domínio do idioma será seu diferencial imbatível. 💪
-        </p>
-    </section>
-
-    <!-- Methodology Section (Updated with new content) -->
-    <section id="methodology" class="methodology-section">
-        <h2 class="methodology-title">🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea.</h2>
-            <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Box 1: Meu compromisso: Capacidades dos Produtos -->
-                <div class="methodology-card">
-                    <h3>Meu compromisso: Capacidades dos Produtos</h3>
-                    <p>Descubra como cada funcionalidade dos nossos produtos foi desenhada para aprimorar o seu desempenho.</p>
-                </div>
-                <!-- Box 2: Simulador de Cenários Dinâmicos e Reais -->
-                <div class="methodology-card">
-                    <h3>Simulador de Cenários Dinâmicos e Reais</h3>
-                    <p>O profissional é qualificado para seu cargo mas o inglês não acompanha - isso abala... vamos resolver!</p>
-                </div>
-                <!-- Box 3: Análise Preditiva de Gaps -->
-                <div class="methodology-card">
-                    <h3>Análise Preditiva de Gaps</h3>
-                    <p>Mede a <strong class="highlight-bold">velocidade de processamento</strong>, não a memorização. Identifica *exatamente* onde o profissional trava (vocabulário, estrutura, confiança).</p>
-                </div>
-                <!-- Box 4: Modo Simulador de Voo (com texto completo) -->
-                <div class="methodology-card">
-                    <h3>Modo Simulador de Voo</h3>
-                    <p>Treinamento em <strong class="highlight-bold">stress elevado</strong> (negociações críticas, gestão de crise) para que o inglês seja automático em situações de alta pressão e decisões estratégicas.</p>
-                </div>
-            </div>
-    </section>
-
-    <!-- Features (Plataforma) Section -->
-    <section id="features" class="features-section">
-        <h2 class="features-title">🎯 Sua Plataforma RealTalk Daby</h2>
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            <div class="feature-card">
-                <i class="fas fa-brain feature-icon"></i>
-                <h3>Preparação psicológica</h3>
-                <p>técnicas para aprender e alavancar seu inglês</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-comments feature-icon"></i>
-                <h3>Feedback Instantâneo</h3>
-                <p>Receba avaliação detalhada sobre sua pronúncia, fluidez e gramática em tempo real.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-chart-line feature-icon"></i>
-                <h3>Métricas de Progresso</h3>
-                <p>Acompanhe seu desenvolvimento com dados concretos de fluidez, tempo de reação e uso de estruturas-chave.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Habilidades Section (Replaces AI Power) -->
-    <section id="habilidades" class="habilidades-section">
-        <h2 class="habilidades-title">🎓 Estrutura Modular: Habilidades de Liderança Global</h2>
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
-            <div class="habilidade-card">
-                <h3>Comunicação de Liderança e Gestão (Mesa Diretora)</h3>
-                <ul>
-                    <li>Condução de Reuniões de Alto Impacto (Agenda Setting).</li>
-                    <li>Feedback Construtivo e Gestão de Conflitos Cross-Cultural.</li>
-                    <li>Comunicação Estratégica para C-Level.</li>
-                </ul>
-            </div>
-            <div class="habilidade-card">
-                <h3>Proficiência em Vendas e Negociação (Fechamento de Negócios)</h3>
-                <ul>
-                    <li>Pitching de Vendas (Adaptação a Diferentes Culturas).</li>
-                    <li>Resposta Rápida a Objeções Complexas.</li>
-                    <li>Linguagem de Acordo e Fechamento (Deal Closing).</li>
-                </ul>
-            </div>
-            <div class="habilidade-card">
-                <h3>Apresentação Técnica e de Dados (Clareza e Precisão)</h3>
-                <ul>
-                    <li>Explicação de Processos Complexos e Fluxos de Trabalho.</li>
-                    <li>Vocabulário para Gráficos, KPI's e Projeções Financeiras.</li>
-                    <li>Redação Técnica (E-mails e Relatórios Executivos).</li>
-                </ul>
-            </div>
-            <div class="habilidade-card">
-                <h3>Integração e Alinhamento Cultural (Onboarding Global)</h3>
-                <ul>
-                    <li>Integração de Novos Colaboradores em Times Internacionais.</li>
-                    <li>Gerenciamento de Diferenças de Sotaque e Jargão (Dialect Training).</li>
-                    <li>Comunicação Não-Verbal e Etiqueta em Calls.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Curriculum Section -->
-    <section id="curriculum" class="curriculum-section">
-        <h2 class="curriculum-title">📈 Seu Caminho Pessoal RealTalk Daby</h2>
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <div class="curriculum-card">
-                <h3>Módulos Customizáveis</h3>
-                <ul>
-                    <li>Desenvolvemos módulos de aprendizado que se encaixam perfeitamente às suas necessidades, seja para negociações, apresentações ou reuniões.<br>
-                        Seu currículo é mais do que personalizado: é moldado em tempo real com base na sua performance e nos seus desafios mais emergentes.</li>
-                </ul>
-                <a href="#contact" class="curriculum-btn">Receba sua Avaliação</a>
-            </div>
-            <div class="curriculum-card">
-                <h3>Flexibilidade e Acompanhamento</h3>
-                <ul>
-                    <li>Sessões agendadas que se adaptam à sua rotina, com a disponibilidade que você precisa.<br>
-                        Um ambiente flexível para atender às suas demandas de agenda e localização. Seu tempo é valioso, e nosso método se adapta a ele.</li>
-                </ul>
-                <a href="#contact" class="curriculum-btn">Agende seu Horário</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section (SIMPLIFIED and STATIC) -->
-    <section id="contact" class="contact-section">
-        <h2 class="contact-title">Fale com a Daby!</h2>
-        <div class="contact-content-container">
-            <p class="text-gray-300 mb-6 text-lg">Entre em contato diretamente para transformar seu inglês corporativo:</p>
-            <div class="flex flex-col items-center gap-6">
-                <div class="contact-option">
-                    <i class="fas fa-envelope mr-3"></i>
-                    <a href="mailto:vishuld@yahoo.it" class="hover:text-pink-400">vishuld@yahoo.it</a>
-                </div>
-                <div class="contact-option">
-                    <i class="fab fa-whatsapp mr-3"></i>
-                    <a href="https://wa.me/5511986108003" target="_blank" class="hover:text-pink-400">+55 11 98610-8003</a>
-                </div>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 max-w-xl mx-auto">
+                <a href="mailto:vishuld@yahoo.it" class="flex items-center space-x-4 bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-700 hover:border-[#8BE9FD] transition duration-300 ease-in-out transform hover:scale-105">
+                    <i class="fas fa-envelope text-4xl text-[#8BE9FD]"></i>
+                    <span class="text-xl font-bold text-gray-100">vishuld@yahoo.it</span>
+                </a>
+                <a href="https://wa.me/5511986108003" target="_blank" class="flex items-center space-x-4 bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-700 hover:border-[#25D366] transition duration-300 ease-in-out transform hover:scale-105">
+                    <i class="fab fa-whatsapp text-4xl text-[#25D366]"></i>
+                    <span class="text-xl font-bold text-gray-100">+55 11 98610-8003</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p class="glitch-text" data-text="Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.">Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.</p>
-        <p class="mt-4 text-md text-gray-400">&copy; 2025 RealTalk Daby. Todos os direitos reservados. | <a href="#privacy">Política de Privacidade</a> | <a href="#terms">Termos de Serviço</a></p>
+    <footer class="bg-[#1e1e2d] py-8 px-6 text-center text-gray-400 text-sm">
+        <div class="container mx-auto">
+            <p>&copy; 2025 RealTalk Daby. Todos os direitos reservados.</p>
+            <p class="mt-2">Desenvolvido com paixão para sua fluência global.</p>
+        </div>
     </footer>
 
-    <!-- Script para o menu mobile (apenas toggle de classe) -->
+    <!-- JavaScript for Mobile Menu Toggle and Smooth Scrolling -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenuContent = document.getElementById('mobile-menu-content');
-            const desktopNavbarLinks = document.querySelector('.navbar-links'); // Desktop links container
+            const desktopNavbarLinks = document.getElementById('desktop-navbar-links');
+            const navLinks = document.querySelectorAll('#mobile-menu-content a, #desktop-navbar-links a');
 
+            // Toggle mobile menu visibility
             if (mobileMenuButton && mobileMenuContent) {
-                mobileMenuButton.addEventListener('click', function() {
-                    const isHidden = mobileMenuContent.style.display === 'none' || mobileMenuContent.style.display === '';
-                    mobileMenuContent.style.display = isHidden ? 'flex' : 'none';
-
-                    // Hide desktop links on mobile when mobile menu is active
-                    if (window.innerWidth <= 768 && desktopNavbarLinks) {
-                        desktopNavbarLinks.style.display = 'none';
-                    }
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenuContent.style.display = mobileMenuContent.style.display === 'block' ? 'none' : 'block';
                 });
 
                 // Close mobile menu when a link is clicked
-                mobileMenuContent.querySelectorAll('.navbar-link').forEach(link => {
+                mobileMenuContent.querySelectorAll('a').forEach(link => {
                     link.addEventListener('click', function() {
                         mobileMenuContent.style.display = 'none';
-                        // Restore desktop links if resized to desktop after closing mobile menu
-                        if (window.innerWidth > 768 && desktopNavbarLinks) {
-                            desktopNavbarLinks.style.display = 'flex';
-                        }
                     });
                 });
             }
 
-            // Handle window resize for showing/hiding menus appropriately
+            // Handle responsive display of menus (desktop vs mobile)
             window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    // On desktop, ensure mobile menu is hidden and desktop links are shown
+                if (window.innerWidth >= 768) { // md breakpoint for Tailwind
                     if (mobileMenuContent) mobileMenuContent.style.display = 'none';
                     if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'flex';
                 } else {
-                    // On mobile, ensure desktop links are hidden
                     if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'none';
                 }
             });
 
-            // Initial check on page load to set correct menu state
-            window.dispatchEvent(new Event('resize'));
-        });
+            window.dispatchEvent(new Event('resize')); // Trigger on load
 
-        // Simple smooth scroll after window.dispatchEvent(new Event('resize'))
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+            // Smooth scroll for all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 0;
 
-                if (targetElement) {
-                    const offset = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
-                    window.scrollTo({
-                        top: offset,
-                        behavior: 'smooth'
-                    });
-                }
+                    if (targetElement) {
+                        const offset = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+                        window.scrollTo({
+                            top: offset,
+                            behavior: 'smooth'
+                        });
+                        // Close mobile menu after clicking a link
+                        if (mobileMenuContent && mobileMenuContent.style.display === 'block') {
+                            mobileMenuContent.style.display = 'none';
+                        }
+                    }
+                });
             });
         });
     </script>
