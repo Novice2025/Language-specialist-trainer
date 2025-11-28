@@ -51,6 +51,7 @@
             transform: translateY(0);
         }
 
+
         /* Efeito Glitch (Full CSS - Usado no Footer) */
         .glitch-text {
             font-size: 1.5rem;
@@ -186,7 +187,7 @@
         .handwriting-container {
             font-family: 'Patrick Hand', cursive; /* Applied new, softer handwriting font */
             font-size: 2rem; /* Slightly larger base size */
-            line-height: normal;
+            line-height: normal; 
             text-align: left; /* Align sentences left */
             color: #d0d0d0; /* Soft white text */
             max-width: 900px; /* Constrain width for better reading */
@@ -260,28 +261,27 @@
         }
 
         /* Typewriter effect for specific text parts */
-        .typewriter-placeholder { /* Placeholder: hidden text, visible caret */
-            display: inline-block; /* Essential for caret positioning */
-            overflow: hidden;
-            white-space: nowrap;
-            vertical-align: middle;
-            font-size: inherit; /* Inherit font size from parent */
-            color: inherit; /* Keep color of parent */
-        }
-        .typewriter-placeholder.typing::after { /* Caret animation for active typing */
-            content: '|';
-            animation: blink-caret .75s step-end infinite;
+        .typewriter-placeholder {
             display: inline-block;
-            margin-left: 2px;
-            vertical-align: top;
-            color: orange; /* Color of the typing caret */
+            overflow: hidden;
+            border-right: 3px solid; /* Cursor */
+            white-space: nowrap;
+            letter-spacing: .15em;
+            vertical-align: middle; /* Align with surrounding text */
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.1s ease-in; /* Quick fade in for the placeholder itself */
+        }
+
+        .typewriter-placeholder.typewriter-text-active {
+            animation: blink-caret .75s step-end infinite;
+            opacity: 1; /* Make visible when active */
         }
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: orange; }
+            50% { border-color: #bd93f9; } /* Purple cursor */
         }
 
-        /* For the final "sem ruídos" */
+        /* Clean Line Text Effect */
         .clean-line-text {
             display: inline-block;
             position: relative;
@@ -289,343 +289,1075 @@
         .clean-line-text::after {
             content: '';
             position: absolute;
-            bottom: -5px;
             left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #9400d3; /* Purple line */
-            animation: draw-line 1s ease-out forwards;
-            animation-delay: 0.5s;
+            bottom: -5px; /* Adjust line position */
+            width: 0%;
+            height: 3px;
+            background-color: #bd93f9; /* Purple line */
+            transition: width 1s ease-out; /* Animation duration */
+        }
+        .clean-line-text.loaded::after {
+            animation: draw-line 1s ease-out .2s forwards; /* Use keyframes for better control */
         }
         @keyframes draw-line {
             to { width: 100%; }
         }
 
-        /* Custom scroll indicator for the hero section */
-        .scroll-indicator {
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        section.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific section backgrounds based on PDF */
+        #hero {
+            background: linear-gradient(135deg, #1A1A2E 0%, #3a005e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: none; /* No border for hero */
+        }
+        #hero::before {
+            content: '';
             position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+             background: radial-gradient(circle at top left, rgba(189, 147, 249, 0.3) 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(255, 121, 198, 0.3) 0%, transparent 40%);
+            animation: gradientShift 20s ease infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        #hero > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        #challenge {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            text-align: center;
+            /* Ensura que o container tenha espaço para as frases */
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        #methodology {
+            background-color: #2a2a4a;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #methodology h2 {
+            font-size: 2.8rem;
+            color: #8be9fd; /* Azul claro */
+            margin-bottom: 20px;
+        }
+        .section-methodology-title {
+            font-size: 2.8rem; /* Use Tailwind's text-4xl equivalent initially */
+            color: #8be9fd; /* Light blue accent */
+            margin-bottom: 1rem; /* Reduced margin */
+            line-height: 1.2; /* Tighter line height for titles */
+        }
+
+        #methodology p {
+            font-size: 1.25rem;
+            color: #c0c0c0;
+            max-width: 800px;
+            margin: 0 auto 30px auto; /* Reduced margin-top */
+            line-height: 1.6;
+        }
+        #methodology .block {
+            margin-bottom: 0px; /* Reduzindo espaço abaixo dos blocos na Metodologia */
+        }
+
+        #features {
+            background: linear-gradient(135deg, #1a1a2e 0%, #3e3e5c 100%);
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #features .feature-card {
+            background-color: rgba(62, 62, 92, 0.6); /* Semi-transparent background */
+            border: 1px solid rgba(189, 147, 249, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* For the flipping effect */
+            height: 100%; /* Ensure cards are same height */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
+        }
+        #features .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        #curriculum {
+            background-color: #2a2a4a;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #curriculum .item {
+            background-color: #3e3e5c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: left;
+            border-left: 5px solid #ff79c6;
+            transition: background-color 0.3s ease;
+        }
+        #curriculum .item:hover {
+            background-color: #4a4a6e;
+        }
+        #curriculum .item h3 {
+            color: #8be9fd;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        #curriculum .item p {
+            color: #c0c0c0;
+        }
+
+        #ai-power {
+            background: linear-gradient(135deg, #3a005e 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            text-align: center;
+            overflow: hidden; /* For particles/effects */
+            position: relative;
+        }
+        #ai-power .star-particle {
+            position: absolute;
+            background-color: #8be9fd; /* Light blue star */
+            border-radius: 50%;
             opacity: 0;
-            animation: fade-in-up 1.5s forwards ease-out 2s; /* delay after hero loads */
+            animation: star-fade 3s infinite ease-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes star-fade {
+            0% { transform: scale(0) translateY(0px); opacity: 0; }
+            30% { transform: scale(1) translateY(-20px); opacity: 1; }
+            70% { transform: scale(0.8) translateY(-40px); opacity: 0.5; }
+            100% { transform: scale(0) translateY(-60px); opacity: 0; }
+        }
+        #ai-power > * {
+            position: relative;
+            z-index: 2; /* Content above particles */
+        }
+        #ai-power h2 {
+            font-size: 3rem;
+            color: #ff79c6;
+            margin-bottom: 25px;
+        }
+        #ai-power p {
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            color: #c0c0c0;
+        }
+        #ai-power .ai-icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0px auto; /* Adjust margin to zero */
+        }
+        #ai-power .ai-icon-grid .ai-card {
+            background-color: rgba(189, 147, 249, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            min-height: 180px; /* Ensure consistent card height */
+        }
+        #ai-power .ai-icon-grid .ai-card:hover {
+            transform: translateY(-8px);
+            background-color: rgba(189, 147, 249, 0.4);
+        }
+        #ai-power .ai-icon-grid .ai-card i {
+            font-size: 3rem;
+            color: #8be9fd;
+            margin-bottom: 15px;
+        }
+        #ai-power .ai-icon-grid .ai-card h3 {
+            font-size: 1.4rem;
+            color: #ff79c6;
+            margin-bottom: 10px;
+        }
+        #ai-power .ai-icon-grid .ai-card p {
+            font-size: 1rem;
+            color: #d0d0d0;
+            margin: 0; /* Override default paragraph margin */
         }
 
-        @keyframes bounce-arrow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        #contact {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #contact .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #2a2a4a;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+        #contact .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        #contact label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8be9fd;
+            font-weight: bold;
+        }
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #4a4a6e;
+            border-radius: 8px;
+            background-color: #3e3e5c;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #contact input:focus,
+        #contact textarea:focus {
+            border-color: #bd93f9;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(189, 147, 249, 0.3);
+        }
+        #contact textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        #contact button {
+            background-color: #ff79c6;
+            color: #1a1a2e;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        #contact button:hover {
+            background-color: #bd93f9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .scroll-indicator svg {
-            animation: bounce-arrow 1.5s infinite;
+        footer {
+            background-color: #12121e;
+            color: #c0c0c0;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        footer .glitch-text {
+            font-size: 1.1rem; /* Smaller for footer */
         }
 
-        /* Ajustes para a seção de Metodologia */
-        #methodology h2.section-methodology-title { /* Especificidade aumentada */
-            margin-bottom: 20px; /* Reduz margem inferior do título */
-            line-height: 1.2; /* Tighter line height for title */
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            #ai-power .ai-icon-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        #methodology p {
-            margin-top: 15px; /* Reduz a margem superior do parágrafo */
-            margin-bottom: 30px; /* Ajusta conforme necessário */
-            /* Se houver `mb-12` em algum lugar, ele vai prevalecer se for mais específico */
-        }
-        #methodology .block { /* Assumindo 'block' é para os cards de metodologia */
-            margin-bottom: 0; /* Remove margem inferior extra de blocos */
+        @media (max-width: 600px) {
+            .handwriting-container {
+                font-size: 1.5rem;
+            }
+            #handwriting-message-container .handwriting-sentence:first-child {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 min-h-screen text-white animate-gradient custom-cursor">
+<body class="bg-gray-900 text-white">
 
-    <!-- Navegação / Header -->
-    <header class="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 shadow-lg">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 hover:from-purple-600 hover:to-pink-500 transition duration-300">
-                RealTalk Daby
-            </a>
-            <div class="space-x-8 flex items-center">
-                <a href="#challenge" class="text-gray-300 hover:text-white transition duration-200 text-lg">Seu Desafio</a>
-                <a href="#methodology" class="text-gray-300 hover:text-white transition duration-200 text-lg">Metodologia</a>
-                <a href="#features" class="text-gray-300 hover:text-white transition duration-200 text-lg">Plataforma</a>
-                <a href="#curriculum" class="text-gray-300 hover:text-white transition duration-200 text-lg">Currículo</a>
-                <a href="#ai-power" class="text-gray-300 hover:text-white transition duration-200 text-lg">Poder da IA</a>
-                <a href="#contact" class="px-6 py-2 bg-purple-600 text-white font-bold rounded-full hover:bg-purple-700 transition duration-300 shadow-md transform hover:scale-105">Contato</a>
-            </div>
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-pink-400">RealTalk Daby</a>
+            <ul class="flex space-x-6">
+                <li><a href="#challenge" class="text-gray-300 hover:text-pink-400 transition">Seu Desafio</a></li>
+                <li><a href="#methodology" class="text-gray-300 hover:text-pink-400 transition">Metodologia</a></li>
+                <li><a href="#features" class="text-gray-300 hover:text-pink-400 transition">Plataforma</a></li>
+                <li><a href="#curriculum" class="text-gray-300 hover:text-pink-400 transition">Currículo</a></li>
+                <li><a href="#ai-power" class="text-gray-300 hover:text-pink-400 transition">Poder da IA</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:text-pink-400 transition">Contato</a></li>
+            </ul>
         </nav>
     </header>
 
-    <!-- Seção Hero -->
-    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden p-6">
-        <!-- Partículas de Fundo (Placeholder para WebGL/Canvas) -->
-        <div class="absolute inset-0 z-0 opacity-30">
-            [[google images search term: animated space dust particles or nebula background]]
-        </div>
-
-        <div class="relative z-10 flex flex-col items-center justify-center p-8 bg-black bg-opacity-40 rounded-xl shadow-2xl animate-on-load" data-delay="0.1">
-            <h1 class="text-6xl md:text-8xl font-extrabold mb-4 animate-on-load text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-blue-500 drop-shadow-lg" data-delay="0.2">
-                RealTalk Daby
-            </h1>
-            <h2 class="text-3xl md:text-5xl font-semibold text-gray-200 mb-8 animate-on-load focus-pulse" data-delay="0.4">
-                Comunicação que <span class="rainbow-text px-1">Decola</span>.
-            </h2>
-            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl animate-on-load" data-delay="0.6">
-                Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.
-            </p>
-            <a href="#challenge" class="px-10 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold text-xl rounded-full hover:from-blue-600 hover:to-purple-700 transition duration-300 shadow-lg transform hover:scale-105 animate-on-load" data-delay="0.8">
+    <!-- Hero Section -->
+    <section id="hero" class="flex items-center justify-center text-center">
+        <div class="hero-content text-white z-20">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 animate-on-load" data-delay="0.1">RealTalk Daby</h1>
+            <p class="mt-4 text-2xl md:text-3xl font-light text-gray-300 animate-on-load" data-delay="0.3">Comunicação que Decola.</p>
+            <p class="mt-6 text-xl md:text-2xl text-gray-400 animate-on-load" data-delay="0.5">Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.</p>
+            <a href="#challenge" class="mt-10 inline-block bg-pink-500 hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 animate-on-load" data-delay="0.7">
                 Descubra Seu Desafio Aqui!
             </a>
         </div>
+    </section>
 
-        <!-- Indicador de Scroll -->
-        <div class="scroll-indicator">
-            <span class="mb-2">Rolar</span>
-            <div class="scroll-arrow"></div>
+    <!-- Challenge Section -->
+    <section id="challenge" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl font-extrabold text-white mb-6">Seu Desafio com o Inglês Profissional é Real.</h2>
+            <p class="text-2xl md:text-3xl text-red-400 font-extrabold mb-8 animate-on-scroll fade-in-up" data-delay="0.0">
+                INGLÊS NUNCA FOI FÁCIL. <span class="emoji-pulse">😩</span>
+            </p>
+            <p class="text-2xl md:text-3xl text-gray-300 font-extrabold mb-12 animate-on-scroll fade-in-up" data-delay="0.2">
+                O tão sonhado fluir em inglês? <strong class="text-pink-400">É de vez, agora!</strong> <span class="emoji-pulse">✨</span> RealTalk Daby no seu ritmo, no seu tempo. <span class="emoji-pulse">🚀</span>
+                <br><br>
+                Prepare-se para <strong class="text-pink-400">alavancar seu inglês e garantir sua posição</strong> num futuro cada vez mais competitivo com a <strong class="text-pink-400">era da Inteligência Artificial</strong> que se consolida em 3 anos! <span class="emoji-pulse">🤖</span><span class="emoji-pulse">💡</span> Seu domínio do idioma será seu diferencial imbatível. <span class="emoji-pulse">💪</span>
+            </p>
+
+            <div id="handwriting-message-container" class="handwriting-container mt-12 opacity-0 transition-opacity duration-1000">
+                <!-- Frase 1 (Bloco) -->
+                <span class="handwriting-sentence">
+                    Você é um profissional fera e de alta performance, mas o inglês ainda é o <strong class="keyphrase-effect">ÓBICE INVISÍVEL / CALCANHAR DE AQUILES</strong> <span class="emoji-pulse">😩</span> que 'trava' seu avanço global? <span class="emoji-pulse">😔</span>
+                </span>
+                <!-- Frase 2 (Em linha) -->
+                <span class="handwriting-sentence">
+                    O RealTalk Daby te dá a chance de <span class="typewriter-placeholder" data-original-text="DECIFRAR"></span> e <span class="typewriter-placeholder" data-original-text="TRANSFORMAR"></span> esse cenário imediatamente.
+                </span>
+                <!-- Frase 3 (Em linha) -->
+                <span class="handwriting-sentence">
+                    Sua mente se adapta. Seu conhecimento se <strong class="keyphrase-effect">MATERIALIZA</strong> em <strong class="keyphrase-effect">REFLEXO COMUNICATIVO INSTANTÂNEO</strong>. <span class="emoji-pulse">🛑</span>
+                </span>
+                <!-- Frase 4 (Em linha) -->
+                <span class="handwriting-sentence">
+                    O resultado? Sua voz no <strong class="clean-line-text">automático, com impacto e sem ruídos</strong>. <span class="emoji-pulse">✨</span>
+                </span>
+            </div>
+
         </div>
     </section>
 
-    <!-- Seção "Seu Desafio" -->
-    <section id="challenge" class="py-20 bg-gray-900 text-center relative overflow-hidden">
-        <h2 class="text-5xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-red-500 animate-on-scroll fade-in-up" data-delay="0">
-            Seu Desafio com o Inglês Profissional é Real.
-        </h2>
-        <p class="text-red-400 font-bold text-3xl mb-8 animate-on-scroll fade-in-up" data-delay="0.1">
-            INGLÊS NUNCA FOI FÁCIL. <span class="emoji-pulse">😩</span>
-        </p>
+    <!-- Methodology Section -->
+    <section id="methodology" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="section-methodology-title font-extrabold mb-6">
+                🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea.
+            </h2>
+            <p class="text-xl text-gray-300 mb-12">
+                <strong class="text-pink-400">O RealTalk Daby treina você em bootcamps</strong>, e converte seu investimento e tempo em resultados concretos em inglês específicos e especializado para seu trabalho/empresa/área. Nossa metodologia exclusiva, o "<strong class="text-pink-400">Lego Chain Block</strong>" (adaptado por RealTalk Daby), tem como objetivo principal eliminar o "<strong class="text-pink-400">lag</strong>" da tradução, garantindo resultados de negócios imediatos e um domínio muito mais próximo do inglês real.
+            </p>
 
-        <p class="text-2xl md:text-3xl text-gray-300 font-extrabold mb-12 animate-on-scroll fade-in-up" data-delay="0.2">
-            O tão sonhado fluir em inglês? <strong class="text-pink-400">É de vez, agora!</strong> <span class="emoji-pulse">✨</span> RealTalk Daby no seu ritmo, no seu tempo. <span class="emoji-pulse">🚀</span>
-            <br><br>
-            Prepare-se para <strong class="text-blue-400">alavancar seu inglês e garantir sua posição</strong> num futuro cada vez mais competitivo com a <strong class="text-purple-400">era da Inteligência Artificial</strong> que se consolida em 3 anos! <span class="emoji-pulse">🤖</span><span class="emoji-pulse">💡</span> Seu domínio do idioma será seu diferencial imbatível. <span class="emoji-pulse">💪</span>
-        </p>
-
-        <div id="handwriting-message-container" class="handwriting-container mt-16 opacity-0 transition-opacity duration-1000 ease-out">
-            <!-- Estas frases serão reveladas e animadas pelo JavaScript -->
-            <span class="handwriting-sentence">Você é um profissional fera e de alta performance, mas o inglês ainda é o <span class="keyphrase-effect">ÓBICE INVISÍVEL / CALCANHAR DE AQUILES</span> <span class="emoji-pulse">😩</span> que 'trava' seu avanço global? <span class="emoji-pulse">😔</span></span>
-            <span class="handwriting-sentence">O RealTalk Daby te dá a chance de <span class="typewriter-placeholder" data-original-text="DECIFRAR" style="color:#25d366;"></span> e <span class="typewriter-placeholder" data-original-text="TRANSFORMAR" style="color:#25d366;"></span> esse cenário imediatamente.</span>
-            <span class="handwriting-sentence">Sua mente se adapta. Seu conhecimento se <span class="keyphrase-effect">MATERIALIZA</span> em <span class="keyphrase-effect">REFLEXO COMUNICATIVO INSTANTÂNEO</span>. <span class="emoji-pulse">🛑</span></span>
-            <span class="handwriting-sentence">O resultado? Sua voz no <span class="clean-line-text">automático, com impacto e sem ruídos</span>. <span class="emoji-pulse">✨</span></span>
-        </div>
-    </section>
-
-    <!-- Seção Metodologia -->
-    <section id="methodology" class="py-20 bg-gray-800 text-center">
-        <h2 class="text-5xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 section-methodology-title animate-on-scroll fade-in-up" data-delay="0">
-            🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea.
-        </h2>
-        <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto animate-on-scroll fade-in-up" data-delay="0.2">
-            **O RealTalk Daby treina você em bootcamps**, e converte seu investimento e tempo em resultados concretos em inglês específicos e especializado para seu trabalho/empresa/área. Nossa metodologia exclusiva, o "<strong class="text-pink-400">Lego Chain Block</strong>" (adaptado por RealTalk Daby), tem como objetivo principal eliminar o "<strong class="text-pink-400">lag</strong>" da tradução, garantindo resultados de negócios imediatos e um domínio muito mais próximo do inglês real.
-        </p>
-        <div class="flex flex-wrap justify-center gap-8 px-6">
-            <!-- Cards de Metodologia -->
-            <div class="w-full md:w-1/3 p-6 bg-gray-900 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up block" data-delay="0.4">
-                <h3 class="text-3xl font-bold text-purple-400 mb-4">Módulos Lego Chain Block</h3>
-                <p class="text-gray-300">Construa seu inglês com blocos de conhecimento que se encaixam, formando uma base sólida e flexível para qualquer situação.</p>
-            </div>
-            <div class="w-full md:w-1/3 p-6 bg-gray-900 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up block" data-delay="0.6">
-                <h3 class="text-3xl font-bold text-pink-400 mb-4">Simulação Corporativa</h3>
-                <p class="text-gray-300">Exercícios práticos que reproduzem cenários reais da sua empresa, focando na comunicação autêntica e eficaz.</p>
-            </div>
-            <div class="w-full md:w-1/3 p-6 bg-gray-900 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up block" data-delay="0.8">
-                <h3 class="text-3xl font-bold text-teal-400 mb-4">Feedback por IA e Especialista</h3>
-                <p class="text-gray-300">Análise de IA para precisão e feedback humano para contextualização, garantindo um aprimoramento contínuo e personalizado.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Features / Plataforma -->
-    <section id="features" class="py-20 bg-gray-900 text-center">
-        <h2 class="text-5xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-500 animate-on-scroll fade-in-up" data-delay="0">
-            🚀 Sua Plataforma, Seu Universo de Aprendizado.
-        </h2>
-        <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto animate-on-scroll fade-in-up" data-delay="0.2">
-            Desenvolvida para maximizar sua eficiência, a plataforma RealTalk Daby integra tecnologia de ponta com um design intuitivo.
-        </p>
-        <div class="flex flex-wrap justify-center gap-8 px-6">
-            <!-- Feature Cards -->
-            <div class="w-full md:w-1/3 p-6 bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up" data-delay="0.4">
-                <i class="fas fa-robot text-purple-500 text-5xl mb-4"></i>
-                <h3 class="text-3xl font-bold text-purple-400 mb-4">AI Tutor Personalizado</h3>
-                <p class="text-gray-300">Um tutor de IA que se adapta ao seu estilo de aprendizado e te guia em cada etapa. Disponível 24/7.</p>
-            </div>
-            <div class="w-full md:w-1/3 p-6 bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up" data-delay="0.6">
-                <i class="fas fa-rocket text-pink-500 text-5xl mb-4"></i>
-                <h3 class="text-3xl font-bold text-pink-400 mb-4">Trilhas de Carreira Aceleradas</h3>
-                <p class="text-gray-300">Caminhos de aprendizado focados em sua área profissional para resultados rápidos e relevantes.</p>
-            </div>
-            <div class="w-full md:w-1/3 p-6 bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up" data-delay="0.8">
-                <i class="fas fa-chart-line text-teal-500 text-5xl mb-4"></i>
-                <h3 class="text-3xl font-bold text-teal-400 mb-4">Preparação psicológica</h3>
-                <p class="text-gray-300">técnicas para aprender e alavancar seu inglês</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Currículo Dinâmico -->
-    <section id="curriculum" class="py-20 bg-gray-800 text-center">
-        <h2 class="text-5xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 animate-on-scroll fade-in-up" data-delay="0">
-            📚 Currículo Flexível, Conhecimento Inflexível.
-        </h2>
-        <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto animate-on-scroll fade-in-up" data-delay="0.2">
-            Nossa abordagem se adapta ao seu ritmo, mas não negocia a profundidade do seu aprendizado.
-        </p>
-
-        <!-- Flipping Card Example -->
-        <div id="flipping-card" class="flipping-card-container w-4/5 md:w-1/2 mx-auto h-72 rounded-xl shadow-2xl relative cursor-pointer group animate-on-scroll fade-in-up" data-delay="0.4">
-            <!-- Card Front -->
-            <div id="card-front" class="card-face bg-gradient-to-br from-purple-700 to-indigo-800 p-8 rounded-xl flex flex-col justify-center items-center">
-                <h3 class="text-4xl font-bold text-white mb-4">Seu Plano de Voo</h3>
-                <p class="text-lg text-indigo-200">Clique ou passe o mouse para descobrir o que impulsionará seu sucesso.</p>
-            </div>
-            <!-- Card Back -->
-            <div id="card-back" class="card-face bg-gradient-to-br from-indigo-800 to-purple-700 p-8 rounded-xl flex flex-col justify-center items-center">
-                <h3 class="text-4xl font-bold text-white mb-4">Adaptação em Tempo Real</h3>
-                <p class="text-lg text-indigo-200">Nosso currículo se "auto-ajusta" com inteligência artificial, criando aulas personalizadas conforme sua evolução.</p>
-            </div>
-        </div>
-
-        <div class="mt-16 max-w-4xl mx-auto text-left px-6">
-            <div class="accordion-item animate-on-scroll fade-in-up" data-delay="0.6">
-                <button class="accordion-header flex justify-between items-center w-full p-4 bg-gray-900 rounded-t-lg text-left text-2xl font-semibold text-purple-400 hover:bg-gray-700 transition duration-200">
-                    O que esperar do Currículo?
-                    <i class="fas fa-chevron-down text-purple-400 transform transition-transform duration-300"></i>
-                </button>
-                <div class="accordion-content bg-gray-900 rounded-b-lg">
-                    <div class="p-4 text-gray-200">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Flexibilidade total de horários e conteúdos.</li>
-                            <li>Foco em vocabulário e expressões relevantes para o seu setor.</li>
-                            <li>Módulos compactos para aprendizado "on-the-go".</li>
-                            <li>Avaliações contínuas e adaptativas.</li>
-                        </ul>
-                    </div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.1">
+                    <h3 class="text-3xl font-bold text-purple-400 mb-4">Comunicação Sem Barreiras</h3>
+                    <p class="text-gray-300">Desbloqueie sua fluidez e confiança para interações globais com o método que te faz pensar em inglês.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.3">
+                    <h3 class="text-3xl font-bold text-pink-400 mb-4">Aprendizado Acelerado</h3>
+                    <p class="text-gray-300">Otimize seu tempo com uma metodologia que prioriza a prática ativa e o feedback constante para resultados rápidos.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.5">
+                    <h3 class="text-3xl font-bold text-teal-400 mb-4">Inglês do Dia a Dia Corporativo</h3>
+                    <p class="text-gray-300">Do vocabulário técnico às nuances culturais, prepare-se para o cenário profissional real em qualquer indústria.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.7">
+                    <h3 class="text-3xl font-bold text-indigo-400 mb-4">Resultados Comprovados</h3>
+                    <p class="text-gray-300">Veja seu progresso com métricas claras e sinta a diferença em sua performance e reconhecimento profissional.</p>
                 </div>
             </div>
-            <div class="accordion-item animate-on-scroll fade-in-up" data-delay="0.8">
-                <button class="accordion-header flex justify-between items-center w-full p-4 bg-gray-900 text-left text-2xl font-semibold text-pink-400 hover:bg-gray-700 transition duration-200 mt-4 rounded-t-lg">
-                    Para quem é ideal?
-                    <i class="fas fa-chevron-down text-pink-400 transform transition-transform duration-300"></i>
-                </button>
-                <div class="accordion-content bg-gray-900 rounded-b-lg">
-                    <div class="p-4 text-gray-200">
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Executivos e profissionais buscando ascensão.</li>
-                            <li>Equipes que necessitam de alinhamento em inglês global.</li>
-                            <li>Indivíduos com pouco tempo, mas grande ambição.</li>
-                            <li>Empresas que valorizam a comunicação de alto impacto.</li>
-                        </ul>
+        </div>
+    </section>
+
+    <!-- Features Section (Platform) -->
+    <section id="features" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-extrabold text-white mb-12">A Plataforma Que Te Impulsiona</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="feature-card col-span-1 animate-on-scroll fade-in-up" data-delay="0.1">
+                    <div>
+                        <i class="fas fa-brain text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-3xl font-bold text-purple-400 mb-4">Simulações Realistas</h3>
+                        <p class="text-gray-300">Pratique cenários de negócios autênticos com feedback de IA para aprimorar sua comunicação sob pressão.</p>
+                    </div>
+                </div>
+                <!-- Card 2 (Flipping Card) -->
+                <div class="flipping-card-container col-span-1 h-auto" id="flipping-card">
+                    <div class="feature-card card-face" id="card-front">
+                        <div>
+                            <i class="fas fa-comments text-pink-400 text-5xl mb-4"></i>
+                            <h3 class="text-3xl font-bold text-pink-400 mb-4">Interação por Voz</h3>
+                            <p class="text-gray-300">Converse naturalmente com a IA, recebendo correção de pronúncia e entonação em tempo real. Sem julgamentos.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card card-face" id="card-back">
+                        <div>
+                            <i class="fas fa-code text-teal-400 text-5xl mb-4"></i>
+                            <h3 class="text-3xl font-bold text-teal-400 mb-4">"Lego Chain Blocks"</h3>
+                            <p class="text-gray-300">Construa seu conhecimento com blocos de vocabulário e estruturas frasais, adaptados ao seu setor e nível.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="feature-card col-span-1 animate-on-scroll fade-in-up" data-delay="0.5">
+                    <div>
+                        <i class="fas fa-chart-line text-teal-400 text-5xl mb-4"></i>
+                        <h3 class="text-3xl font-bold text-teal-400 mb-4">Preparação psicológica</h3>
+                        <p class="text-gray-300">técnicas para aprender e alavancar seu inglês</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Poder da IA -->
-    <section id="ai-power" class="py-20 bg-gray-900 text-center">
-        <h2 class="text-5xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 animate-on-scroll fade-in-up" data-delay="0">
-            🤖 O Poder da I.A. ao Seu Dispor.
-        </h2>
-        <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto animate-on-scroll fade-in-up" data-delay="0.2">
-            Não é só inteligência artificial, é inteligência aumentada para o seu inglês.
-        </p>
-        <div class="relative max-w-5xl mx-auto px-6">
-            <div class="flex flex-wrap justify-center items-center gap-8">
-                <div class="w-full md:w-2/5 p-8 bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up" data-delay="0.4">
-                    <h3 class="text-3xl font-bold text-teal-400 mb-4">Diagnóstico Preciso</h3>
-                    <p class="text-gray-300">Nossa IA identifica suas lacunas e pontos fortes com uma precisão cirúrgica, personalizando seu caminho.</p>
-                </div>
-                <div class="w-full md:w-2/5 p-8 bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up" data-delay="0.6">
-                    <h3 class="text-3xl font-bold text-orange-400 mb-4">Simulações de Diálogo Avançadas</h3>
-                    <p class="text-gray-300">Pratique conversação com IA que reage de forma inteligente, preparando-o para qualquer interação profissional.</p>
-                </div>
-                <div class="w-full md:w-2/5 p-8 bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up" data-delay="0.8">
-                    <h3 class="text-3xl font-bold text-blue-400 mb-4">Correção Gramatical e Estilística</h3>
-                    <p class="text-gray-300">Receba sugestões instantâneas para aprimorar não só a gramática, mas o impacto e a persuasão da sua fala.</p>
-                </div>
-                <div class="w-full md:w-2/5 p-8 bg-gray-800 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 animate-on-scroll fade-in-up" data-delay="1.0">
-                    <h3 class="text-3xl font-bold text-green-400 mb-4">Gerador de Vocabulário Contextual</h3>
-                    <p class="text-gray-300">Expanda seu léxico com palavras e chunks lexicais relevantes, apresentados em contextos de seu interesse profissional.</p>
-                </div>
+    <!-- Curriculum Section -->
+    <section id="curriculum" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-extrabold text-white mb-12">Currículo Personalizado</h2>
+            <div class="accordion">
+                <!-- Nível 1 -->
+                <div class="accordion-item animate-on-scroll fade-in-up" data-delay="0.1">
+                    <button class="accordion-header flex justify-between items-center w-full py-4 px-6 text-2xl font-semibold text-left text-purple-400 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition">
+                        Nível 1: Starter Experience
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-gray-800 border-t-2 border-purple-..           overflow: hidden;
+            border-right: 3px solid; /* Cursor */
+            white-space: nowrap;
+            letter-spacing: .15em;
+            vertical-align: middle; /* Align with surrounding text */
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.1s ease-in; /* Quick fade in for the placeholder itself */
+        }
+
+        .typewriter-placeholder.typewriter-text-active {
+            animation: blink-caret .75s step-end infinite;
+            opacity: 1; /* Make visible when active */
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #bd93f9; } /* Purple cursor */
+        }
+
+        /* Clean Line Text Effect */
+        .clean-line-text-active { /* Changed class name to distinguish active state */
+            display: inline-block;
+            position: relative;
+        }
+        .clean-line-text-active::after { /* Applied to active state */
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px; /* Adjust line position */
+            width: 0%;
+            height: 3px;
+            background-color: #bd93f9; /* Purple line */
+            animation: draw-line 1s ease-out forwards; /* Changed to use animation keyframes */
+        }
+        @keyframes draw-line {
+            to { width: 100%; }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        section.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specific section backgrounds based on PDF */
+        #hero {
+            background: linear-gradient(135deg, #1A1A2E 0%, #3a005e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: none; /* No border for hero */
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+             background: radial-gradient(circle at top left, rgba(189, 147, 249, 0.3) 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, rgba(255, 121, 198, 0.3) 0%, transparent 40%);
+            animation: gradientShift 20s ease infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        #hero > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        #challenge {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            text-align: center;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        #methodology {
+            background-color: #2a2a4a;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #methodology h2 {
+            font-size: 2.8rem;
+            color: #8be9fd; /* Azul claro */
+            margin-bottom: 20px;
+        }
+        .section-methodology-title {
+            font-size: 2.8rem; /* Use Tailwind's text-4xl equivalent initially */
+            color: #8be9fd; /* Light blue accent */
+            margin-bottom: 1rem; /* Reduced margin */
+            line-height: 1.2; /* Tighter line height for titles */
+        }
+
+        #methodology p {
+            font-size: 1.25rem;
+            color: #c0c0c0;
+            max-width: 800px;
+            margin: 0 auto 30px auto; /* Reduced margin-top */
+            line-height: 1.6;
+        }
+        #methodology .block {
+            margin-bottom: 0px; /* Reduzindo espaço abaixo dos blocos na Metodologia */
+        }
+
+        #features {
+            background: linear-gradient(135deg, #1a1a2e 0%, #3e3e5c 100%);
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #features .feature-card {
+            background-color: rgba(62, 62, 92, 0.6); /* Semi-transparent background */
+            border: 1px solid rgba(189, 147, 249, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; /* For the flipping effect */
+            height: 100%; /* Ensure cards are same height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #features .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        #curriculum {
+            background-color: #2a2a4a;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #curriculum .item {
+            background-color: #3e3e5c;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: left;
+            border-left: 5px solid #ff79c6;
+            transition: background-color 0.3s ease;
+        }
+        #curriculum .item:hover {
+            background-color: #4a4a6e;
+        }
+        #curriculum .item h3 {
+            color: #8be9fd;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        #curriculum .item p {
+            color: #c0c0c0;
+        }
+
+        #ai-power {
+            background: linear-gradient(135deg, #3a005e 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            text-align: center;
+            overflow: hidden; /* For particles/effects */
+            position: relative;
+        }
+        #ai-power .star-particle {
+            position: absolute;
+            background-color: #8be9fd; /* Light blue star */
+            border-radius: 50%;
+            opacity: 0;
+            animation: star-fade 3s infinite ease-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes star-fade {
+            0% { transform: scale(0) translateY(0px); opacity: 0; }
+            30% { transform: scale(1) translateY(-20px); opacity: 1; }
+            70% { transform: scale(0.8) translateY(-40px); opacity: 0.5; }
+            100% { transform: scale(0) translateY(-60px); opacity: 0; }
+        }
+        #ai-power > * {
+            position: relative;
+            z-index: 2; /* Content above particles */
+        }
+        #ai-power h2 {
+            font-size: 3rem;
+            color: #ff79c6;
+            margin-bottom: 25px;
+        }
+        #ai-power p {
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            color: #c0c0c0;
+        }
+        #ai-power .ai-icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0px auto; /* Adjust margin to zero */
+        }
+        #ai-power .ai-icon-grid .ai-card {
+            background-color: rgba(189, 147, 249, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            min-height: 180px; /* Ensure consistent card height */
+        }
+        #ai-power .ai-icon-grid .ai-card:hover {
+            transform: translateY(-8px);
+            background-color: rgba(189, 147, 249, 0.4);
+        }
+        #ai-power .ai-icon-grid .ai-card i {
+            font-size: 3rem;
+            color: #8be9fd;
+            margin-bottom: 15px;
+        }
+        #ai-power .ai-icon-grid .ai-card h3 {
+            font-size: 1.4rem;
+            color: #ff79c6;
+            margin-bottom: 10px;
+        }
+        #ai-power .ai-icon-grid .ai-card p {
+            font-size: 1rem;
+            color: #d0d0d0;
+            margin: 0; /* Override default paragraph margin */
+        }
+
+        #contact {
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            text-align: center;
+        }
+        #contact .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #2a2a4a;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        }
+        #contact .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        #contact label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8be9fd;
+            font-weight: bold;
+        }
+        #contact input,
+        #contact textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #4a4a6e;
+            border-radius: 8px;
+            background-color: #3e3e5c;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #contact input:focus,
+        #contact textarea:focus {
+            border-color: #bd93f9;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(189, 147, 249, 0.3);
+        }
+        #contact textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        #contact button {
+            background-color: #ff79c6;
+            color: #1a1a2e;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        #contact button:hover {
+            background-color: #bd93f9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: #12121e;
+            color: #c0c0c0;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        footer .glitch-text {
+            font-size: 1.1rem; /* Smaller for footer */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            #ai-power .ai-icon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .handwriting-container {
+                font-size: 1.5rem;
+            }
+            #handwriting-message-container .handwriting-sentence:first-child {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-pink-400">RealTalk Daby</a>
+            <ul class="flex space-x-6">
+                <li><a href="#challenge" class="text-gray-300 hover:text-pink-400 transition">Seu Desafio</a></li>
+                <li><a href="#methodology" class="text-gray-300 hover:text-pink-400 transition">Metodologia</a></li>
+                <li><a href="#features" class="text-gray-300 hover:text-pink-400 transition">Plataforma</a></li>
+                <li><a href="#curriculum" class="text-gray-300 hover:text-pink-400 transition">Currículo</a></li>
+                <li><a href="#ai-power" class="text-gray-300 hover:text-pink-400 transition">Poder da IA</a></li>
+                <li><a href="#contact" class="text-gray-300 hover:text-pink-400 transition">Contato</a></li>
+               </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="flex items-center justify-center text-center">
+        <div class="hero-content text-white z-20">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 animate-on-load" data-delay="0.1">RealTalk Daby</h1>
+            <p class="mt-4 text-2xl md:text-3xl font-light text-gray-300 animate-on-load" data-delay="0.3">Comunicação que Decola.</p>
+            <p class="mt-6 text-xl md:text-2xl text-gray-400 animate-on-load" data-delay="0.5">Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.</p>
+            <a href="#challenge" class="mt-10 inline-block bg-pink-500 hover:bg-purple-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 animate-on-load" data-delay="0.7">
+                Descubra Seu Desafio Aqui!
+            </a>
+        </div>
+    </section>
+
+    <!-- Challenge Section -->
+    <section id="challenge" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl font-extrabold text-white mb-6">Seu Desafio com o Inglês Profissional é Real.</h2>
+            <p class="text-2xl md:text-3xl text-red-400 font-extrabold mb-8 animate-on-scroll fade-in-up" data-delay="0.0">
+                INGLÊS NUNCA FOI FÁCIL. <span class="emoji-pulse">😩</span>
+            </p>
+            <p class="text-2xl md:text-3xl text-gray-300 font-extrabold mb-12 animate-on-scroll fade-in-up" data-delay="0.2">
+                O tão sonhado fluir em inglês? <strong class="text-pink-400">É de vez, agora!</strong> <span class="emoji-pulse">✨</span> RealTalk Daby no seu ritmo, no seu tempo. <span class="emoji-pulse">🚀</span>
+                <br><br>
+                Prepare-se para <strong class="text-pink-400">alavancar seu inglês e garantir sua posição</strong> num futuro cada vez mais competitivo com a <strong class="text-pink-400">era da Inteligência Artificial</strong> que se consolida em 3 anos! <span class="emoji-pulse">🤖</span><span class="emoji-pulse">💡</span> Seu domínio do idioma será seu diferencial imbatível. <span class="emoji-pulse">💪</span>
+            </p>
+
+            <!-- Este container será populado pelo JavaScript para as animações -->
+            <div id="handwriting-message-container" class="handwriting-container mt-12 opacity-0 transition-opacity duration-1000">
+                <!-- Frase 1 (Bloco) -->
+                <span class="handwriting-sentence">
+                    Você é um profissional fera e de alta performance, mas o inglês ainda é o <strong class="keyphrase-effect">ÓBICE INVISÍVEL / CALCANHAR DE AQUILES</strong> <span class="emoji-pulse">😩</span> que 'trava' seu avanço global? <span class="emoji-pulse">😔</span>
+                </span>
+                <!-- Frase 2 (Em linha) -->
+                <span class="handwriting-sentence">
+                    O RealTalk Daby te dá a chance de <span class="typewriter-placeholder" data-original-text="DECIFRAR"></span> e <span class="typewriter-placeholder" data-original-text="TRANSFORMAR"></span> esse cenário imediatamente.
+                </span>
+                <!-- Frase 3 (Em linha) -->
+                <span class="handwriting-sentence">
+                    Sua mente se adapta. Seu conhecimento se <strong class="keyphrase-effect">MATERIALIZA</strong> em <strong class="keyphrase-effect">REFLEXO COMUNICATIVO INSTANTÂNEO</strong>. <span class="emoji-pulse">🛑</span>
+                </span>
+                <!-- Frase 4 (Em linha) -->
+                <span class="handwriting-sentence">
+                    O resultado? Sua voz no <strong class="clean-line-text-active">automático, com impacto e sem ruídos</strong>. <span class="emoji-pulse">✨</span>
+                </span>
             </div>
-            <!-- Imagem flutuante de um cérebro de IA -->
-            <div class="absolute -right-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-70 animate-pulse">
-                [[google images search term: stylized glowing ai brain icon]]
+
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="methodology" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="section-methodology-title font-extrabold mb-6">
+                🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea.
+            </h2>
+            <p class="text-xl text-gray-300 mb-12">
+                <strong class="text-pink-400">O RealTalk Daby treina você em bootcamps</strong>, e converte seu investimento e tempo em resultados concretos em inglês específicos e especializado para seu trabalho/empresa/área. Nossa metodologia exclusiva, o "<strong class="text-pink-400">Lego Chain Block</strong>" (adaptado por RealTalk Daby), tem como objetivo principal eliminar o "<strong class="text-pink-400">lag</strong>" da tradução, garantindo resultados de negócios imediatos e um domínio muito mais próximo do inglês real.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.1">
+                    <h3 class="text-3xl font-bold text-purple-400 mb-4">Comunicação Sem Barreiras</h3>
+                    <p class="text-gray-300">Desbloqueie sua fluidez e confiança para interações globais com o método que te faz pensar em inglês.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.3">
+                    <h3 class="text-3xl font-bold text-pink-400 mb-4">Aprendizado Acelerado</h3>
+                    <p class="text-gray-300">Otimize seu tempo com uma metodologia que prioriza a prática ativa e o feedback constante para resultados rápidos.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.5">
+                    <h3 class="text-3xl font-bold text-teal-400 mb-4">Inglês do Dia a Dia Corporativo</h3>
+                    <p class="text-gray-300">Do vocabulário técnico às nuances culturais, prepare-se para o cenário profissional real em qualquer indústria.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl block animate-on-scroll fade-in-up" data-delay="0.7">
+                    <h3 class="text-3xl font-bold text-indigo-400 mb-4">Resultados Comprovados</h3>
+                    <p class="text-gray-300">Veja seu progresso com métricas claras e sinta a diferença em sua performance e reconhecimento profissional.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Contato -->
-    <section id="contact" class="py-20 bg-gray-800 text-center">
-        <h2 class="text-5xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 animate-on-scroll fade-in-up" data-delay="0">
-            Conecte-se e Transforme Seu Futuro.
-        </h2>
-        <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto animate-on-scroll fade-in-up" data-delay="0.2">
-            Pronto para impulsionar sua carreira com o RealTalk Daby? Fale conosco!
-        </p>
-        <div class="max-w-xl mx-auto p-8 bg-gray-900 rounded-xl shadow-lg animate-on-scroll fade-in-up" data-delay="0.4">
-            <form action="#" method="POST" class="space-y-6 text-left">
-                <div>
-                    <label for="name" class="block text-gray-300 text-lg font-semibold mb-2">Nome Completo</label>
-                    <input type="text" id="name" name="name" placeholder="Seu nome" class="w-full p-4 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" required>
+    <!-- Features Section (Platform) -->
+    <section id="features" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-extrabold text-white mb-12">A Plataforma Que Te Impulsiona</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="feature-card col-span-1 animate-on-scroll fade-in-up" data-delay="0.1">
+                    <div>
+                        <i class="fas fa-brain text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-3xl font-bold text-purple-400 mb-4">Simulações Realistas</h3>
+                        <p class="text-gray-300">Pratique cenários de negócios autênticos com feedback de IA para aprimorar sua comunicação sob pressão.</p>
+                    </div>
                 </div>
-                <div>
-                    <label for="email" class="block text-gray-300 text-lg font-semibold mb-2">Email Corporativo</label>
-                    <input type="email" id="email" name="email" placeholder="seu.email@empresa.com" class="w-full p-4 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" required>
+                <!-- Card 2 (Flipping Card) -->
+                <div class="flipping-card-container col-span-1 h-auto" id="flipping-card">
+                    <div class="feature-card card-face" id="card-front">
+                        <div>
+                            <i class="fas fa-comments text-pink-400 text-5xl mb-4"></i>
+                            <h3 class="text-3xl font-bold text-pink-400 mb-4">Interação por Voz</h3>
+                            <p class="text-gray-300">Converse naturalmente com a IA, recebendo correção de pronúncia e entonação em tempo real. Sem julgamentos.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card card-face" id="card-back">
+                        <div>
+                            <i class="fas fa-code text-teal-400 text-5xl mb-4"></i>
+                            <h3 class="text-3xl font-bold text-teal-400 mb-4">"Lego Chain Blocks"</h3>
+                            <p class="text-gray-300">Construa seu conhecimento com blocos de vocabulário e estruturas frasais, adaptados ao seu setor e nível.</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label for="company" class="block text-gray-300 text-lg font-semibold mb-2">Empresa</label>
-                    <input type="text" id="company" name="company" placeholder="Nome da sua empresa" class="w-full p-4 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                <!-- Card 3 -->
+                <div class="feature-card col-span-1 animate-on-scroll fade-in-up" data-delay="0.5">
+                    <div>
+                        <i class="fas fa-chart-line text-teal-400 text-5xl mb-4"></i>
+                        <h3 class="text-3xl font-bold text-teal-400 mb-4">Preparação psicológica</h3>
+                        <p class="text-gray-300">técnicas para aprender e alavancar seu inglês</p>
+                    </div>
                 </div>
-                <div>
-                    <label for="message" class="block text-gray-300 text-lg font-semibold mb-2">Sua Mensagem</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Conte-nos sobre suas necessidades ou dúvidas..." class="w-full p-4 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white" required></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section id="curriculum" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-extrabold text-white mb-12">Currículo Personalizado</h2>
+            <div class="accordion">
+                <!-- Nível 1 -->
+                <div class="accordion-item animate-on-scroll fade-in-up" data-delay="0.1">
+                    <button class="accordion-header flex justify-between items-center w-full py-4 px-6 text-2xl font-semibold text-left text-purple-400 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition">
+                        Nível 1: Starter Experience
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-gray-800 border-t-2 border-purple-400 rounded-b-lg">
+                            <h4 class="text-xl font-bold text-pink-300 mb-2">Fundamentos Essenciais</h4>
+                            <p class="text-gray-300 mb-4">Aprenda as estruturas básicas e o vocabulário fundamental para começar a se comunicar com confiança em contextos profissionais simples.</p>
+                            <ul class="list-disc list-inside text-gray-400 space-y-2">
+                                <li>Formação de frases básicas para apresentações.</li>
+                                <li>Vocabulário de escritório e interações cotidianas.</li>
+                                <li>Noções de pronúncia e entonação.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xl rounded-lg hover:from-purple-700 hover:to-pink-700 transition duration-300 shadow-md transform hover:scale-105">
-                    Enviar Mensagem
-                </button>
-            </form>
+                <!-- Nível 2 -->
+                <div class="accordion-item animate-on-scroll fade-in-up" data-delay="0.3">
+                    <button class="accordion-header flex justify-between items-center w-full py-4 px-6 text-2xl font-semibold text-left text-pink-400 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition">
+                        Nível 2: Business Core
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-gray-800 border-t-2 border-pink-400 rounded-b-lg">
+                            <h4 class="text-xl font-bold text-teal-300 mb-2">Comunicação Corporativa</h4>
+                            <p class="text-gray-300 mb-4">Desenvolva habilidades para reuniões, e-mails e conversas mais complexas, focando na clareza e persuasão.</p>
+                            <ul class="list-disc list-inside text-gray-400 space-y-2">
+                                <li>Participação ativa em reuniões e discussões.</li>
+                                <li>Redação de e-mails e relatórios eficazes.</li>
+                                <li>Vocabulário de negociação e resolução de problemas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nível 3 -->
+                <div class="accordion-item animate-on-scroll fade-in-up" data-delay="0.5">
+                    <button class="accordion-header flex justify-between items-center w-full py-4 px-6 text-2xl font-semibold text-left text-teal-400 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition">
+                        Nível 3: Advanced Leadership
+                        <i class="fas fa-chevron-down transform transition-transform"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-gray-800 border-t-2 border-teal-400 rounded-b-lg">
+                            <h4 class="text-xl font-bold text-indigo-300 mb-2">Liderança e Estratégia</h4>
+                            <p class="text-gray-300 mb-4">Domine apresentações, negociações complexas e a arte de influenciar em inglês, com fluidez e naturalidade.</p>
+                            <ul class="list-disc list-inside text-gray-400 space-y-2">
+                                <li>Apresentações de alto impacto e storytelling.</li>
+                                <li>Estratégias avançadas de negociação internacional.</li>
+                                <li>Debate e argumentação em inglês.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Power Section -->
+    <section id="ai-power" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                O Poder da <strong class="rainbow-text">INTELIGÊNCIA ARTIFICIAL</strong> ao Seu Lado
+            </h2>
+            <p class="text-xl text-gray-300 mb-12">
+                 Transforme sua jornada de aprendizado com o poder da IA. Sem erros, sem medo, apenas <strong class="focus-pulse text-pink-400">progresso real e contínuo</strong>.
+            </p>
+
+            <div class="ai-icon-grid">
+                <div class="ai-card animate-on-scroll fade-in-up" data-delay="0.1">
+                    <i class="fas fa-robot"></i>
+                    <h3>Feedback Instantâneo</h3>
+                    <p>Correção de pronúncia, gramática e fluidez em tempo real, 24/7.</p>
+                </div>
+                <div class="ai-card animate-on-scroll fade-in-up" data-delay="0.3">
+                    <i class="fas fa-headset"></i>
+                    <h3>Tutoria Personalizada</h3>
+                    <p>Aulas adaptadas ao seu ritmo e focadas nas suas maiores dificuldades.</p>
+                </div>
+                <div class="ai-card animate-on-scroll fade-in-up" data-delay="0.5">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Contexto Inteligente</h3>
+                    <p>A IA entende seu setor e te oferece vocabulário e cenários relevantes.</p>
+                </div>
+                <div class="ai-card animate-on-scroll fade-in-up" data-delay="0.7">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Análise de Progresso</h3>
+                    <p>Métricas detalhadas para você ver sua evolução e identificar pontos de melhoria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-4xl font-extrabold text-white mb-8">Fale Conosco</h2>
+            <p class="text-xl text-gray-300 mb-12">Quer saber como o RealTalk Daby pode transformar sua carreira ou sua equipe? Entre em contato agora!</p>
+            <div class="contact-form">
+                <div class="input-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" placeholder="Seu nome" class="bg-gray-700">
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Corporativo</label>
+                    <input type="email" id="email" placeholder="seu.email@empresa.com" class="bg-gray-700">
+                </div>
+                <div class="input-group">
+                    <label for="message">Sua Mensagem</label>
+                    <textarea id="message" rows="5" placeholder="Quais são seus desafios ou objetivos com o inglês?" class="bg-gray-700"></textarea>
+                </div>
+                <button type="submit">Enviar Mensagem</button>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-950 py-10 text-center text-gray-400">
-        <div class="glitch-text text-xl font-bold" data-text="Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby." style="font-family: 'Inter', sans-serif;">
-            Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.
-        </div>
-        <p class="text-gray-600 text-md mt-4">&copy; 2025 RealTalk Daby. Todos os direitos reservados.</p>
+    <footer class="text-center text-gray-500">
+        <p class="glitch-text" data-text="Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.">Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.</p>
+        <p class="mt-2">&copy; 2025 RealTalk Daby. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- JavaScript para Animações e Scroll Suave -->
+    <!-- FontAwesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript para Scroll Animations e Animação de Escrita à Mão -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-             // Função para scroll suave
-            const smoothScroll = (targetId) => {
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - document.querySelector('header').offsetHeight, // Ajuste para o header fixo
-                        behavior: 'smooth'
-                    });
-                }
-            };
-
-            // Navegação e Toggle de Menu para Mobile (se implementado)
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    smoothScroll(this.getAttribute('href'));
-                });
-            });
-
-            // Animação dos elementos no carregamento da página
-            const animateOnLoadElements = document.querySelectorAll('.animate-on-load');
-            animateOnLoadElements.forEach(el => {
-                el.classList.add('loaded'); // Ativa a animação para elementos com 'animate-on-load'
-            });
-
-            // Animação de elementos ao rolar a página
+            // Scroll Animations (Fade-in-up)
             const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
             const observerOptions = {
                 root: null,
@@ -664,6 +1396,27 @@
                 });
             }
 
+            // Lógica do Accordion (Currículo)
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('i');
+
+                    // Fecha todos os outros accordions e remove a classe 'active'
+                    accordionHeaders.forEach(otherHeader => {
+                        if (otherHeader !== header) {
+                            otherHeader.nextElementSibling.classList.remove('active');
+                            otherHeader.querySelector('i').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Alterna o accordion clicado
+                    content.classList.toggle('active');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+
 
             // --- Lógica da Animação de Escrita à Mão (Seu Desafio) ---
             const handwritingSentences = document.querySelectorAll('#handwriting-message-container .handwriting-sentence');
@@ -679,7 +1432,7 @@
                     typewriterPlaceholders.forEach(placeholder => {
                         const originalText = placeholder.dataset.originalText;
                         let charIndex = 0;
-                        placeholder.textContent = ''; // Limpa o texto original para o typewriter
+                        placeholder.textContent = ''; // Limpa o texto real para o typewriter
                         const typingSpeed = 70; // Velocidade da digitação
                         placeholder.classList.add('typewriter-text-active'); // Adiciona classe para estilo do cursor
 
@@ -696,11 +1449,9 @@
                     });
 
                     // Ativa os efeitos de linha para clean-line-text
-                    const cleanLineTexts = currentSentenceElement.querySelectorAll('.clean-line-text');
+                    const cleanLineTexts = currentSentenceElement.querySelectorAll('.clean-line-text-active'); // Usar a classe correta
                     cleanLineTexts.forEach(el => {
-                        el.style.animation = 'none'; // Reseta animação se já existia
-                        void el.offsetWidth; // Trigger reflow
-                        el.style.animation = 'draw-line 1s ease-out forwards'; // Reativa animação
+                        el.style.animation = 'draw-line 1s ease-out forwards'; // Reativa animação de linha
                     });
 
                     // Ativa emoji-pulse para emojis dentro da sentença (se houver)
@@ -725,7 +1476,7 @@
                             setTimeout(() => {
                                 document.getElementById('handwriting-message-container').classList.add('opacity-100'); // Revela o container principal
                                 revealNextHandwritingSentence(); // Inicia a animação das frases
-                            }, 500); // Pequeno atraso após a frase motivacional aparecer
+                            }, 500); // Pequeno atraso após as frases fixas aparecerem
                             challengeSection.dataset.animated = 'true'; // Marca como animado
                             challengeObserver.unobserve(entry.target);
                         }
