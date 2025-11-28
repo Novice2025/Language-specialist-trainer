@@ -23,12 +23,12 @@
             100% { background-position: 0% 50%; }
         }
         .main-gradient-bg {
-            background: linear-gradient(-45deg, #2a2a4a, #3e3e5c, #5c3e5c, #4a2a4a);
+            background: linear-gradient(-45deg, #1A1A2E, #2A2A4A, #3A3A5A, #2A2A4A, #1A1A2E); /* More mixed dark colors */
             background-size: 400% 400%;
             animation: gradientShift 20s ease infinite;
         }
 
-        /* Navbar Styles (now with JS toggle for mobile menu) */
+        /* Navbar Styles */
         .navbar {
             background-color: rgba(26, 26, 46, 0.9);
             backdrop-filter: blur(10px);
@@ -50,20 +50,19 @@
             text-decoration: none;
         }
         .navbar-links {
-            display: flex; /* Always flex for desktop version */
+            display: flex;
             gap: 1.5rem;
         }
         .navbar-link {
             transition: color 0.3s ease;
-            color: #E0E0E0; /* Default link color */
+            color: #E0E0E0;
             text-decoration: none;
         }
         .navbar-link:hover {
             color: #FF79C6; /* Pink hover */
         }
-        /* Mobile menu specific styles controlled by JavaScript */
         .mobile-menu-toggle {
-            display: none; /* Hide on desktop */
+            display: none; /* Hidden on desktop, shown by media query */
             cursor: pointer;
             color: #E0E0E0;
             font-size: 1.5rem;
@@ -71,9 +70,9 @@
         .mobile-menu-content {
             display: none; /* Hidden by default, JS controls this */
             flex-direction: column;
-            background-color: rgba(26, 26, 46, 0.98); /* Slightly less transparent */
+            background-color: rgba(26, 26, 46, 0.98);
             position: absolute;
-            top: 4rem; /* Below navbar */
+            top: 4rem;
             left: 0;
             width: 100%;
             padding: 1rem 0;
@@ -83,18 +82,16 @@
         .mobile-menu-content .navbar-link {
             padding: 0.75rem 1.5rem;
             text-align: center;
-            width: 100%; /* Full width for mobile links */
+            width: 100%;
         }
-        /* Media query to expose mobile menu toggle and hide desktop menu */
         @media (max-width: 768px) {
             .navbar .navbar-links {
-                display: none; /* Hide desktop links on small screens */
+                display: none;
             }
             .mobile-menu-toggle {
-                display: block; /* Show toggle button */
+                display: block;
             }
         }
-
 
         /* Introduction Header Styles */
         .introduction-header {
@@ -102,12 +99,12 @@
             text-align: center;
             background: linear-gradient(-45deg, #3e3e5c, #2a2a4a);
             color: #E0E0E0;
-            margin-top: 4rem; /* Below fixed navbar */
+            margin-top: 4rem;
             position: relative;
         }
         .introduction-header h1 {
             font-family: 'Inter', sans-serif;
-            font-size: 3rem;
+            font-size: 3.5rem; /* Slightly larger */
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 0.5rem;
@@ -116,59 +113,59 @@
         }
         .introduction-header h2 {
             font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
+            font-size: 2rem; /* Slightly larger */
             font-weight: 700;
             color: #BD93F9; /* Purple */
             margin-bottom: 0;
             padding-bottom: 0;
         }
         @media (min-width: 768px) {
-            .introduction-header h1 { font-size: 5rem; }
-            .introduction-header h2 { font-size: 2.5rem; }
+            .introduction-header h1 { font-size: 5.5rem; }
+            .introduction-header h2 { font-size: 3rem; }
             .introduction-header { padding-top: 7rem; padding-bottom: 4rem; }
         }
 
         /* Hero Section Specific Styles */
         #hero {
-            background-image: linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.8)), url('https://images.unsplash.com/photo-1510519138122-ec90209e742c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Imagem de fundo padrão */
+            background-image: linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.8)), url('https://images.unsplash.com/photo-1510519138122-ec90209e742c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-position: center;
-            min-height: calc(100vh - 4rem); /* Full height minus navbar */
+            min-height: calc(100vh - 4rem);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            padding-top: 4rem; /* Adjust for fixed navbar */
+            padding-top: 4rem;
         }
         #hero .hero-title {
-            font-size: 4rem;
+            font-size: 5rem; /* Larger */
             font-weight: 900;
             background: linear-gradient(90deg, #FF79C6, #BD93F9);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            margin-bottom: 1rem;
-        }
-        #hero .hero-subtitle {
-            font-size: 2.5rem;
-            color: #8BE9FD; /* Cyan */
-            font-style: italic;
             margin-bottom: 1.5rem;
         }
+        #hero .hero-subtitle {
+            font-size: 3rem; /* Larger */
+            color: #8BE9FD; /* Cyan */
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
         #hero p {
-            font-size: 1.5rem;
+            font-size: 1.8rem; /* Larger */
             color: #C0C0C0;
             max-width: 700px;
-            margin: 0 auto 2.5rem auto;
+            margin: 0 auto 3rem auto;
         }
         #hero .hero-button {
             background-color: #BD93F9;
             color: #1A1A2E;
-            padding: 0.8rem 2.5rem;
+            padding: 1rem 3rem; /* Larger padding */
             border-radius: 9999px;
-            font-size: 1.25rem;
+            font-size: 1.4rem; /* Larger font */
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -178,41 +175,41 @@
             transform: translateY(-3px);
         }
         @media (min-width: 768px) {
-            #hero .hero-title { font-size: 6rem; }
-            #hero .hero-subtitle { font-size: 3.5rem; }
-            #hero p { font-size: 1.8rem; }
-            #hero .hero-button { padding: 1rem 3rem; font-size: 1.5rem; }
+            #hero .hero-title { font-size: 7rem; }
+            #hero .hero-subtitle { font-size: 4rem; }
+            #hero p { font-size: 2rem; }
+            #hero .hero-button { padding: 1.2rem 4rem; font-size: 1.7rem; }
         }
 
         /* VOCÊ Section - STATIC phrases */
         #voce {
             padding: 5rem 1.5rem;
-            background-color: #1a1a2e; /* Primary dark color */
+            background-color: #1a1a2e;
             text-align: center;
-            font-family: 'Patrick Hand', cursive; /* Mantém a fonte manuscrita */
+            font-family: 'Patrick Hand', cursive;
             font-size: 1.8rem;
             line-height: 1.6;
             color: #d0d0d0;
         }
         #voce h2 {
             font-family: 'Inter', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3.2rem; /* Larger */
             font-weight: 800;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             color: #FFF;
         }
         #voce .voce-phrase {
-            display: block; /* Cada frase em uma nova linha */
-            margin-bottom: 0.8em; /* Espaçamento entre as frases */
+            display: block;
+            margin-bottom: 1.0em; /* Slightly more space */
         }
         #voce .voce-phrase:first-child {
-            font-size: 2.2rem; /* Primeira frase ligeiramente maior */
+            font-size: 2.5rem; /* Larger */
             font-weight: bold;
             line-height: 1.4;
-            margin-bottom: 1.2em; /* Mais espaço para a primeira frase */
+            margin-bottom: 1.5em;
         }
         #voce .voce-phrase strong.highlight {
-            color: #ff79c6; /* Cor de destaque para strong */
+            color: #ff79c6;
             display: inline-block;
         }
         #voce .voce-phrase .emoji {
@@ -230,7 +227,7 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 100%; /* Linha visível estaticamente */
+            width: 100%;
             height: 3px;
             background-color: #bd93f9;
         }
@@ -273,8 +270,8 @@
         }
         /* Section General Styling */
         section { padding: 5rem 0; }
-        section:nth-of-type(odd) { background-color: #1a1a2e; }
-        section:nth-of-type(even) { background-color: #2a2a4a; }
+        section:nth-of-type(odd) { background-color: #1A1A2E; } /* Dark blue-purple */
+        section:nth-of-type(even) { background-color: #2A2A40; } /* Slightly lighter dark blue-grey */
 
         section h2 { font-family: 'Inter', sans-serif; font-weight: 800; margin-bottom: 3rem; text-align: center; color: white;}
         section p { font-family: 'Inter', sans-serif; line-height: 1.6; text-align: center;}
@@ -286,7 +283,7 @@
 
         /* General Card Styles for various sections */
         .feature-card, .methodology-card, .habilidade-card, .curriculum-card { 
-            background-color: #2A2A4A; 
+            background-color: #2A2A4A; /* More consistent bg for cards */
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -325,30 +322,38 @@
         #curriculum .accordion-content ul { list-style-type: disc; margin-left: 1.5rem; }
         #curriculum .accordion-content h4 { color: #8be9fd; font-size: 1.25rem; margin-bottom: 0.5rem; }
 
-        /* Contact Form */
-        .contact-form-container {
-            background-color: #2a2a4a; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            max-width: 600px; margin: 0 auto;
-        }
-        .form-group-contact { /* Ensures each input/label pair is a block */
-            margin-bottom: 1.5rem; /* Space between form groups */
+        /* Contact Section Specifics */
+        #contact { background-color: #1A1A2E; } /* Ensure specific background */
+        .contact-content-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #2A2A4A; /* Background for entire contact box */
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            text-align: center;
+         }
+        .contact-option {
             display: flex;
-            flex-direction: column; /* Stacks label and input */
-            align-items: flex-start; /* Aligns label to the left */
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
         }
-        .contact-form-container input, .contact-form-container textarea {
-            background-color: #3e3e5c; border: 1px solid #4a4a6e; color: #e0e0e0; padding: 0.75rem; border-radius: 8px;
-            width: 100%; /* Make inputs full width of their container */
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        .contact-option i {
+            font-size: 2rem; /* Larger icon size */
+            color: #BD93F9; /* Purple for icons */
+            margin-right: 0.75rem;
         }
-        .contact-form-container input:focus, .contact-form-container textarea:focus { border-color: #bd93f9; outline: none; box-shadow: 0 0 0 2px rgba(189,147,249,0.3); }
-        .contact-form-container label { color: #bd93f9; font-weight: bold; margin-bottom: 0.5rem; }
-        .contact-form-container button {
-            background-color: #ff79c6; color: #1a1a2e; padding: 1rem 1.5rem; border-radius: 8px; font-weight: bold;
-            width: 100%; /* Full width button */
-            transition: background-color 0.3s ease, transform 0.2s ease;
+        .contact-option a {
+            font-size: 1.4rem; /* Larger text size */
+            color: #E0E0E0; /* Light text for readability */
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .contact-form-container button:hover { background-color: #bd93f9; transform: translateY(-3px); }
+        .contact-option a:hover {
+            color: #FF79C6; /* Pink hover */
+            text-decoration: underline;
+        }
 
         /* Footer */
         .footer { background-color: #12121e; padding: 2rem 1rem; border-top: 1px solid #2a2a4a; text-align: center; color: #c0c0c0; }
@@ -378,11 +383,9 @@
     <!-- Navbar -->
     <nav class="navbar">
         <a href="#hero" class="navbar-brand">RealTalk Daby</a>
-        <!-- Hidden checkbox for CSS-only mobile menu toggle -->
-        <input type="checkbox" id="mobile-menu-checkbox">
-        <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
-            <i class="fas fa-bars mobile-menu-icon" aria-label="Abrir menu"></i>
-        </label>
+        <button class="mobile-menu-toggle" id="mobile-menu-button" aria-label="Abrir menu">
+            <i class="fas fa-bars mobile-menu-icon"></i>
+        </button>
         <!-- Desktop Links -->
         <div class="navbar-links hidden md:flex">
             <a href="#hero" class="navbar-link">Início</a>
@@ -394,8 +397,8 @@
             <a href="#curriculum" class="navbar-link">Currículo</a>
             <a href="#contact" class="navbar-link">Contato</a>
         </div>
-        <!-- Mobile Menu Content (shown by checkbox state or JS fallback) -->
-        <div class="mobile-menu-content">
+        <!-- Mobile Menu Content (controlled by JS) -->
+        <div class="mobile-menu-content" id="mobile-menu-content">
             <a href="#hero" class="navbar-link">Início</a>
             <a href="#voce" class="navbar-link">Você</a>
             <a href="#challenge" class="navbar-link">Desafio</a>
@@ -563,47 +566,19 @@
         </div>
     </section>
 
-    <!-- Contact Section (Static HTML form with direct contact info) -->
+    <!-- Contact Section (SIMPLIFIED and STATIC) -->
     <section id="contact" class="contact-section">
         <h2 class="contact-title">Fale com a Daby!</h2>
-        <div class="contact-form-container">
-            <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST"> <!-- IMPORTANTE: Substitua YOUR_FORMSPREE_ENDPOINT pelo seu URL do Formspree -->
-                <div class="form-group-contact">
-                    <label for="name">Nome Completo:</label>
-                    <input type="text" id="name" name="Nome Completo" placeholder="Seu nome completo" required>
+        <div class="contact-content-container">
+            <p class="text-gray-300 mb-6 text-lg">Entre em contato diretamente para transformar seu inglês corporativo:</p>
+            <div class="flex flex-col items-center gap-6">
+                <div class="contact-option">
+                    <i class="fas fa-envelope mr-3"></i>
+                    <a href="mailto:vishuld@yahoo.it" class="hover:text-pink-400">vishuld@yahoo.it</a>
                 </div>
-
-                <div class="form-group-contact">
-                    <label for="profession">Profissional:</label>
-                    <input type="text" id="profession" name="Profissao" placeholder="Ex: Lawyer, Gerente de Marketing">
-                </div>
-
-                <div class="form-group-contact">
-                    <label for="email">Seu Melhor Email Profissional:</label>
-                    <input type="email" id="email" name="Email Profissional" value="vishuld@yahoo.it" placeholder="seunome@empresa.com" required>
-                </div>
-
-                <div class="form-group-contact">
-                    <label for="company">Empresa (Opcional):</label>
-                    <input type="text" id="company" name="Empresa" placeholder="Nome da sua empresa">
-                </div>
-
-                <div class="form-group-contact">
-                    <label for="message">Sua Mensagem / Desafio:</label>
-                    <textarea id="message" name="Mensagem / Desafio" rows="5" placeholder="Quais são seus desafios ou objetivos com o inglês?" required></textarea>
-                </div>
-
-                <button type="submit">Enviar Mensagem</button>
-            </form>
-            <div class="mt-8 text-center bg-gray-900 rounded-md p-4">
-                <p class="text-gray-300 mb-4">Ou fale diretamente conosco:</p>
-                <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-                    <a href="mailto:vishuld@yahoo.it" class="flex items-center text-lg text-purple-300 hover:underline hover:text-pink-400 transition-colors">
-                        <i class="fas fa-envelope mr-2"></i> vishuld@yahoo.it
-                    </a>
-                    <a href="https://wa.me/5511986108003" target="_blank" class="flex items-center text-lg text-purple-300 hover:underline hover:text-pink-400 transition-colors">
-                        <i class="fab fa-whatsapp mr-2"></i> +55 11 98610-8003
-                    </a>
+                <div class="contact-option">
+                    <i class="fab fa-whatsapp mr-3"></i>
+                    <a href="https://wa.me/5511986108003" target="_blank" class="hover:text-pink-400">+55 11 98610-8003</a>
                 </div>
             </div>
         </div>
@@ -618,24 +593,18 @@
     <!-- Script para o menu mobile (apenas toggle de classe) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const mobileMenuContent = document.querySelector('.mobile-menu-content');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuContent = document.getElementById('mobile-menu-content');
             const desktopNavbarLinks = document.querySelector('.navbar-links'); // Desktop links container
 
-            if (mobileMenuToggle && mobileMenuContent) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    // Toggle visibility of the mobile menu
+            if (mobileMenuButton && mobileMenuContent) {
+                mobileMenuButton.addEventListener('click', function() {
                     const isHidden = mobileMenuContent.style.display === 'none' || mobileMenuContent.style.display === '';
                     mobileMenuContent.style.display = isHidden ? 'flex' : 'none';
 
-                    // Adjust desktop links visibility based on mobile menu state
-                    if (window.innerWidth <= 768) { // Only hide desktop links on mobile
-                        if (isHidden) {
-                            if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'none';
-                        } else {
-                            // If menu is closing, and it's mobile, desktop links should remain hidden
-                            // No need to explicitly hide here as desktop links are hidden by default on mobile
-                        }
+                    // Hide desktop links on mobile when mobile menu is active
+                    if (window.innerWidth <= 768 && desktopNavbarLinks) {
+                        desktopNavbarLinks.style.display = 'none';
                     }
                 });
 
@@ -643,7 +612,7 @@
                 mobileMenuContent.querySelectorAll('.navbar-link').forEach(link => {
                     link.addEventListener('click', function() {
                         mobileMenuContent.style.display = 'none';
-                        // Re-evaluate desktop links visibility on mobile after click
+                        // Restore desktop links if resized to desktop after closing mobile menu
                         if (window.innerWidth > 768 && desktopNavbarLinks) {
                             desktopNavbarLinks.style.display = 'flex';
                         }
@@ -660,14 +629,29 @@
                 } else {
                     // On mobile, ensure desktop links are hidden
                     if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'none';
-                    // Mobile menu remains in its current state (open/closed by click)
-                    // If it was open, it should re-open when resizing back to mobile
-                    // If mobileMenuContent.style.display was 'flex', keep it 'flex'
                 }
             });
 
             // Initial check on page load to set correct menu state
             window.dispatchEvent(new Event('resize'));
+        });
+
+        // Simple smooth scroll after window.dispatchEvent(new Event('resize'))
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+
+                if (targetElement) {
+                    const offset = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+                    window.scrollTo({
+                        top: offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
