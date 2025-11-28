@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RealTalk Daby (Corporate Edition)</title>
-    <!-- Tailwind CSS CDN (para classes utilitárias) -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom Fonts: Inter (main), Patrick Hand (for handwriting style) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-    <!-- FontAwesome para ícones (carregados estaticamente) -->
+    <!-- FontAwesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <style>
         /* Base Styling & Font */
         body { font-family: 'Inter', sans-serif; background-color: #1A1A2E; color: #E0E0E0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Estilos base dos gradientes, sem animações JS */
+        /* Background Animation for body */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         .main-gradient-bg {
             background: linear-gradient(-45deg, #2a2a4a, #3e3e5c, #5c3e5c, #4a2a4a);
             background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
         }
 
         /* Introduction Header Styles */
@@ -93,7 +99,7 @@
             background-color: #BD93F9;
             color: #1A1A2E;
             padding: 0.8rem 2.5rem;
-            border-radius: 9999px;
+            border-radius: 9999px; /* rounded-full */
             font-size: 1.25rem;
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -161,6 +167,45 @@
             background-color: #bd93f9;
         }
 
+        /* Glitch Effect (Footer) */
+        .glitch-text {
+            font-size: 1.5rem;
+            position: relative;
+            color: #e5e5e5;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1; /* Magenta shift */
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-before 1.5s infinite alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff; /* Cyan shift */
+            clip: rect(65px, 450px, 75px, 0);
+            animation: glitch-after 1.8s infinite alternate;
+        }
+        @keyframes glitch-before {
+            0% { clip: rect(27px, 9999px, 53px, 0); transform: translate(-3px, -3px); }
+            50% { clip: rect(10px, 9999px, 40px, 0); transform: translate(3px, 3px); }
+            100% { clip: rect(50px, 9999px, 10px, 0); transform: translate(0); }
+        }
+        @keyframes glitch-after {
+            0% { clip: rect(80px, 9999px, 20px, 0); transform: translate(3px, 3px); }
+            50% { clip: rect(30px, 9999px, 70px, 0); transform: translate(-3px, -3px); }
+            100% { clip: rect(50px, 9999px, 10px, 0); transform: translate(0); }
+        }
+
+
         /* Section General Styling */
         section { padding: 5rem 0; } /* Consistent section padding */
         section:nth-of-type(odd) { background-color: #1a1a2e; } /* Alternate dark background */
@@ -198,13 +243,14 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start; /* Aligns content to top */
+            text-align: left; /* Ensure text alignment for lists */
         }
         .feature-card:hover, .methodology-card:hover, .habilidade-card:hover, .curriculum-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
-        .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { color: #FF79C6; font-size: 1.8rem; margin-bottom: 1rem; }
-        .feature-card p, .methodology-card p, .habilidade-card p, .curriculum-card p { color: #C0C0C0; font-size: 1rem; }
+        .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { color: #FF79C6; font-size: 1.8rem; margin-bottom: 1rem; text-align: left;}
+        .feature-card p, .methodology-card p, .habilidade-card p, .curriculum-card p { color: #C0C0C0; font-size: 1rem; text-align: left;}
         .habilidade-card ul { list-style: none; padding-left: 0; margin-top: 1rem; }
         .habilidade-card ul li { font-size: 1.1rem; line-height: 1.8; color: #C0C0C0; margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; text-align: left;}
         .habilidade-card ul li:before { content: '•'; color: #FFD700; font-size: 1.25rem; position: absolute; left: 0; top: -2px; }
@@ -218,14 +264,13 @@
         }
         .accordion-header:hover { background-color: #4a4a6e; }
         .accordion-header i { transition: transform 0.3s ease; }
-        .accordion-header.active i { transform: rotate(180deg); }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; }
-        .accordion-content.active {
-            max-height: 500px; 
+        #curriculum .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; }
+        #curriculum .accordion-content.active {
+            max-height: 500px; /* Adjust max-height as needed */
             padding: 1.5rem; background-color: #2a2a4a; border-radius: 0 0 8px 8px;
         } 
-        .accordion-content ul { list-style-type: disc; margin-left: 1.5rem; }
-        .accordion-content h4 { color: #8be9fd; font-size: 1.25rem; margin-bottom: 0.5rem; }
+        #curriculum .accordion-content ul { list-style-type: disc; margin-left: 1.5rem; }
+        #curriculum .accordion-content h4 { color: #8be9fd; font-size: 1.25rem; margin-bottom: 0.5rem; }
 
         /* Contact Form */
         .contact-form {
@@ -259,6 +304,7 @@
             .hero-description { font-size: 1.1rem; }
             #voce h2, .challenge-title, .methodology-title, .features-title, .habilidades-title, .curriculum-title, .contact-title { font-size: 2.2rem; }
             .handwriting-text { font-size: 1.5rem; }
+            .voce-phrase:first-child { font-size: 1.8rem; } /* Smaller for mobile */
             .challenge-subtitle { font-size: 1.8rem; }
             .challenge-ia-text { font-size: 1.1rem; }
             .methodology-description, .methodology-point-description, .feature-card p, .habilidade-card ul li, .curriculum-card ul li { font-size: 1rem; }
@@ -266,7 +312,7 @@
             .methodology-subtitle { font-size: 1.5rem; }
 
             /* Mobile menu */
-            .navbar-links {
+            #navbar-links {
                 display: none; /* Hidden by default */
                 flex-direction: column;
                 background-color: rgba(26, 26, 46, 0.95);
@@ -277,10 +323,10 @@
                 padding: 1rem 0;
                 box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             }
-            .navbar-links.active {
+            #navbar-links.active {
                 display: flex;
             }
-            .navbar-links a {
+            #navbar-links a {
                 padding: 0.75rem 1.5rem;
                 text-align: center;
             }
@@ -294,7 +340,7 @@
         <a href="#hero" class="text-white text-2xl font-bold">RealTalk Daby</a>
         <div class="md:hidden">
             <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
-                <i class="fas fa-bars text-lg"></i> <!-- Ícone de menu hambúrguer -->
+                <i class="fas fa-bars text-lg"></i>
             </button>
         </div>
         <div id="navbar-links" class="hidden md:flex space-x-6">
@@ -325,7 +371,7 @@
         </div>
     </section>
 
-    <!-- 'Você' Section (Previously animated, now static and visible) -->
+    <!-- 'Você' Section (Static content, as requested) -->
     <section id="voce" class="voce-section">
         <h2 class="voce-title">Você sabe que...</h2>
         <div id="voce-content" class="handwriting-text">
@@ -358,25 +404,25 @@
     <section id="methodology" class="methodology-section">
         <h2 class="methodology-title">🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea.</h2>
             <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <!-- Box 1: Simulador de Cenários Dinâmicos e Reais -->
+                <!-- Box 1: Meu compromisso: Capacidades dos Produtos -->
+                <div class="methodology-card">
+                    <h3>Meu compromisso: Capacidades dos Produtos</h3>
+                    <p>Descubra como cada funcionalidade dos nossos produtos foi desenhada para aprimorar o seu desempenho.</p>
+                </div>
+                <!-- Box 2: Simulador de Cenários Dinâmicos e Reais -->
                 <div class="methodology-card">
                     <h3>Simulador de Cenários Dinâmicos e Reais</h3>
-                    <p>O profissional é qualificado para seu cargo, mas o inglês não acompanha – isso abala... vamos resolver!</p>
+                    <p>O profissional é qualificado para seu cargo mas o inglês não acompanha - isso abala... vamos resolver!</p>
                 </div>
-                <!-- Box 2: Análise Preditiva de Gaps -->
+                <!-- Box 3: Análise Preditiva de Gaps -->
                 <div class="methodology-card">
                     <h3>Análise Preditiva de Gaps</h3>
                     <p>Mede a <strong class="highlight-bold">velocidade de processamento</strong>, não a memorização. Identifica *exatamente* onde o profissional trava (vocabulário, estrutura, confiança).</p>
                 </div>
-                <!-- Box 3: Modo Simulador de Voo -->
+                <!-- Box 4: Modo Simulador de Voo (com texto completo) -->
                 <div class="methodology-card">
                     <h3>Modo Simulador de Voo</h3>
-                    <p>Treinamento em <strong class="highlight-bold">stress elevado</strong> (negociações críticas, gestão de crise) para que o inglês seja automático em situações de alta pressão.</p>
-                </div>
-                <!-- Box 4: Meu compromisso: Capacidades dos Produtos (se houver uma descrição para este item, adicione aqui) -->
-                <div class="methodology-card">
-                    <h3>Meu compromisso: Capacidades dos Produtos</h3>
-                    <p>Descubra como cada funcionalidade dos nossos produtos foi desenhada para aprimorar o seu desempenho.</p>
+                    <p>Treinamento em <strong class="highlight-bold">stress elevado</strong> (negociações críticas, gestão de crise) para que o inglês seja automático em situações de alta pressão e decisões estratégicas.</p>
                 </div>
             </div>
     </section>
@@ -442,7 +488,7 @@
         </div>
     </section>
 
-    <!-- Curriculum Section (Remaining the same) -->
+    <!-- Curriculum Section -->
     <section id="curriculum" class="curriculum-section">
         <h2 class="curriculum-title">📈 Seu Caminho Pessoal RealTalk Daby</h2>
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
@@ -465,7 +511,7 @@
         </div>
     </section>
 
-    <!-- Contact Section (PHP removed for index.php stability, now simple HTML form) -->
+    <!-- Contact Section (Static HTML form) -->
     <section id="contact" class="contact-section">
         <h2 class="contact-title">Fale com a Daby!</h2>
         <div class="contact-form-container">
