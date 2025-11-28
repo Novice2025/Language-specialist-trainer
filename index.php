@@ -9,12 +9,14 @@
     <!-- Custom Fonts: Inter (main), Patrick Hand (for handwriting style) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <style>
         /* Base Styling & Font */
         body { font-family: 'Inter', sans-serif; background-color: #1A1A2E; color: #E0E0E0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* General Classes for animations */
+        /* General Classes for animations (kept for other sections) */
         .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .loaded { opacity: 1; transform: translateY(0); }
         .animate-on-load { opacity: 0; transform: translateY(50px); transition: opacity 1.2s ease-out, transform 1.2s ease-out; }
@@ -22,7 +24,7 @@
         .animate-on-scroll { opacity: 0; transform: translateY(50px); transition: opacity 1.2s ease-out, transform 1.2s ease-out; }
         .animate-on-scroll.loaded { opacity: 1; transform: translateY(0); }
 
-        /* Background Animation */
+        /* Background Animation for body */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -34,30 +36,30 @@
             animation: gradientShift 20s ease infinite;
         }
 
-        /* NEW: Styles for the Introduction Header */
+        /* Introduction Header Styles */
         .introduction-header {
-            padding: 5rem 1.5rem 3rem; /* Ajuste o padding conforme necessário */
+            padding: 5rem 1.5rem 3rem;
             text-align: center;
-            background: linear-gradient(-45deg, #3e3e5c, #2a2a4a); /* Fundo sutil */
+            background: linear-gradient(-45deg, #3e3e5c, #2a2a4a);
             color: #E0E0E0;
-            margin-top: 4rem; /* Forçar abaixo da navbar fixa */
+            margin-top: 4rem; /* Below fixed navbar */
             z-index: 5;
             position: relative;
         }
         .introduction-header h1 {
             font-family: 'Inter', sans-serif;
-            font-size: 3rem; /* Tamanho grande para o título principal */
+            font-size: 3rem;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 0.5rem;
-            color: #FFC0CB; /* Cor de destaque clara */
-            text-shadow: 0 0 10px rgba(255,192,203,0.5); /* Sombra para impacto */
+            color: #FFC0CB; /* Pink */
+            text-shadow: 0 0 10px rgba(255,192,203,0.5);
         }
         .introduction-header h2 {
             font-family: 'Inter', sans-serif;
-            font-size: 1.8rem; /* Tamanho para o subtítulo */
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #BD93F9; /* Outra cor de destaque */
+            color: #BD93F9; /* Purple */
             margin-bottom: 0;
             padding-bottom: 0;
         }
@@ -69,7 +71,7 @@
 
         /* Hero Section Specific Styles */
         #hero {
-            background-image: linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.8)), url('[[google images search term: professional global business meeting blurred background dark]]');
+            background-image: linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.8)), url('https://images.unsplash.com/photo-1510519138122-ec90209e742c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Imagem de fundo padrão */
             background-size: cover;
             background-position: center;
             min-height: calc(100vh - 4rem); /* Full height minus navbar */
@@ -93,7 +95,7 @@
         }
         #hero .hero-subtitle {
             font-size: 2.5rem; /* Adjusted for hierarchy */
-            color: #8BE9FD;
+            color: #8BE9FD; /* Cyan */
             font-style: italic;
             margin-bottom: 1.5rem;
         }
@@ -124,112 +126,77 @@
             #hero .hero-button { padding: 1rem 3rem; font-size: 1.5rem; }
         }
 
-        /* Handwriting Section (VOCE) */
-        .handwriting-container {
-            font-family: 'Patrick Hand', cursive; 
+        /* NEW: Section for VOCÊ - STATIC phrases now */
+        #voce {
+            padding: 5rem 1.5rem;
+            background-color: #1a1a2e; /* Primary dark color */
+            text-align: center;
+            font-family: 'Patrick Hand', cursive; /* Mantém a fonte manuscrita */
             font-size: 1.8rem; /* Ajustado para melhor leitura */
             line-height: 1.6;
-            text-align: left; 
-            color: #d0d0d0; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 0 1.5rem; 
-            min-height: 18rem; /* Dar espaço para as frases */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            color: #d0d0d0;
         }
-        .handwriting-sentence {
-            opacity: 0; 
-            transform: translateY(20px); 
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
-            display: inline; /* Para frases em linha */
-            margin: 0; 
-            padding-left: 0.5em; 
-            position: relative; 
-            white-space: normal; /* Permite quebras de linha para frases longas */
+        #voce h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.8rem; /* Título da seção */
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #FFF;
         }
-        .handwriting-sentence.loaded { opacity: 1; transform: translateY(0); }
-        .handwriting-sentence::before { content: '•'; color: #bd93f9; font-size: 1.3em; position: relative; margin-right: 0.2em; vertical-align: middle; }
-        /* First sentence is a block */
-        #handwriting-message-container .handwriting-sentence:first-child {
-            display: block; padding-left: 1.5em; margin-bottom: 0.8em; white-space: normal; 
-            font-size: 2.2rem; /* Mantém um pouco maior */
+        #voce .voce-phrase {
+            display: block; /* Cada frase em uma nova linha */
+            margin-bottom: 0.8em; /* Espaçamento entre as frases */
+        }
+        #voce .voce-phrase:first-child {
+            font-size: 2.2rem; /* Primeira frase ligeiramente maior */
+            font-weight: bold;
             line-height: 1.4;
+            margin-bottom: 1.2em; /* Mais espaço para a primeira frase */
         }
-        #handwriting-message-container .handwriting-sentence:first-child::before { position: absolute; left: 0; top: 0.2em; margin-right: 0; }
-        .handwriting-sentence strong { color: #ff79c6; font-weight: 700; }
-
-        /* Keyphrase Effect */
-        .keyphrase-effect {
+        #voce .voce-phrase strong {
+            color: #ff79c6; /* Cor de destaque para strong */
+        }
+        #voce .voce-phrase .highlight {
             animation: pulse-shadow 1.5s infinite alternate ease-in-out;
-            display: inline-block; 
-        }
-        @keyframes pulse-shadow {
-            0% { text-shadow: 0 0 5px rgba(255, 121, 198, 0.4), 0 0 10px rgba(189, 147, 249, 0.3); }
-            50% { text-shadow: 0 0 10px rgba(255, 121, 198, 0.8), 0 0 20px rgba(189, 147, 249, 0.6); }
-            100% { text-shadow: 0 0 5px rgba(255, 121, 198, 0.4), 0 0 10px rgba(189, 147, 249, 0.3); }
-        }
-
-        /* Emoji Pulse Effect */
-        .emoji-pulse {
-            animation: emoji-pop 1s ease-out forwards; 
             display: inline-block;
-            vertical-align: middle; 
-            margin: 0 5px; /* Adiciona espaçamento ao redor dos emojis */
+            color: #ff79c6; /* Cor do highlight para consistência */
+            text-shadow: 0 0 5px rgba(255, 121, 198, 0.4);
         }
-        @keyframes emoji-pop {
-            0% { transform: scale(0.5); opacity: 0; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-
-        /* Typewriter Effect */
-        .typewriter-placeholder {
+        #voce .voce-phrase .emoji {
+            animation: emoji-pop 1s ease-out forwards;
             display: inline-block;
-            white-space: nowrap; 
-            border-right: 2px solid rgba(255, 255, 255, 0.75); 
-            animation: blink-caret 0.75s step-end infinite;
-            overflow: hidden; 
-            min-width: 5px; /* Garante que o placeholder do cursor seja visível mesmo sem texto */
+            vertical-align: middle;
+            margin: 0 5px;
         }
-        .typewriter-placeholder:not(.typing-active) {
-            border-right: none;
-            animation: none;
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: rgba(255, 255, 255, 0.75); }
-        }
-
-        /* Clean Line Text Effect */
-        .clean-line-text {
+        #voce .voce-phrase .underline-effect {
             position: relative;
             display: inline-block;
-            padding-bottom: 5px; /* Espaço para a linha */
+            padding-bottom: 5px;
         }
-        .clean-line-text::after {
+        #voce .voce-phrase .underline-effect::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 0; 
-            height: 3px; 
-            background-color: #bd93f9; 
-            transition: width 0.5s ease-out; 
+            width: 100%; /* Linha visível estaticamente */
+            height: 3px;
+            background-color: #bd93f9;
         }
-        .clean-line-text.active::after {
-            width: 100%; 
+        /* No bullet points for static phrases in VOCE */
+        #voce .voce-phrase::before {
+            content: none;
         }
+
 
         /* Section General Styling */
-        section { padding: 5rem 0; background-color: #1a1a2e; } /* Default section background */
-        section:nth-of-type(even) { background-color: #2a2a4a; } /* Alternate background for sections */
-        section h2 { font-family: 'Inter', sans-serif; font-weight: 800; margin-bottom: 3rem; }
-        section p { font-family: 'Inter', sans-serif; line-height: 1.6; }
+        section { padding: 5rem 0; } /* Consistent section padding */
+        section:nth-of-type(odd) { background-color: #1a1a2e; } /* Alternate dark background */
+        section:nth-of-type(even) { background-color: #2a2a4a; } /* Alternate slightly lighter dark background */
 
-        /* Specific Section Styles */
-        #voce { background-color: #1a1a2e; } /* Ensures specific background */
+        section h2 { font-family: 'Inter', sans-serif; font-weight: 800; margin-bottom: 3rem; text-align: center; }
+        section p { font-family: 'Inter', sans-serif; line-height: 1.6; text-align: center;}
+
+        /* Specific Section Overrides */
         #challenge { background-color: #2a2a4a; }
         #methodology { background-color: #1a1a2e; }
         #features { background-color: #2a2a4a; }
@@ -239,17 +206,17 @@
 
         /* Navbar Specific */
         nav { background-color: rgba(26, 26, 46, 0.9); backdrop-filter: blur(8px); }
-        nav a:hover, nav button:hover { color: #FF79C6; } /* Pink hover for nav links */
+        nav a:hover, nav button:hover { color: #FF79C6; }
         #mobile-menu a { color: #E0E0E0; }
 
         /* Methodology section adjustments for spacing */
-        #methodology h2.section-methodology-title { margin-bottom: 0.5rem; line-height: 1.2; }
-        #methodology p { margin-top: 0.5rem; margin-bottom: 2rem; font-size: 1.1rem; }
+        #methodology .section-methodology-title { margin-bottom: 1.5rem; line-height: 1.2; }
+        #methodology p { margin-top: 0.5rem; margin-bottom: 2.5rem; font-size: 1.1rem; }
         #methodology .block { margin-bottom: 2rem; }
 
         /* General Card Styles */
         .feature-card, .ai-card, .block {
-            background-color: #2A2A4A; /* Consistent dark background for cards */
+            background-color: #2A2A4A; 
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -263,15 +230,20 @@
         .feature-card p, .ai-card p, .block p { color: #C0C0C0; font-size: 1rem; }
 
         /* Accordion Styling */
+        .accordion-item {margin-bottom: 1rem;}
         .accordion-header {
             background-color: #3e3e5c; color: #ff79c6; border-radius: 8px; padding: 1rem 1.5rem; cursor: pointer;
             transition: background-color 0.3s ease;
+            display: flex; justify-content: space-between; align-items: center;
         }
         .accordion-header:hover { background-color: #4a4a6e; }
         .accordion-header i { transition: transform 0.3s ease; }
         .accordion-header.active i { transform: rotate(180deg); }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; }
-        .accordion-content.active { max-height: 500px; padding: 1.5rem; background-color: #2a2a4a; border-radius: 0 0 8px 8px;} /* Adjust max-height as needed */
+        .accordion-content.active {
+            max-height: 500px; /* Adjust max-height as needed */
+            padding: 1.5rem; background-color: #2a2a4a; border-radius: 0 0 8px 8px;
+        } 
         .accordion-content ul { list-style-type: disc; margin-left: 1.5rem; }
         .accordion-content h4 { color: #8be9fd; font-size: 1.25rem; margin-bottom: 0.5rem; }
 
@@ -335,43 +307,43 @@
     </nav>
 
     <!-- NEW: Introduction Header Section -->
-    <div class="introduction-header animate-on-load">
+    <div class="introduction-header animate-on-load loaded">
         <h1>ACELERE A PERFORMANCE GLOBAL BY DABY</h1>
         <h2>Fluência como Reflexo, não como Barreira.</h2>
     </div>
 
     <!-- Hero Section -->
-    <section id="hero" class="animate-on-load">
+    <section id="hero" class="animate-on-load loaded">
         <div class="container mx-auto px-6 pt-16 pb-12 max-w-4xl">
-            <h1 class="hero-title animate-on-load" data-delay="0.1">RealTalk Daby</h1>
-            <p class="hero-subtitle animate-on-load" data-delay="0.3">Comunicação que Decola.</p>
-            <p class="text-lg md:text-xl text-gray-300 mb-10 mx-auto max-w-xl animate-on-load" data-delay="0.5">Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.</p>
-            <a href="#voce" class="hero-button animate-on-load" data-delay="0.7">
+            <h1 class="hero-title animate-on-load loaded" data-delay="0.1">RealTalk Daby</h1>
+            <p class="hero-subtitle animate-on-load loaded" data-delay="0.3">Comunicação que Decola.</p>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 mx-auto max-w-xl animate-on-load loaded" data-delay="0.5">Transforme seu Inglês Corporativo em seu maior ativo. Sem esforço. Com impacto.</p>
+            <a href="#voce" class="hero-button animate-on-load loaded" data-delay="0.7">
                 Comece Sua Transformação Agora!
             </a>
         </div>
     </section>
 
-    <!-- NEW: VOCÊ Section - Animated Handwriting -->
+    <!-- NEW: VOCÊ Section - STATIC phrases now -->
     <section id="voce" class="animate-on-scroll">
         <div class="container mx-auto px-6 max-w-5xl text-center">
             <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-5">
                 Conheça a Sua Jornada com o RealTalk Daby
             </h2>
-            <div id="handwriting-message-container" class="handwriting-container opacity-0 transition-opacity duration-1000">
-                <!-- Frases pré-estruturadas para animação -->
-                <span class="handwriting-sentence">
-                    Você é um profissional <strong class="keyphrase-effect">fera e de alta performance</strong>, mas o inglês ainda é o <strong class="keyphrase-effect">[ÓBICE INVISÍVEL]/[CALCANHAR DE AQUILES]</strong> <span class="emoji-pulse">😩</span> que 'trava' seu avanço global? <span class="emoji-pulse">😔</span>
-                </span>
-                <span class="handwriting-sentence">
-                    O RealTalk Daby te dá a chance de <span class="typewriter-placeholder" data-original-text="DECIFRAR"></span> e <span class="typewriter-placeholder" data-original-text="TRANSFORMAR"></span> esse cenário imediatamente.
-                </span>
-                <span class="handwriting-sentence">
-                    Sua mente se adapta. Seu conhecimento se <strong class="keyphrase-effect">MATERIALIZA</strong> em <strong class="keyphrase-effect">REFLEXO COMUNICATIVO INSTANTÂNEO</strong>. <span class="emoji-pulse">🛑</span>
-                </span>
-                <span class="handwriting-sentence">
-                    O resultado? Sua voz no <span class="clean-line-text">automático, com impacto e sem ruídos</span>. <span class="emoji-pulse">✨</span>
-                </span>
+            <div id="handwriting-message-container" class="handwriting-container text-white">
+                <!-- Frases STATICAS, sem as animações de "escrita à mão" que estavam quebrando -->
+                <p class="voce-phrase animate-on-scroll fade-in-up" data-delay="0.1" style="font-size: 2.2rem; line-height: 1.4; font-weight: bold;">
+                    Você é um profissional <strong class="highlight">fera e de alta performance</strong>, mas o inglês ainda é o <strong class="highlight">[ÓBICE INVISÍVEL]/[CALCANHAR DE AQUILES]</strong> <span class="emoji">😩</span> que 'trava' seu avanço global? <span class="emoji">😔</span>
+                </p>
+                <p class="voce-phrase animate-on-scroll fade-in-up" data-delay="0.3">
+                    O RealTalk Daby te dá a chance de <strong class="highlight">DECIFRAR</strong> e <strong class="highlight">TRANSFORMAR</strong> esse cenário imediatamente.
+                </p>
+                <p class="voce-phrase animate-on-scroll fade-in-up" data-delay="0.5">
+                    Sua mente se adapta. Seu conhecimento se <strong class="highlight">MATERIALIZA</strong> em <strong class="highlight">REFLEXO COMUNICATIVO INSTANTÂNEO</strong>. <span class="emoji">🛑</span>
+                </p>
+                <p class="voce-phrase animate-on-scroll fade-in-up" data-delay="0.7">
+                    O resultado? Sua voz no <span class="underline-effect">automático, com impacto e sem ruídos</span>. <span class="emoji">✨</span>
+                </p>
             </div>
         </div>
     </section>
@@ -404,17 +376,17 @@
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="block animate-on-scroll fade-in-up" data-delay="0.1">
-                    <img src="[[google images search for 'brain connection icon' dark mode]]" alt="Brain Icon" class="h-16 mx-auto mb-6">
+                    <img src="https://images.unsplash.com/photo-1549490349-f00e57f1f9e2?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mindset icon" class="h-16 mx-auto mb-6">
                     <h3 class="text-2xl font-bold text-purple-400 mb-3">#01 | O Mindset "Off-Translation"</h3>
                     <p class="text-gray-300">Liberte-se do vício da tradução. Pense e reaja diretamente em inglês, acelerando sua fluidez e confiança.</p>
                 </div>
                 <div class="block animate-on-scroll fade-in-up" data-delay="0.3">
-                    <img src="[[google images search for 'lego chain icon' dark mode]]" alt="Lego Icon" class="h-16 mx-auto mb-6">
+                    <img src="https://images.unsplash.com/photo-1579783902671-cc72da5e0242?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lego icon" class="h-16 mx-auto mb-6">
                     <h3 class="text-2xl font-bold text-pink-400 mb-3">#02 | Lego Chain Block</h3>
                     <p class="text-gray-300">Construa seu inglês com blocos de comunicação. Combine chunks, vocabulário e lógica para frases complexas.</p>
                 </div>
                 <div class="block animate-on-scroll fade-in-up" data-delay="0.5">
-                    <img src="[[google images search for 'rocket launch icon' dark mode]]" alt="Rocket Icon" class="h-16 mx-auto mb-6">
+                    <img src="https://images.unsplash.com/photo-1517245388-b4b74e1d3e8e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Performance icon" class="h-16 mx-auto mb-6">
                     <h3 class="text-2xl font-bold text-blue-400 mb-3">#03 | Performance em Tempo Real</h3>
                     <p class="text-gray-300">Treine com cenários reais, simulando reuniões, apresentações e negociações para resultados imediatos.</p>
                 </div>
@@ -430,14 +402,17 @@
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
                 <div class="block feature-card animate-on-scroll fade-in-up" data-delay="0.1">
+                    <i class="fas fa-school text-5xl text-purple-400 mb-4"></i>
                     <h3 class="text-3xl font-bold text-purple-400 mb-4">Bootcamps Intensivos</h3>
                     <p class="text-gray-300">Imersões focadas para desenvolver habilidades específicas e de alto impacto para sua carreira.</p>
                 </div>
                 <div class="block feature-card animate-on-scroll fade-in-up" data-delay="0.3">
+                    <i class="fas fa-bezier-curve text-5xl text-pink-400 mb-4"></i>
                     <h3 class="text-3xl font-bold text-pink-400 mb-4">Módulos Personalizados</h3>
                     <p class="text-gray-300">Currículo adaptado ao seu nível, setor e objetivos profissionais mais urgentes.</p>
                 </div>
                 <div class="block feature-card animate-on-scroll fade-in-up" data-delay="0.5">
+                    <i class="fas fa-brain text-5xl text-teal-400 mb-4"></i>
                     <h3 class="text-3xl font-bold text-teal-400 mb-4">Preparação psicológica</h3>
                     <p class="text-gray-300">Técnicas para aprender e alavancar seu inglês.</p>
                 </div>
@@ -504,7 +479,7 @@
     </section>
 
     <!-- AI Power Section (Adapted to Methodology) -->
-    <section id="ai-power" class="py-20 animate-on-scroll">
+    <section id="ai-power" class="animate-on-scroll">
         <div class="container mx-auto px-6 max-w-5xl">
             <h2 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-8">
                 A <span class="rainbow-text">INTELIGÊNCIA ARTIFICIAL</span> Integrada à Sua Metodologia
@@ -539,11 +514,11 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 animate-on-scroll">
+    <section id="contact" class="animate-on-scroll">
         <div class="container mx-auto px-6 max-w-3xl">
             <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 text-center">Fale Conosco</h2>
             <p class="text-xl text-gray-300 mb-12 text-center">Quer saber como o RealTalk Daby pode transformar sua carreira ou sua equipe? Entre em contato agora!</p>
-            <div class="contact-form bg-gray-800 p-8 rounded-lg shadow-xl">
+            <form action="#" method="POST" class="contact-form bg-gray-800 p-8 rounded-lg shadow-xl">
                 <div class="input-group mb-6">
                     <label for="name" class="block text-gray-300 text-lg font-semibold mb-2">Nome Completo</label>
                     <input type="text" id="name" placeholder="Seu nome" class="w-full p-3 rounded-md bg-gray-700 border-gray-600 focus:ring-purple-500 focus:border-purple-500 text-gray-100">
@@ -559,7 +534,7 @@
                 <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-md text-lg shadow-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 ease-in-out">
                     Enviar Mensagem
                 </button>
-            </div>
+            </form>
         </div>
     </section>
 
@@ -568,9 +543,6 @@
         <p class="glitch-text text-xl" data-text="Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.">Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.</p>
         <p class="mt-4 text-md text-gray-400">&copy; 2025 RealTalk Daby. Todos os direitos reservados.</p>
     </footer>
-
-    <!-- FontAwesome for Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <!-- JavaScript for Dynamic Animations and Smooth Scrolling -->
     <script>
@@ -598,6 +570,14 @@
                     mobileMenu.classList.toggle('hidden');
                 });
             }
+
+            // Animate on load (hero section elements and introduction header)
+            document.querySelectorAll('.animate-on-load').forEach(el => {
+                const delay = el.dataset.delay ? parseFloat(el.dataset.delay) * 1000 : 0;
+                setTimeout(() => {
+                    el.classList.add('loaded');
+                }, delay);
+            });
 
             // Animate on scroll logic (generic fade-in-up)
             const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
@@ -633,7 +613,7 @@
                     accordionItems.forEach(otherItem => {
                         if (otherItem !== item) {
                             otherItem.querySelector('.accordion-content').classList.remove('active');
-                            otherItem.querySelector('i').classList.remove('rotate-180');
+                            otherItem.querySelector('.accordion-header i').classList.remove('rotate-180');
                         }
                     });
 
@@ -642,76 +622,8 @@
                     icon.classList.toggle('rotate-180');
                 });
             });
-
-
-            // --- Logic for Animated Handwriting Sentences (VOCÊ Section) ---
-            const handwritingSentencesContainer = document.getElementById('handwriting-message-container');
-            const handwritingSentences = document.querySelectorAll('#voce .handwriting-sentence');
-            let sentenceIndex = 0;
-
-            function revealNextHandwritingSentence() {
-                if (sentenceIndex < handwritingSentences.length) {
-                    const currentSentenceElement = handwritingSentences[sentenceIndex];
-                    currentSentenceElement.classList.add('loaded'); // Reveals the sentence with fade-in and slide-up
-
-                    // Activates Typewriter for specific elements within the sentence
-                    const typewriterPlaceholders = currentSentenceElement.querySelectorAll('.typewriter-placeholder');
-                    typewriterPlaceholders.forEach(placeholder => {
-                        const originalText = placeholder.dataset.originalText;
-                        let charIndex = 0;
-                        placeholder.textContent = ''; // Clears text for typewriter effect
-                        const typingSpeed = 70; // Typing speed (ms per char)
-                        placeholder.classList.add('typing-active'); // Add class for caret animation
-
-                        function type() {
-                            if (charIndex < originalText.length) {
-                                placeholder.textContent += originalText.charAt(charIndex);
-                                charIndex++;
-                                setTimeout(type, typingSpeed);
-                            } else {
-                                placeholder.classList.remove('typing-active'); // Remove caret when done
-                            }
-                        }
-                        type(); // Starts typing
-                    });
-
-                    // Activates line effects for clean-line-text
-                    const cleanLineTexts = currentSentenceElement.querySelectorAll('.clean-line-text');
-                    cleanLineTexts.forEach(el => {
-                        void el.offsetWidth; // Trigger reflow for animation reset
-                        el.classList.add('active'); // Activates the draw-line animation (CSS Transition)
-                    });
-
-                    // Activates emoji-pulse for emojis within the sentence (if any)
-                    const emojis = currentSentenceElement.querySelectorAll('.emoji-pulse');
-                    emojis.forEach(emoji => {
-                        void emoji.offsetWidth; // Trigger reflow for animation reset
-                        emoji.style.animation = 'emoji-pop 1s ease-out forwards'; // Activates pop animation
-                    });
-
-                    sentenceIndex++;
-                    setTimeout(revealNextHandwritingSentence, 1500); // 1.5 second delay between sentences
-                }
-            }
-
-            // Initiates sentence animation when 'voce' section is visible
-            const voceSection = document.getElementById('voce');
-            if (voceSection) {
-                 const voceObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !voceSection.dataset.animated) {
-                            setTimeout(() => {
-                                // handwritingSentencesContainer.classList.add('opacity-100'); // Reveals the main container (already handled by animate-on-scroll on .handwriting-container itself)
-                                revealNextHandwritingSentence(); // Starts sentence animation
-                            }, 500); // Small delay before animation starts
-                            voceSection.dataset.animated = 'true'; // Marks as animated
-                            voceObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.3 }); // Triggers when 30% of 'voce' section is visible
-                voceObserver.observe(voceSection);
-            }
         });
     </script>
 </body>
 </html>
+
