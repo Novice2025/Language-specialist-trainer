@@ -371,13 +371,6 @@
             .methodology-description, .methodology-card p, .feature-card p, .habilidade-card ul li, .curriculum-card ul li { font-size: 1rem; }
             .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { font-size: 1.4rem; }
         }
-        /* Mobile menu specific styles applied by the checkbox hack */
-        .navbar .navbar-links.md\:flex { /* Oculta a navegação no desktop se ela já estiver configurada para flex */
-            display: none;
-        }
-        .mobile-menu-toggle { /* Mostra o botão de toggle em telas pequenas */
-           display: block;
-        }
     </style>
 </head>
 <body class="main-gradient-bg">
@@ -493,7 +486,7 @@
             <div class="feature-card">
                 <i class="fas fa-brain feature-icon"></i>
                 <h3>Preparação psicológica</h3>
-                <p>tá aqui</p>
+                <p>técnicas para aprender e alavancar seu inglês</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-comments feature-icon"></i>
@@ -603,9 +596,15 @@
                 <button type="submit">Enviar Mensagem</button>
             </form>
             <div class="mt-8 text-center bg-gray-900 rounded-md p-4">
-                <p class="text-gray-300 mb-2">Ou fale diretamente conosco:</p>
-                <p class="mt-2 text-lg text-purple-300">Email: <a href="mailto:vishuld@yahoo.it" class="hover:underline">vishuld@yahoo.it</a></p>
-                <p class="text-lg text-purple-300">WhatsApp: <a href="https://wa.me/5511986108003" target="_blank" class="hover:underline">+55 11 98610-8003</a></p>
+                <p class="text-gray-300 mb-4">Ou fale diretamente conosco:</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                    <a href="mailto:vishuld@yahoo.it" class="flex items-center text-lg text-purple-300 hover:underline hover:text-pink-400 transition-colors">
+                        <i class="fas fa-envelope mr-2"></i> vishuld@yahoo.it
+                    </a>
+                    <a href="https://wa.me/5511986108003" target="_blank" class="flex items-center text-lg text-purple-300 hover:underline hover:text-pink-400 transition-colors">
+                        <i class="fab fa-whatsapp mr-2"></i> +55 11 98610-8003
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -635,6 +634,7 @@
                             if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'none';
                         } else {
                             // If menu is closing, and it's mobile, desktop links should remain hidden
+                            // No need to explicitly hide here as desktop links are hidden by default on mobile
                         }
                     }
                 });
@@ -658,9 +658,11 @@
                     if (mobileMenuContent) mobileMenuContent.style.display = 'none';
                     if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'flex';
                 } else {
-                    // On mobile, ensure desktop links are hidden unless mobile menu is specifically requested to be open
+                    // On mobile, ensure desktop links are hidden
                     if (desktopNavbarLinks) desktopNavbarLinks.style.display = 'none';
                     // Mobile menu remains in its current state (open/closed by click)
+                    // If it was open, it should re-open when resizing back to mobile
+                    // If mobileMenuContent.style.display was 'flex', keep it 'flex'
                 }
             });
 
