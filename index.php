@@ -9,7 +9,7 @@
     <!-- Custom Fonts: Inter (main), Patrick Hand (for handwriting style) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-    <!-- FontAwesome para ícones (carregados estaticamente) -->
+    <!-- FontAwesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <style>
@@ -62,7 +62,7 @@
             color: #FF79C6; /* Pink hover */
         }
         .mobile-menu-toggle {
-            display: none; /* Hidden on desktop */
+            display: none; /* Hidden on desktop, shown by media query */
             cursor: pointer;
         }
         .mobile-menu-icon {
@@ -85,9 +85,20 @@
             padding: 0.75rem 1.5rem;
             text-align: center;
         }
-        /* CSS to toggle mobile menu - using a hidden checkbox to manage state */
-        #mobile-menu-checkbox:checked ~ .mobile-menu-content {
-            display: flex;
+        /* Media query to show/hide mobile menu toggle and content */
+        @media (max-width: 768px) {
+            .navbar .navbar-links {
+                display: none; /* Hide desktop links on small screens */
+            }
+            .navbar .mobile-menu-toggle {
+                display: block; /* Show toggle button */
+            }
+            #mobile-menu-checkbox:checked ~ .mobile-menu-content {
+                display: flex; /* Show mobile menu when checkbox is checked */
+            }
+             .mobile-menu-content.active {
+                display: flex; /* Fallback for JS activation */
+            }
         }
         #mobile-menu-checkbox {
             display: none; /* Hide the checkbox itself */
@@ -231,7 +242,6 @@
             height: 3px;
             background-color: #bd93f9;
         }
-
         /* Glitch Effect (Footer) */
         .glitch-text {
             font-size: 1.5rem;
@@ -269,24 +279,18 @@
             50% { clip: rect(30px, 9999px, 70px, 0); transform: translate(-3px, -3px); }
             100% { clip: rect(50px, 9999px, 10px, 0); transform: translate(0); }
         }
-
-
         /* Section General Styling */
-        section { padding: 5rem 0; } /* Consistent section padding */
-        section:nth-of-type(odd) { background-color: #1a1a2e; } /* Alternate dark background */
-        section:nth-of-type(even) { background-color: #2a2a4a; } /* Alternate slightly lighter dark background */
+        section { padding: 5rem 0; }
+        section:nth-of-type(odd) { background-color: #1a1a2e; }
+        section:nth-of-type(even) { background-color: #2a2a4a; }
 
         section h2 { font-family: 'Inter', sans-serif; font-weight: 800; margin-bottom: 3rem; text-align: center; color: white;}
         section p { font-family: 'Inter', sans-serif; line-height: 1.6; text-align: center;}
 
-        /* Navbar Specific */
-        nav { background-color: rgba(26, 26, 46, 0.9); backdrop-filter: blur(8px); }
-        nav a:hover, nav button:hover { color: #FF79C6; }
+        /* Methodology section adjustments */
+        #methodology .methodology-title { margin-bottom: 2rem; line-height: 1.2; }
+        #methodology .methodology-card { margin-bottom: 1.5rem; }
 
-        /* Methodology section adjustments for spacing */
-        #methodology .section-methodology-title { margin-bottom: 2rem; line-height: 1.2; }
-        #methodology p { margin-top: 0.5rem; margin-bottom: 2.5rem; font-size: 1.1rem; }
-        #methodology .block { margin-bottom: 2rem; }
 
         /* General Card Styles for various sections */
         .feature-card, .methodology-card, .habilidade-card, .curriculum-card { 
@@ -295,11 +299,11 @@
             padding: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%; /* Ensure consistent height */
+            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Aligns content to top */
-            text-align: left; /* Ensure text alignment for lists */
+            justify-content: flex-start;
+            text-align: left;
         }
         .feature-card:hover, .methodology-card:hover, .habilidade-card:hover, .curriculum-card:hover {
             transform: translateY(-8px);
@@ -323,7 +327,7 @@
         .accordion-header.active i { transform: rotate(180deg); }
         #curriculum .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; }
         #curriculum .accordion-content.active {
-            max-height: 500px; /* Adjust max-height as needed */
+            max-height: 500px;
             padding: 1.5rem; background-color: #2a2a4a; border-radius: 0 0 8px 8px;
         } 
         #curriculum .accordion-content ul { list-style-type: disc; margin-left: 1.5rem; }
@@ -332,16 +336,24 @@
         /* Contact Form */
         .contact-form-container {
             background-color: #2a2a4a; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 600px; margin: 0 auto;
+            max-width: 600px; margin: 0 auto;
+        }
+        .form-group-contact {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align labels left */
         }
         .contact-form-container input, .contact-form-container textarea {
             background-color: #3e3e5c; border: 1px solid #4a4a6e; color: #e0e0e0; padding: 0.75rem; border-radius: 8px;
+            width: 100%; /* Make inputs full width of their container */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .contact-form-container input:focus, .contact-form-container textarea:focus { border-color: #bd93f9; outline: none; box-shadow: 0 0 0 2px rgba(189,147,249,0.3); }
-        .contact-form-container label { color: #bd93f9; font-weight: bold; text-align: left; }
+        .contact-form-container label { color: #bd93f9; font-weight: bold; margin-bottom: 0.5rem; }
         .contact-form-container button {
             background-color: #ff79c6; color: #1a1a2e; padding: 1rem 1.5rem; border-radius: 8px; font-weight: bold;
+            width: 100%; /* Full width button */
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .contact-form-container button:hover { background-color: #bd93f9; transform: translateY(-3px); }
@@ -366,15 +378,6 @@
             .challenge-ia-text { font-size: 1.1rem; }
             .methodology-description, .methodology-card p, .feature-card p, .habilidade-card ul li, .curriculum-card ul li { font-size: 1rem; }
             .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { font-size: 1.4rem; }
-            .methodology-subtitle { font-size: 1.5rem; }
-
-            /* Mobile menu */
-            .navbar .navbar-links {
-                display: none; /* Hidden on small screens */
-            }
-            .navbar .mobile-menu-toggle {
-                display: block; /* Show toggle button */
-            }
         }
     </style>
 </head>
@@ -383,11 +386,13 @@
     <!-- Navbar -->
     <nav class="navbar">
         <a href="#hero" class="navbar-brand">RealTalk Daby</a>
-        <input type="checkbox" id="mobile-menu-checkbox">
+        <!-- Hidden checkbox for CSS-only mobile menu toggle -->
+        <input type="checkbox" id="mobile-menu-checkbox" class="mobile-menu-toggle">
         <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
             <i class="fas fa-bars mobile-menu-icon" aria-label="Abrir menu"></i>
         </label>
-        <div class="navbar-links md:flex" id="navbar-links">
+        <!-- Desktop Links -->
+        <div class="navbar-links hidden md:flex">
             <a href="#hero" class="navbar-link">Início</a>
             <a href="#voce" class="navbar-link">Você</a>
             <a href="#challenge" class="navbar-link">Desafio</a>
@@ -397,6 +402,7 @@
             <a href="#curriculum" class="navbar-link">Currículo</a>
             <a href="#contact" class="navbar-link">Contato</a>
         </div>
+        <!-- Mobile Menu Content (shown by checkbox state or JS fallback) -->
         <div class="mobile-menu-content">
             <a href="#hero" class="navbar-link">Início</a>
             <a href="#voce" class="navbar-link">Você</a>
@@ -503,7 +509,7 @@
         </div>
     </section>
 
-    <!-- Habilidades Section (Replaced AI Power) -->
+    <!-- Habilidades Section (Replaces AI Power) -->
     <section id="habilidades" class="habilidades-section">
         <h2 class="habilidades-title">🎓 Estrutura Modular: Habilidades de Liderança Global</h2>
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
@@ -565,55 +571,74 @@
         </div>
     </section>
 
-    <!-- Contact Section (Static HTML form) -->
+    <!-- Contact Section (Static HTML form with direct contact info) -->
     <section id="contact" class="contact-section">
         <h2 class="contact-title">Fale com a Daby!</h2>
         <div class="contact-form-container">
-            <form action="#" method="POST">
-                <label for="name">Nome Completo:</label>
-                <input type="text" id="name" name="name" required>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST"> <!-- ATENÇÃO: Substitua YOUR_FORMSPREE_ENDPOINT pelo seu URL do Formspree -->
+                <div class="form-group-contact">
+                    <label for="name">Nome Completo:</label>
+                    <input type="text" id="name" name="Nome Completo" required>
+                </div>
 
-                <label for="email">Seu Melhor Email Profissional:</label>
-                <input type="email" id="email" name="email" value="vishuld@yahoo.it" required>
+                <div class="form-group-contact">
+                    <label for="profession">Profissional:</label>
+                    <input type="text" id="profession" name="Profissao">
+                </div>
 
-                <label for="company">Empresa (Opcional):</label>
-                <input type="text" id="company" name="company">
+                <div class="form-group-contact">
+                    <label for="email">Seu Melhor Email Profissional:</label>
+                    <input type="email" id="email" name="Email Profissional" value="vishuld@yahoo.it" required>
+                </div>
 
-                <label for="message">Sua Mensagem / Desafio:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <div class="form-group-contact">
+                    <label for="company">Empresa (Opcional):</label>
+                    <input type="text" id="company" name="Empresa">
+                </div>
+
+                <div class="form-group-contact">
+                    <label for="message">Sua Mensagem / Desafio:</label>
+                    <textarea id="message" name="Mensagem / Desafio" rows="5" required></textarea>
+                </div>
 
                 <button type="submit">Enviar Mensagem</button>
             </form>
-            <div class="mt-4 text-center">
-                <p>Ou fale diretamente conosco:</p>
-                <p class="mt-2">Email: <a href="mailto:vishuld@yahoo.it">vishuld@yahoo.it</a></p>
-                <p>WhatsApp: <a href="https://wa.me/5511986108003">+55 11 98610-8003</a></p>
+            <div class="mt-8 text-center">
+                <p class="text-gray-300">Ou fale diretamente conosco:</p>
+                <p class="mt-2 text-lg text-purple-300">Email: <a href="mailto:vishuld@yahoo.it" class="hover:underline">vishuld@yahoo.it</a></p>
+                <p class="text-lg text-purple-300">WhatsApp: <a href="https://wa.me/5511986108003" class="hover:underline">+55 11 98610-8003</a></p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 RealTalk Daby. Todos os direitos reservados. | <a href="#privacy">Política de Privacidade</a> | <a href="#terms">Termos de Serviço</a></p>
+        <p class="glitch-text" data-text="Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.">Construído com Inovação e Foco em Resultados Corporativos por RealTalk Daby.</p>
+        <p class="mt-4 text-md text-gray-400">&copy; 2025 RealTalk Daby. Todos os direitos reservados. | <a href="#privacy">Política de Privacidade</a> | <a href="#terms">Termos de Serviço</a></p>
     </footer>
 
     <!-- Script para o menu mobile (apenas toggle de classe) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuCheckbox = document.getElementById('mobile-menu-checkbox');
-            const navbarLinks = document.getElementById('navbar-links');
             const mobileMenuContent = document.querySelector('.mobile-menu-content');
+            const desktopNavLinks = document.querySelector('.navbar-links.md\\:flex'); /* Selects the desktop links */
 
-            if (mobileMenuCheckbox && navbarLinks && mobileMenuContent) {
+            if (mobileMenuCheckbox && mobileMenuContent) {
                 mobileMenuCheckbox.addEventListener('change', function() {
                     if (this.checked) {
                         mobileMenuContent.style.display = 'flex';
+                        if (desktopNavLinks) desktopNavLinks.style.display = 'none'; /* Hide desktop nav */
                     } else {
                         mobileMenuContent.style.display = 'none';
+                         /* Only show desktop nav if screen is large enough */
+                        if (window.innerWidth >= 768 && desktopNavLinks) {
+                            desktopNavLinks.style.display = 'flex'; 
+                        }
                     }
                 });
 
-                // Fecha o menu quando um link é clicado (útil para navegação off-screen)
+                // Close menu when a link is clicked
                 mobileMenuContent.querySelectorAll('.navbar-link').forEach(link => {
                     link.addEventListener('click', function() {
                         if (mobileMenuCheckbox.checked) {
@@ -623,6 +648,24 @@
                     });
                 });
             }
+
+            // Also handle screen resize to ensure correct menu is shown
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768) {
+                    // If desktop, ensure mobile menu is hidden and desktop links are visible
+                    if (mobileMenuContent) mobileMenuContent.style.display = 'none';
+                    if (desktopNavLinks) desktopNavLinks.style.display = 'flex';
+                    if (mobileMenuCheckbox) mobileMenuCheckbox.checked = false; // Uncheck checkbox
+                } else {
+                    // If mobile, ensure desktop links are hidden unless mobile menu is active
+                    if (desktopNavLinks) desktopNavLinks.style.display = 'none';
+                    if (mobileMenuCheckbox && mobileMenuCheckbox.checked) {
+                        if (mobileMenuContent) mobileMenuContent.style.display = 'flex';
+                    }
+                }
+            });
+             // Initial check on load
+             window.dispatchEvent(new Event('resize'));
         });
     </script>
 </body>
