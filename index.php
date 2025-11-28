@@ -338,11 +338,11 @@
             background-color: #2a2a4a; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.5);
             max-width: 600px; margin: 0 auto;
         }
-        .form-group-contact {
-            margin-bottom: 1.5rem;
+        .form-group-contact { /* Ensures each input/label pair is a block */
+            margin-bottom: 1.5rem; /* Space between form groups */
             display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Align labels left */
+            flex-direction: column; /* Stacks label and input */
+            align-items: flex-start; /* Aligns label to the left */
         }
         .contact-form-container input, .contact-form-container textarea {
             background-color: #3e3e5c; border: 1px solid #4a4a6e; color: #e0e0e0; padding: 0.75rem; border-radius: 8px;
@@ -379,6 +379,13 @@
             .methodology-description, .methodology-card p, .feature-card p, .habilidade-card ul li, .curriculum-card ul li { font-size: 1rem; }
             .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { font-size: 1.4rem; }
         }
+        /* Mobile menu specific styles applied by the checkbox hack */
+        .navbar .navbar-links.md\:flex { /* Oculta a navegação no desktop se ela já estiver configurada para flex */
+            display: none;
+        }
+        .mobile-menu-toggle { /* Mostra o botão de toggle em telas pequenas */
+           display: block;
+        }
     </style>
 </head>
 <body class="main-gradient-bg">
@@ -387,7 +394,7 @@
     <nav class="navbar">
         <a href="#hero" class="navbar-brand">RealTalk Daby</a>
         <!-- Hidden checkbox for CSS-only mobile menu toggle -->
-        <input type="checkbox" id="mobile-menu-checkbox" class="mobile-menu-toggle">
+        <input type="checkbox" id="mobile-menu-checkbox">
         <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
             <i class="fas fa-bars mobile-menu-icon" aria-label="Abrir menu"></i>
         </label>
@@ -514,7 +521,7 @@
         <h2 class="habilidades-title">🎓 Estrutura Modular: Habilidades de Liderança Global</h2>
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12">
             <div class="habilidade-card">
-                <h4>Comunicação de Liderança e Gestão (Mesa Diretora)</h4>
+                <h3>Comunicação de Liderança e Gestão (Mesa Diretora)</h3>
                 <ul>
                     <li>Condução de Reuniões de Alto Impacto (Agenda Setting).</li>
                     <li>Feedback Construtivo e Gestão de Conflitos Cross-Cultural.</li>
@@ -522,7 +529,7 @@
                 </ul>
             </div>
             <div class="habilidade-card">
-                <h4>Proficiência em Vendas e Negociação (Fechamento de Negócios)</h4>
+                <h3>Proficiência em Vendas e Negociação (Fechamento de Negócios)</h3>
                 <ul>
                     <li>Pitching de Vendas (Adaptação a Diferentes Culturas).</li>
                     <li>Resposta Rápida a Objeções Complexas.</li>
@@ -530,7 +537,7 @@
                 </ul>
             </div>
             <div class="habilidade-card">
-                <h4>Apresentação Técnica e de Dados (Clareza e Precisão)</h4>
+                <h3>Apresentação Técnica e de Dados (Clareza e Precisão)</h3>
                 <ul>
                     <li>Explicação de Processos Complexos e Fluxos de Trabalho.</li>
                     <li>Vocabulário para Gráficos, KPI's e Projeções Financeiras.</li>
@@ -538,7 +545,7 @@
                 </ul>
             </div>
             <div class="habilidade-card">
-                <h4>Integração e Alinhamento Cultural (Onboarding Global)</h4>
+                <h3>Integração e Alinhamento Cultural (Onboarding Global)</h3>
                 <ul>
                     <li>Integração de Novos Colaboradores em Times Internacionais.</li>
                     <li>Gerenciamento de Diferenças de Sotaque e Jargão (Dialect Training).</li>
@@ -578,35 +585,35 @@
             <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST"> <!-- ATENÇÃO: Substitua YOUR_FORMSPREE_ENDPOINT pelo seu URL do Formspree -->
                 <div class="form-group-contact">
                     <label for="name">Nome Completo:</label>
-                    <input type="text" id="name" name="Nome Completo" required>
+                    <input type="text" id="name" name="Nome Completo" placeholder="Seu nome" required>
                 </div>
 
                 <div class="form-group-contact">
                     <label for="profession">Profissional:</label>
-                    <input type="text" id="profession" name="Profissao">
+                    <input type="text" id="profession" name="Profissao" placeholder="Ex: Lawyer, Gerente de Marketing">
                 </div>
 
                 <div class="form-group-contact">
                     <label for="email">Seu Melhor Email Profissional:</label>
-                    <input type="email" id="email" name="Email Profissional" value="vishuld@yahoo.it" required>
+                    <input type="email" id="email" name="Email Profissional" value="vishuld@yahoo.it" placeholder="Seu email" required>
                 </div>
 
                 <div class="form-group-contact">
                     <label for="company">Empresa (Opcional):</label>
-                    <input type="text" id="company" name="Empresa">
+                    <input type="text" id="company" name="Empresa" placeholder="Nome da sua empresa">
                 </div>
 
                 <div class="form-group-contact">
                     <label for="message">Sua Mensagem / Desafio:</label>
-                    <textarea id="message" name="Mensagem / Desafio" rows="5" required></textarea>
+                    <textarea id="message" name="Mensagem / Desafio" rows="5" placeholder="Quais são seus desafios ou objetivos com o inglês?" required></textarea>
                 </div>
 
                 <button type="submit">Enviar Mensagem</button>
             </form>
-            <div class="mt-8 text-center">
-                <p class="text-gray-300">Ou fale diretamente conosco:</p>
+            <div class="mt-8 text-center bg-gray-900 rounded-md p-4">
+                <p class="text-gray-300 mb-2">Ou fale diretamente conosco:</p>
                 <p class="mt-2 text-lg text-purple-300">Email: <a href="mailto:vishuld@yahoo.it" class="hover:underline">vishuld@yahoo.it</a></p>
-                <p class="text-lg text-purple-300">WhatsApp: <a href="https://wa.me/5511986108003" class="hover:underline">+55 11 98610-8003</a></p>
+                <p class="text-lg text-purple-300">WhatsApp: <a href="https://wa.me/5511986108003" target="_blank" class="hover:underline">+55 11 98610-8003</a></p>
             </div>
         </div>
     </section>
@@ -622,50 +629,33 @@
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuCheckbox = document.getElementById('mobile-menu-checkbox');
             const mobileMenuContent = document.querySelector('.mobile-menu-content');
-            const desktopNavLinks = document.querySelector('.navbar-links.md\\:flex'); /* Selects the desktop links */
+            // Using a simple CSS-driven toggle for mobile menu
 
-            if (mobileMenuCheckbox && mobileMenuContent) {
-                mobileMenuCheckbox.addEventListener('change', function() {
-                    if (this.checked) {
-                        mobileMenuContent.style.display = 'flex';
-                        if (desktopNavLinks) desktopNavLinks.style.display = 'none'; /* Hide desktop nav */
-                    } else {
-                        mobileMenuContent.style.display = 'none';
-                         /* Only show desktop nav if screen is large enough */
-                        if (window.innerWidth >= 768 && desktopNavLinks) {
-                            desktopNavLinks.style.display = 'flex'; 
-                        }
-                    }
-                });
+            // Add smooth-scroll behavior to all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
 
-                // Close menu when a link is clicked
-                mobileMenuContent.querySelectorAll('.navbar-link').forEach(link => {
-                    link.addEventListener('click', function() {
-                        if (mobileMenuCheckbox.checked) {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - document.querySelector('.navbar').offsetHeight; // Adjust for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+
+                        // Optionally close mobile menu after clicking a link
+                        if (mobileMenuCheckbox && mobileMenuCheckbox.checked) {
                             mobileMenuCheckbox.checked = false;
-                            mobileMenuContent.style.display = 'none';
+                            // Trigger change to update display of mobile menu content
+                            mobileMenuCheckbox.dispatchEvent(new Event('change'));
                         }
-                    });
-                });
-            }
-
-            // Also handle screen resize to ensure correct menu is shown
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 768) {
-                    // If desktop, ensure mobile menu is hidden and desktop links are visible
-                    if (mobileMenuContent) mobileMenuContent.style.display = 'none';
-                    if (desktopNavLinks) desktopNavLinks.style.display = 'flex';
-                    if (mobileMenuCheckbox) mobileMenuCheckbox.checked = false; // Uncheck checkbox
-                } else {
-                    // If mobile, ensure desktop links are hidden unless mobile menu is active
-                    if (desktopNavLinks) desktopNavLinks.style.display = 'none';
-                    if (mobileMenuCheckbox && mobileMenuCheckbox.checked) {
-                        if (mobileMenuContent) mobileMenuContent.style.display = 'flex';
                     }
-                }
+                });
             });
-             // Initial check on load
-             window.dispatchEvent(new Event('resize'));
+
         });
     </script>
 </body>
