@@ -9,14 +9,14 @@
     <!-- Custom Fonts: Inter (main), Patrick Hand (for handwriting style) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-    <!-- FontAwesome para ícones -->
+    <!-- FontAwesome para ícones (carregados estaticamente) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <style>
         /* Base Styling & Font */
         body { font-family: 'Inter', sans-serif; background-color: #1A1A2E; color: #E0E0E0; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* Background Animation for body */
+        /* Background Animation for body (pure CSS) */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -26,6 +26,71 @@
             background: linear-gradient(-45deg, #2a2a4a, #3e3e5c, #5c3e5c, #4a2a4a);
             background-size: 400% 400%;
             animation: gradientShift 20s ease infinite;
+        }
+
+        /* Navbar Styles (CSS-only for mobile menu toggle) */
+        .navbar {
+            background-color: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar-link {
+            color: #E0E0E0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .navbar-link:hover {
+            color: #FF79C6; /* Pink hover */
+        }
+        .mobile-menu-toggle {
+            display: none; /* Hidden on desktop */
+            cursor: pointer;
+        }
+        .mobile-menu-icon {
+            color: #E0E0E0;
+            font-size: 1.5rem;
+        }
+        .mobile-menu-content {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            background-color: rgba(26, 26, 46, 0.95);
+            position: absolute;
+            top: 4rem; /* Below navbar */
+            left: 0;
+            width: 100%;
+            padding: 1rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .mobile-menu-content .navbar-link {
+            padding: 0.75rem 1.5rem;
+            text-align: center;
+        }
+        /* CSS to toggle mobile menu - using a hidden checkbox to manage state */
+        #mobile-menu-checkbox:checked ~ .mobile-menu-content {
+            display: flex;
+        }
+        #mobile-menu-checkbox {
+            display: none; /* Hide the checkbox itself */
         }
 
         /* Introduction Header Styles */
@@ -99,7 +164,7 @@
             background-color: #BD93F9;
             color: #1A1A2E;
             padding: 0.8rem 2.5rem;
-            border-radius: 9999px; /* rounded-full */
+            border-radius: 9999px;
             font-size: 1.25rem;
             font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -211,24 +276,15 @@
         section:nth-of-type(odd) { background-color: #1a1a2e; } /* Alternate dark background */
         section:nth-of-type(even) { background-color: #2a2a4a; } /* Alternate slightly lighter dark background */
 
-        section h2 { font-family: 'Inter', sans-serif; font-weight: 800; margin-bottom: 3rem; text-align: center; }
+        section h2 { font-family: 'Inter', sans-serif; font-weight: 800; margin-bottom: 3rem; text-align: center; color: white;}
         section p { font-family: 'Inter', sans-serif; line-height: 1.6; text-align: center;}
-
-        /* Specific Section Overrides */
-        #challenge { background-color: #2a2a4a; }
-        #methodology { background-color: #1a1a2e; }
-        #features { background-color: #2a2a4a; }
-        #curriculum { background-color: #1a1a2e; }
-        #habilidades { background-color: #2a2a4a; } /* Updated from AI Power */
-        #contact { background-color: #1a1a2e; }
 
         /* Navbar Specific */
         nav { background-color: rgba(26, 26, 46, 0.9); backdrop-filter: blur(8px); }
         nav a:hover, nav button:hover { color: #FF79C6; }
-        #navbar-links.active { display: flex; flex-direction: column; } /* For mobile menu state */
 
         /* Methodology section adjustments for spacing */
-        #methodology .section-methodology-title { margin-bottom: 1.5rem; line-height: 1.2; }
+        #methodology .section-methodology-title { margin-bottom: 2rem; line-height: 1.2; }
         #methodology p { margin-top: 0.5rem; margin-bottom: 2.5rem; font-size: 1.1rem; }
         #methodology .block { margin-bottom: 2rem; }
 
@@ -264,6 +320,7 @@
         }
         .accordion-header:hover { background-color: #4a4a6e; }
         .accordion-header i { transition: transform 0.3s ease; }
+        .accordion-header.active i { transform: rotate(180deg); }
         #curriculum .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; }
         #curriculum .accordion-content.active {
             max-height: 500px; /* Adjust max-height as needed */
@@ -273,21 +330,21 @@
         #curriculum .accordion-content h4 { color: #8be9fd; font-size: 1.25rem; margin-bottom: 0.5rem; }
 
         /* Contact Form */
-        .contact-form {
+        .contact-form-container {
             background-color: #2a2a4a; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.5);
             display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 600px; margin: 0 auto;
         }
-        .contact-form input, .contact-form textarea {
+        .contact-form-container input, .contact-form-container textarea {
             background-color: #3e3e5c; border: 1px solid #4a4a6e; color: #e0e0e0; padding: 0.75rem; border-radius: 8px;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: #bd93f9; outline: none; box-shadow: 0 0 0 2px rgba(189,147,249,0.3); }
-        .contact-form label { color: #bd93f9; font-weight: bold; }
-        .contact-form button {
+        .contact-form-container input:focus, .contact-form-container textarea:focus { border-color: #bd93f9; outline: none; box-shadow: 0 0 0 2px rgba(189,147,249,0.3); }
+        .contact-form-container label { color: #bd93f9; font-weight: bold; text-align: left; }
+        .contact-form-container button {
             background-color: #ff79c6; color: #1a1a2e; padding: 1rem 1.5rem; border-radius: 8px; font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
-        .contact-form button:hover { background-color: #bd93f9; transform: translateY(-3px); }
+        .contact-form-container button:hover { background-color: #bd93f9; transform: translateY(-3px); }
 
         /* Footer */
         .footer { background-color: #12121e; padding: 2rem 1rem; border-top: 1px solid #2a2a4a; text-align: center; color: #c0c0c0; }
@@ -304,31 +361,19 @@
             .hero-description { font-size: 1.1rem; }
             #voce h2, .challenge-title, .methodology-title, .features-title, .habilidades-title, .curriculum-title, .contact-title { font-size: 2.2rem; }
             .handwriting-text { font-size: 1.5rem; }
-            .voce-phrase:first-child { font-size: 1.8rem; } /* Smaller for mobile */
+            .voce-phrase:first-child { font-size: 1.8rem; }
             .challenge-subtitle { font-size: 1.8rem; }
             .challenge-ia-text { font-size: 1.1rem; }
-            .methodology-description, .methodology-point-description, .feature-card p, .habilidade-card ul li, .curriculum-card ul li { font-size: 1rem; }
-            .feature-card h3, .habilidade-card h3, .curriculum-card h3 { font-size: 1.4rem; }
+            .methodology-description, .methodology-card p, .feature-card p, .habilidade-card ul li, .curriculum-card ul li { font-size: 1rem; }
+            .feature-card h3, .methodology-card h3, .habilidade-card h3, .curriculum-card h3 { font-size: 1.4rem; }
             .methodology-subtitle { font-size: 1.5rem; }
 
             /* Mobile menu */
-            #navbar-links {
-                display: none; /* Hidden by default */
-                flex-direction: column;
-                background-color: rgba(26, 26, 46, 0.95);
-                position: absolute;
-                top: 4rem;
-                left: 0;
-                width: 100%;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            .navbar .navbar-links {
+                display: none; /* Hidden on small screens */
             }
-            #navbar-links.active {
-                display: flex;
-            }
-            #navbar-links a {
-                padding: 0.75rem 1.5rem;
-                text-align: center;
+            .navbar .mobile-menu-toggle {
+                display: block; /* Show toggle button */
             }
         }
     </style>
@@ -336,22 +381,31 @@
 <body class="main-gradient-bg">
 
     <!-- Navbar -->
-    <nav class="navbar fixed top-0 left-0 w-full p-4 flex justify-between items-center shadow-lg">
-        <a href="#hero" class="text-white text-2xl font-bold">RealTalk Daby</a>
-        <div class="md:hidden">
-            <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
-                <i class="fas fa-bars text-lg"></i>
-            </button>
+    <nav class="navbar">
+        <a href="#hero" class="navbar-brand">RealTalk Daby</a>
+        <input type="checkbox" id="mobile-menu-checkbox">
+        <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
+            <i class="fas fa-bars mobile-menu-icon" aria-label="Abrir menu"></i>
+        </label>
+        <div class="navbar-links md:flex" id="navbar-links">
+            <a href="#hero" class="navbar-link">Início</a>
+            <a href="#voce" class="navbar-link">Você</a>
+            <a href="#challenge" class="navbar-link">Desafio</a>
+            <a href="#methodology" class="navbar-link">Metodologia</a>
+            <a href="#features" class="navbar-link">Plataforma</a>
+            <a href="#habilidades" class="navbar-link">Habilidades</a>
+            <a href="#curriculum" class="navbar-link">Currículo</a>
+            <a href="#contact" class="navbar-link">Contato</a>
         </div>
-        <div id="navbar-links" class="hidden md:flex space-x-6">
-            <a href="#hero" class="text-gray-300 hover:text-pink-400 transition-colors">Início</a>
-            <a href="#voce" class="text-gray-300 hover:text-pink-400 transition-colors">Você</a>
-            <a href="#challenge" class="text-gray-300 hover:text-pink-400 transition-colors">Desafio</a>
-            <a href="#methodology" class="text-gray-300 hover:text-pink-400 transition-colors">Metodologia</a>
-            <a href="#features" class="text-gray-300 hover:text-pink-400 transition-colors">Plataforma</a>
-            <a href="#habilidades" class="text-gray-300 hover:text-pink-400 transition-colors">Habilidades</a>
-            <a href="#curriculum" class="text-gray-300 hover:text-pink-400 transition-colors">Currículo</a>
-            <a href="#contact" class="text-gray-300 hover:text-pink-400 transition-colors">Contato</a>
+        <div class="mobile-menu-content">
+            <a href="#hero" class="navbar-link">Início</a>
+            <a href="#voce" class="navbar-link">Você</a>
+            <a href="#challenge" class="navbar-link">Desafio</a>
+            <a href="#methodology" class="navbar-link">Metodologia</a>
+            <a href="#features" class="navbar-link">Plataforma</a>
+            <a href="#habilidades" class="navbar-link">Habilidades</a>
+            <a href="#curriculum" class="navbar-link">Currículo</a>
+            <a href="#contact" class="navbar-link">Contato</a>
         </div>
     </nav>
 
@@ -403,7 +457,7 @@
     <!-- Methodology Section (Updated with new content) -->
     <section id="methodology" class="methodology-section">
         <h2 class="methodology-title">🧠 O SHIFT REAL TALK DABY: Da Teoria à Competência Instantânea.</h2>
-            <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Box 1: Meu compromisso: Capacidades dos Produtos -->
                 <div class="methodology-card">
                     <h3>Meu compromisso: Capacidades dos Produtos</h3>
@@ -520,7 +574,7 @@
                 <input type="text" id="name" name="name" required>
 
                 <label for="email">Seu Melhor Email Profissional:</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" value="vishuld@yahoo.it" required>
 
                 <label for="company">Empresa (Opcional):</label>
                 <input type="text" id="company" name="company">
@@ -530,6 +584,11 @@
 
                 <button type="submit">Enviar Mensagem</button>
             </form>
+            <div class="mt-4 text-center">
+                <p>Ou fale diretamente conosco:</p>
+                <p class="mt-2">Email: <a href="mailto:vishuld@yahoo.it">vishuld@yahoo.it</a></p>
+                <p>WhatsApp: <a href="https://wa.me/5511986108003">+55 11 98610-8003</a></p>
+            </div>
         </div>
     </section>
 
@@ -538,21 +597,28 @@
         <p>&copy; 2025 RealTalk Daby. Todos os direitos reservados. | <a href="#privacy">Política de Privacidade</a> | <a href="#terms">Termos de Serviço</a></p>
     </footer>
 
-    <!-- Pequeno script para menu mobile (apenas toggle de classe) -->
+    <!-- Script para o menu mobile (apenas toggle de classe) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuCheckbox = document.getElementById('mobile-menu-checkbox');
             const navbarLinks = document.getElementById('navbar-links');
+            const mobileMenuContent = document.querySelector('.mobile-menu-content');
 
-            if (mobileMenuButton && navbarLinks) {
-                mobileMenuButton.addEventListener('click', function() {
-                    navbarLinks.classList.toggle('active');
+            if (mobileMenuCheckbox && navbarLinks && mobileMenuContent) {
+                mobileMenuCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        mobileMenuContent.style.display = 'flex';
+                    } else {
+                        mobileMenuContent.style.display = 'none';
+                    }
                 });
-                // Close menu when a link is clicked
-                navbarLinks.querySelectorAll('a').forEach(link => {
+
+                // Fecha o menu quando um link é clicado (útil para navegação off-screen)
+                mobileMenuContent.querySelectorAll('.navbar-link').forEach(link => {
                     link.addEventListener('click', function() {
-                        if (navbarLinks.classList.contains('active')) {
-                            navbarLinks.classList.remove('active');
+                        if (mobileMenuCheckbox.checked) {
+                            mobileMenuCheckbox.checked = false;
+                            mobileMenuContent.style.display = 'none';
                         }
                     });
                 });
